@@ -13,43 +13,43 @@
   <md-tab-group [selectedIndex]="0">
     <md-tab label="Register">
       <h3>Please fill in the register form</h3>
-      <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmit(f1.value, f1)">
+      <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitRegister(f1.value, f1)">
         <table class="example-full-width" cellspacing="5">
           <tr>
             <td>
               <md-input-container class="example-full-width">
-                <input mdInput placeholder="First name" name="name" ngModel>
+                <input mdInput placeholder="First name" name="Name" ngModel>
               </md-input-container>
             </td>
             <td>
               <md-input-container class="example-full-width">
-                <input mdInput placeholder="Last name" name="surname" ngModel>
-              </md-input-container>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <md-input-container class="example-full-width">
-                <input mdInput minlength="5" placeholder="Username" name="username" ngModel>
+                <input mdInput placeholder="Last name" name="Surname" ngModel>
               </md-input-container>
             </td>
           </tr>
           <tr>
             <td>
               <md-input-container class="example-full-width">
-                <input mdInput placeholder="Email" name="email" ngModel>
+                <input mdInput minlength="5" placeholder="Username" name="Username" ngModel>
               </md-input-container>
             </td>
           </tr>
           <tr>
             <td>
               <md-input-container class="example-full-width">
-                <input type="password" minlength="6" mdInput placeholder="Password" name="password" ngModel>
+                <input mdInput placeholder="Email" name="Email" ngModel>
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container class="example-full-width">
+                <input type="password" minlength="6" mdInput placeholder="Password" name="Password" ngModel>
               </md-input-container>
             </td>
             <td>
               <md-input-container class="example-full-width">
-                <input type="password" minlength="6" mdInput placeholder="Confirm password" name="confPassword" ngModel>
+                <input type="password" minlength="6" mdInput placeholder="Confirm password" name="ConfirmPassword" ngModel>
               </md-input-container>
             </td>
             <td>
@@ -64,7 +64,7 @@
     <!--sign in part-->
     <md-tab label="Sing in">
       <h3>Please fill the sing in form</h3>
-      <form class="example-form" #f2="ngForm" (ngSubmit)="onSubmit(f2.value, f2)">
+      <form class="example-form" #f2="ngForm" (ngSubmit)="onSubmitSignIn(f2.value, f2)">
         <table class="example-full-width" cellspacing="5">
           <tr>
             <td>
