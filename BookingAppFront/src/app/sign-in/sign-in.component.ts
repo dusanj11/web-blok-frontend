@@ -19,9 +19,16 @@ export class SignInComponent implements OnInit {
   onSubmitSignIn(user: any, form: NgForm){
     console.log(user);
     this.httpService.signInUser(user).subscribe(
-      (res: any) => {this.registerResponse = res; console.log(this.registerResponse)},
+      (res: any) =>
+              {
+                  this.registerResponse = res;
+                  console.log(this.registerResponse);
+                  //console.log(res.headers.get("Role"));
+              },
       error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     );
+
+
   }
 
   ngOnInit() {
