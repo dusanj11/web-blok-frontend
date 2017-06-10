@@ -10,7 +10,7 @@ export class PlaceComponent implements OnInit {
 
   places: Place[];
 
-  constructor() { 
+  constructor() {
     this.places = [
       new Place(1,"Novi Sad", "1"),
       new Place(2,"Beograd", "2"),
