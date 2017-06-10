@@ -1,0 +1,48 @@
+
+  <h3>Please fill in the register form</h3>
+  <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitRegister(f1.value, f1)">
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="First name" name="Name" ngModel>
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Last name" name="Surname" ngModel>
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput minlength="5" placeholder="Username" name="Username" ngModel>
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Email" name="Email" ngModel>
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input type="password" minlength="6" mdInput placeholder="Password" name="Password" ngModel>
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input type="password" minlength="6" mdInput placeholder="Confirm password" name="ConfirmPassword" ngModel>
+          </md-input-container>
+        </td>
+        <td>
+          <button type="submit" md-raised-button color="primary">Register</button>
+          <!--<input type="submit" color="primary">Register</input>-->
+        </td>
+      </tr>
+    </table>
+  </form>

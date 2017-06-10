@@ -13,6 +13,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { CountryComponent } from './country/country.component';
 import { PlaceComponent } from './place/place.component';
+import { RegionComponent } from './region/region.component';
+import { AccommodationComponent } from './accommodation/accommodation.component';
+import { RegisterComponent } from './register/register.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 const Routes =
 [
@@ -25,7 +29,11 @@ const Routes =
   declarations: [
     AppComponent,
     CountryComponent,
-    PlaceComponent
+    PlaceComponent,
+    RegionComponent,
+    AccommodationComponent,
+    RegisterComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

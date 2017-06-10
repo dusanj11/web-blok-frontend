@@ -1,0 +1,23 @@
+
+  <h3>Please fill the sing in form</h3>
+  <form class="example-form" #f2="ngForm" (ngSubmit)="onSubmitSignIn(f2.value, f2)">
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Username" name="username" ngModel>
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input type="password" mdInput placeholder="Password" name="password" ngModel>
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="submit" md-raised-button color="accent">Sign in</button>
+        </td>
+      </tr>
+    </table>
+  </form>

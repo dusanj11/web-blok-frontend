@@ -8,7 +8,7 @@ import { IdentityUser } from '../model/identity-user';
 @Injectable()
 export class HttpService{
 
-    data: any;
+    data: any; //covek ovo ti ne treba
 
     constructor (private http: Http){
 
