@@ -17,6 +17,10 @@ import { RegionComponent } from './region/region.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { RegisterComponent } from './register/register.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { AccomodationTypeComponent } from './accomodation-type/accomodation-type.component';
+import { CommentComponent } from './comment/comment.component';
+import { RoomComponent } from './room/room.component';
+import { RoomReservationComponent } from './room-reservation/room-reservation.component';
 
 const Routes =
 [
@@ -33,7 +37,11 @@ const Routes =
     RegionComponent,
     AccommodationComponent,
     RegisterComponent,
-    SignInComponent
+    SignInComponent,
+    AccomodationTypeComponent,
+    CommentComponent,
+    RoomComponent,
+    RoomReservationComponent
   ],
   imports: [
     BrowserModule,

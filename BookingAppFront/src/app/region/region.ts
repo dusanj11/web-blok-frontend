@@ -1,9 +1,9 @@
-export class Region 
+export class Region
 {
     constructor(
-        public id: number,
-        public name: string,
-        public countryId: number){
+        public Id: number,
+        public Name: string,
+        public CountryId: number){
 
     }
 }

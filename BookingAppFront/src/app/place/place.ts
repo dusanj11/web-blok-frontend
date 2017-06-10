@@ -1,9 +1,9 @@
-export class Place 
+export class Place
 {
      constructor(
-        public id: number,
-        public name: string,
-        public regionId: number){
+        public Id: number,
+        public Name: string,
+        public RegionId: number){
 
     }
 }
