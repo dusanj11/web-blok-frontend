@@ -13,7 +13,7 @@ export class AccommodationComponent implements OnInit {
   accommodations: Accommodation[];
   httpService: HttpService;
 
-  // konstruktorom hardkodovana lista smestaja koja bi inace trebalo da se preuzme u onInit metodi 
+  // konstruktorom hardkodovana lista smestaja koja bi inace trebalo da se preuzme u onInit metodi
   constructor() {
         this.accommodations = [
             new Accommodation(1,
@@ -23,7 +23,7 @@ export class AccommodationComponent implements OnInit {
                               10,
                               50,
                               50,
-                              "../../assets/images/download.jpg",
+                              "assets/images/download.jpg",
                               true,
                               2,
                               3,
@@ -36,7 +36,7 @@ export class AccommodationComponent implements OnInit {
                                10,
                                50,
                                50,
-                               "../../assets/images/download.jpg",
+                               "assets/images/download.jpg",
                                true,
                                2,
                                3,
@@ -49,7 +49,7 @@ export class AccommodationComponent implements OnInit {
                               10,
                               50,
                               50,
-                              "../../assets/images/download.jpg",
+                              "assets/images/download.jpg",
                               true,
                               2,
                               3,
