@@ -1,16 +1,8 @@
-<h3> drzave bona </h3>
-<!--<form #f="ngForm" (ngSubmit)="addCountry(f.value)">
-  <p>Id: </p> <input name="Id" type="text" ngModel/></br>
-  <p>Code: </p> <input name="Code" type="text" ngModel/></br>
-  <p>Name: </p> <input name="Name" type="text" ngModel/>
-  <input type="submit"/>
-</form>-->
-<!--<div>
-  <ul>
-    <li *ngFor="let country of countries" >
-      {{country.Name}}
-    </li>
-  </ul>
-</div>-->
-
-<!--ngModel da bi bilo vidljivo-->
+<md-card>
+  <md-tab-group [selectedIndex]="0">
+    
+    <md-tab *ngFor="let myCountry of countries"
+         label={{myCountry.Name}}>
+    </md-tab>
+  </md-tab-group>
+</md-card>

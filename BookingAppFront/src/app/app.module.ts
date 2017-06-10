@@ -27,6 +27,7 @@ import { AccommodationListComponent } from './accommodation/accommodation-list/a
 import { AccommodationRowComponent } from './accommodation/accommodation-row/accommodation-row.component';
 import { AccommodationDetailsComponent } from './accommodation/accommodation-details/accommodation-details.component';
 
+
 const Routes =
 [
   {path: "signIn", component: HomeComponent},
