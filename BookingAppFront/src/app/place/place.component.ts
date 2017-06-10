@@ -15,9 +15,9 @@ export class PlaceComponent implements OnInit {
       new Place(1,"Novi Sad", 1),
       new Place(2,"Beograd", 2),
       new Place(3,"Nis", 2),
-      new Place(4,"Skopje", 3),
-      new Place(5,"Berovo", 3),
-      new Place(6,"Sarajevo", 4)
+      new Place(4,"Skopje", 4),
+      new Place(5,"Berovo", 5),
+      new Place(6,"Sarajevo", 3)
     ];
   }
 
