@@ -21,12 +21,14 @@ import { AccomodationTypeComponent } from './accomodation-type/accomodation-type
 import { CommentComponent } from './comment/comment.component';
 import { RoomComponent } from './room/room.component';
 import { RoomReservationComponent } from './room-reservation/room-reservation.component';
+import { HomeComponent } from './home/home.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 const Routes =
 [
+  {path: "signIn", component: HomeComponent},
   {path: "country", component: CountryComponent},
-  {path: "place", component: PlaceComponent},
-  {path: "other", redirectTo:"country"}
+  {path: "other", redirectTo:"signIn"}
 ]
 
 @NgModule({
@@ -41,7 +43,9 @@ const Routes =
     AccomodationTypeComponent,
     CommentComponent,
     RoomComponent,
-    RoomReservationComponent
+    RoomReservationComponent,
+    HomeComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
