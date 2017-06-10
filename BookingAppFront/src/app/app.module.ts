@@ -23,11 +23,14 @@ import { RoomComponent } from './room/room.component';
 import { RoomReservationComponent } from './room-reservation/room-reservation.component';
 import { HomeComponent } from './home/home.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { AccommodationListComponent } from './accommodation/accommodation-list/accommodation-list.component';
+import { AccommodationRowComponent } from './accommodation/accommodation-row/accommodation-row.component';
 
 const Routes =
 [
   {path: "signIn", component: HomeComponent},
   {path: "country", component: CountryComponent},
+  {path: "accommodation", component: AccommodationComponent },
   {path: "other", redirectTo:"signIn"}
 ]
 
@@ -45,7 +48,9 @@ const Routes =
     RoomComponent,
     RoomReservationComponent,
     HomeComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    AccommodationListComponent,
+    AccommodationRowComponent
   ],
   imports: [
     BrowserModule,

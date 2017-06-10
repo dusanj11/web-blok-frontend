@@ -63,5 +63,9 @@ export class HttpService{
           body,opts);
     }
 
+    getAccommodation(): Observable<any>{
+        return this.http.get("http://localhost:54042/api/accommodation/accommodations").map(this.extractData);
+    }
+
 
 }
