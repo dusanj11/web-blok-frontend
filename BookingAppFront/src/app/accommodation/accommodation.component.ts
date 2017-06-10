@@ -29,7 +29,7 @@ export class AccommodationComponent implements OnInit {
                               3,
                               1
                             ),
-             new Accommodation(1,
+             new Accommodation(2,
                                "Accommodation 2",
                                "Accommodation 2 description",
                                "Accommodation 2 address",
@@ -42,7 +42,7 @@ export class AccommodationComponent implements OnInit {
                                3,
                                1
                              ),
-            new Accommodation(1,
+            new Accommodation(3,
                               "Accommodation 3",
                               "Accommodation 3 description",
                               "Accommodation 3 address",
@@ -55,7 +55,7 @@ export class AccommodationComponent implements OnInit {
                               3,
                               1
                             ),
-          new Accommodation(1,
+          new Accommodation(4,
                             "Accommodation 4",
                             "Accommodation 4 description",
                             "Accommodation 4 address",
@@ -68,7 +68,7 @@ export class AccommodationComponent implements OnInit {
                             3,
                             1
                           ),
-        new Accommodation(1,
+        new Accommodation(5,
                           "Accommodation 5",
                           "Accommodation 5 description",
                           "Accommodation 5 address",
@@ -81,7 +81,7 @@ export class AccommodationComponent implements OnInit {
                           3,
                           1
                         ),
-        new Accommodation(1,
+        new Accommodation(6,
                           "Accommodation 6",
                           "Accommodation 6 description",
                           "Accommodation 6 address",

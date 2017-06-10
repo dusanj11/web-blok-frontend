@@ -3,10 +3,10 @@
 <md-card >
   <!-- <md-card item-width="10" item-height="10"> -->
   <img md-card-lg-image  [src]="accommodation.ImageURL" alt="Image 1"  >
-  <h1 md-line>{{accommodation.Name}}</h1>
-  <p md-line>
+  <h2 md-line>{{accommodation.Name}}</h2>
+  <!-- <p md-line>
     <span>{{accommodation.Description}}</span>
-  </p>
+  </p> -->
   <p md-line>
     <span>Ocena: {{accommodation.AverageGrade}}</span>
   </p>
@@ -14,7 +14,7 @@
 
   </p>
   <p md-line>
-    <button md-raised-button color="primary">Detalji</button>
+    <button md-raised-button color="primary" (click)="showDetails(accommodation.Id)">Details</button>
   </p>
 </md-card>
 <!-- </md-list-item> -->
