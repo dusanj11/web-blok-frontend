@@ -21,6 +21,11 @@ export class ToolbarComponent implements OnInit {
     this.router.navigate(['/signIn']);
   }
 
+  goCountry()
+  {
+    this.router.navigate(['/country']);
+  }
+
   goAccommodation(){
     this.router.navigate(['/accommodation']);
   }

@@ -26,6 +26,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { AccommodationListComponent } from './accommodation/accommodation-list/accommodation-list.component';
 import { AccommodationRowComponent } from './accommodation/accommodation-row/accommodation-row.component';
 
+
 const Routes =
 [
   {path: "signIn", component: HomeComponent},
@@ -50,7 +51,7 @@ const Routes =
     HomeComponent,
     ToolbarComponent,
     AccommodationListComponent,
-    AccommodationRowComponent
+    AccommodationRowComponent,
   ],
   imports: [
     BrowserModule,

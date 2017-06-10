@@ -1,7 +1,7 @@
 export class Country {
     constructor(
         public Id: number,
-        public Mame: string,
+        public Name: string,
         public Code: string){
 
     }
