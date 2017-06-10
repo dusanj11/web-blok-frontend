@@ -1,6 +1,12 @@
-<md-list>
+<!-- <md-list> -->
+<md-card>
+<md-grid-list cols="4">
+  <md-grid-tile *ngFor="let myAccommodation of accommodationList">
     <app-accommodation-row
-        *ngFor="let myAccommodation of accommodationList"
         [accommodation]="myAccommodation">
     </app-accommodation-row>
-</md-list>
+   </md-grid-tile>
+
+<!-- </md-list> -->
+</md-grid-list>
+</md-card>

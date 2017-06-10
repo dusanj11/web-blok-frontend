@@ -1,11 +1,20 @@
-<md-card>
-<md-list-item *ngIf="accommodation.Approved == true">
-
-   <img md-list-avatar scr="assets/images/download.jpg" alt="Image 1"> 
-  <h3 md-line>{{accommodation.Name}}</h3>
+<!-- <md-card item-width="100" item-height="100" > -->
+<!-- <md-list-item *ngIf="accommodation.Approved == true"> -->
+<md-card >
+  <!-- <md-card item-width="10" item-height="10"> -->
+  <img md-card-lg-image  [src]="accommodation.ImageURL" alt="Image 1"  >
+  <h1 md-line>{{accommodation.Name}}</h1>
   <p md-line>
     <span>{{accommodation.Description}}</span>
   </p>
+  <p md-line>
+    <span>Ocena: {{accommodation.AverageGrade}}</span>
+  </p>
+  <p md-line>
 
-</md-list-item>
+  </p>
+  <p md-line>
+    <button md-raised-button color="primary">Detalji</button>
+  </p>
 </md-card>
+<!-- </md-list-item> -->
