@@ -23,8 +23,23 @@ export class SignInComponent implements OnInit {
   onSubmitSignIn(user: any, form: NgForm){
     console.log(user);
     this.httpService.signInUser(user).subscribe(
-      (res: any) => {this.registerResponse = res;  console.log(this.registerResponse)},
-      error => { alert("Unsuccessful fetch operation!"); console.log(error);}
+      (res: any) => {
+                        this.registerResponse = res;
+                        console.log(this.registerResponse);
+
+                        let user = res.json();
+                        if ( user && user.access_token) {
+                            // postoji token, tako da postoji registrovan korisnik
+                            // smestanje tokena na localstorage
+                            localStorage.setItem('currentUser', JSON.stringify(user));
+                            console.log(localStorage.getItem('currentUser'));
+                        }
+                    },
+      error => {
+                  alert("Unsuccessful fetch operation!");
+                  console.log(error);
+               }
+
     );
 
     //   (res: any) =>

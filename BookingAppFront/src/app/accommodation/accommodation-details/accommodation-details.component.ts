@@ -16,6 +16,7 @@ export class AccommodationDetailsComponent implements OnInit {
   // sa servera treba da dobavi podatke o smestaju sa id koji je prosledjen propertijem this.id
   ngOnInit() {
     console.log("Accommodation Details: " + this.id);
+    console.log("LogIn " + localStorage.getItem('currentUser'));
   }
 
 
