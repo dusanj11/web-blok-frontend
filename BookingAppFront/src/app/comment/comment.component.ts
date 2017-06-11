@@ -12,7 +12,34 @@ export class CommentComponent implements OnInit {
   comments: Comment[];
 
   // konstrutkor inicijalizuje listu komentara za odredjeni smestaj
-  constructor() { }
+  constructor() {
+      this.comments = [
+        new Comment(
+                    1,
+                    4,
+                    "Odlican smestaj, svaka preporuka",
+                    2,
+                    2),
+        new Comment(
+                    1,
+                    4,
+                    "Odlican smestaj, svaka preporuka",
+                    2,
+                    2),
+        new Comment(
+                    1,
+                    4,
+                    "Odlican smestaj, svaka preporuka",
+                    2,
+                    2),
+        new Comment(
+                    1,
+                    4,
+                    "Odlican smestaj, svaka preporuka",
+                    2,
+                    2)
+      ]
+   }
 
   ngOnInit() {
   }

@@ -1,25 +1,44 @@
+<md-card>
+  <md-list>
+    <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitAddComment(f1.value, f1)">
+      <table class="example-full-width" cellspacing="5">
+        <tr>
+          <h3>Comments for this accommodation</h3>
+        </tr>
+        <tr>
+          <td>
+            <md-input-container>
+              <textarea rows="5" cols="50" mdInput placeholder="Comment" width="200" name="comment" ngModel></textarea>
+            </md-input-container>
+          </td>
+          <td>
+            <md-button-toggle-group>
+              <md-button-toggle value="good"><md-icon>thumb_down</md-icon></md-button-toggle>
+              <md-button-toggle value="bad"><md-icon>thumb_up</md-icon></md-button-toggle>
+            </md-button-toggle-group>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" md-raised-button color="accent">Add comment</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </md-list>
+</md-card>
 
-  <h3>Comments for this accommodation</h3>
-  <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitAddComment(f1.value, f1)">
-    <table class="example-full-width" cellspacing="5">
-      <tr>
-        <td>
-          <md-input-container>
-            <textarea rows="5" cols="50" resize="none" mdInput placeholder="Comment" width="200" name="comment" ngModel></textarea>
-          </md-input-container>
-        </td>
-        <td>
-          <md-button-toggle-group>
-            <md-button-toggle value="good"><md-icon>thumb_down</md-icon></md-button-toggle>
-            <md-button-toggle value="bad"><md-icon>thumb_up</md-icon></md-button-toggle>
-          </md-button-toggle-group>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <button type="submit" md-raised-button color="accent">Add comment</button>
-        </td>
-      </tr>
-    </table>
-  </form>
+  <!-- Prikaz liste komentara  -->
+<md-card *ngFor="let myComment of comments">
+  <md-list >
+    <md-list-item>
+      <h3 md-line>{{myComment.AppUserId}}</h3>
+      <p md-line>
+        <span>{{myComment.Text}}</span>
+      </p>
+      <p md-line>
+        <span>Broj glasova: {{myComment.Grade}}</span>
+      </p>
+    </md-list-item>
+  </md-list>
+</md-card>
