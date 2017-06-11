@@ -31,6 +31,7 @@ import { CountryAddComponent } from './country-add/country-add.component';
 import { RegionAddComponent } from './region-add/region-add.component';
 import { PlaceAddComponent } from './place-add/place-add.component';
 import { AccommodationAddComponent } from './accommodation-add/accommodation-add.component';
+import { AccommodationTypeAddComponent } from './accommodation-type-add/accommodation-type-add.component';
 
 
 const Routes =
@@ -64,7 +65,8 @@ const Routes =
     CountryAddComponent,
     RegionAddComponent,
     PlaceAddComponent,
-    AccommodationAddComponent
+    AccommodationAddComponent,
+    AccommodationTypeAddComponent
   ],
   imports: [
     BrowserModule,

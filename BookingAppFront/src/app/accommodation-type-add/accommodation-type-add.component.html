@@ -1,0 +1,16 @@
+<form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitRegister(f1.value, f1)">
+  <table class="example-full-width" cellspacing="5">
+    <tr>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Name" name="Name" ngModel>
+        </md-input-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" md-raised-button color="primary">Add</button>
+      </td>
+    </tr>
+  </table>
+</form>
