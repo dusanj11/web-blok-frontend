@@ -1,0 +1,8 @@
+<md-tab-group [selectedIndex]="0">
+  <ng-container *ngFor="let myRegion of regions">
+    <!--<ng-container *ngFor="let myCountry of regCountries">-->
+      <md-tab *ngIf=" myRegion.CountryId == regCountry" label={{myRegion.Name}}>
+      </md-tab>
+    <!--</ng-container>-->
+  </ng-container>
+</md-tab-group>

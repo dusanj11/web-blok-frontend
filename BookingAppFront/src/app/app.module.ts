@@ -13,7 +13,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { CountryComponent } from './country/country.component';
 import { PlaceComponent } from './place/place.component';
-import { RegionComponent } from './region/region.component';
 import { AccommodationComponent } from './accommodation/accommodation.component';
 import { RegisterComponent } from './register/register.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -26,6 +25,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { AccommodationListComponent } from './accommodation/accommodation-list/accommodation-list.component';
 import { AccommodationRowComponent } from './accommodation/accommodation-row/accommodation-row.component';
 import { AccommodationDetailsComponent } from './accommodation/accommodation-details/accommodation-details.component';
+import { RegionComponent } from './country/region/region.component';
 
 
 const Routes =
@@ -42,7 +42,6 @@ const Routes =
     AppComponent,
     CountryComponent,
     PlaceComponent,
-    RegionComponent,
     AccommodationComponent,
     RegisterComponent,
     SignInComponent,
@@ -54,7 +53,8 @@ const Routes =
     ToolbarComponent,
     AccommodationListComponent,
     AccommodationRowComponent,
-    AccommodationDetailsComponent
+    AccommodationDetailsComponent,
+    RegionComponent
   ],
   imports: [
     BrowserModule,

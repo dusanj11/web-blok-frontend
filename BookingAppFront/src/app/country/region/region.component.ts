@@ -1,4 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Country } from '../country';
 import {Region} from './region';
 
 @Component({
@@ -8,7 +9,8 @@ import {Region} from './region';
 })
 export class RegionComponent implements OnInit {
 
-  @Output() regions: Region[];
+  regions: Region[];
+  @Input() regCountry : number;
 
   constructor() 
   {
@@ -19,6 +21,7 @@ export class RegionComponent implements OnInit {
       new Region(4,"Centralna Makedonija", 3),
       new Region(5,"Istocna Makedonija", 3),
     ];
+
    }
 
   ngOnInit() {
