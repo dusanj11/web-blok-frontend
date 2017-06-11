@@ -30,6 +30,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { CountryAddComponent } from './country-add/country-add.component';
 import { RegionAddComponent } from './region-add/region-add.component';
 import { PlaceAddComponent } from './place-add/place-add.component';
+import { AccommodationAddComponent } from './accommodation-add/accommodation-add.component';
 
 
 const Routes =
@@ -62,7 +63,8 @@ const Routes =
     AdminPanelComponent,
     CountryAddComponent,
     RegionAddComponent,
-    PlaceAddComponent
+    PlaceAddComponent,
+    AccommodationAddComponent
   ],
   imports: [
     BrowserModule,
