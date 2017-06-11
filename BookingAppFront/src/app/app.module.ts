@@ -33,6 +33,7 @@ const Routes =
 [
   {path: "signIn", component: HomeComponent},
   {path: "accommodation", component: CountryComponent },
+  {path: "administration", component: AdminPanelComponent},
   {path: "accommodation-details/:id", component: AccommodationDetailsComponent},
   {path: "other", redirectTo:"signIn"}
 ]
