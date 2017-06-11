@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Comment } from './comment';
 import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-comment',
@@ -10,6 +11,8 @@ import { NgForm } from '@angular/forms';
 export class CommentComponent implements OnInit {
 
   comments: Comment[];
+
+  @Input() id: number;
 
   // konstrutkor inicijalizuje listu komentara za odredjeni smestaj
   constructor() {
@@ -42,6 +45,7 @@ export class CommentComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log("Id smestaja za komentar: " + this.id);
   }
 
 }
