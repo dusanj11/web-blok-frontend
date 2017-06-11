@@ -1,12 +1,10 @@
 <md-card>
-  <md-tab-group [selectedIndex]="0">
 
-    <md-tab *ngFor="let myCountry of countries" label={{myCountry.Name}}>
-      <ng-container *ngFor="let myRegion of regions">
-      <h2  *ngIf="myRegion.CountryId == myCountry.Id">
-         {{myRegion.Name}}
-      </h2>
-      </ng-container>
+  <md-tab-group [selectedIndex]="0">
+    <md-tab name="countryTab" id="{{myCountry.Id}}" *ngFor="let myCountry of countries" label={{myCountry.Name}}>
+      <app-region [regCountry]="myCountry.Id">
+      </app-region>
     </md-tab>
   </md-tab-group>
+
 </md-card>

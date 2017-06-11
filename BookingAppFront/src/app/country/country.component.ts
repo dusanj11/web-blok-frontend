@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Country} from './country';
+
 
 @Component({
   selector: 'app-country',
@@ -26,5 +27,6 @@ export class CountryComponent implements OnInit {
   {
     this.countries.push(newCountry);
   }
+
 
 }
