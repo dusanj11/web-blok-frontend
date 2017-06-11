@@ -32,7 +32,8 @@
 <md-card *ngFor="let myComment of comments">
   <md-list >
     <md-list-item>
-      <h3 md-line>{{myComment.AppUserId}}</h3>
+      <img md-list-avatar src="/assets/images/comment.png">
+      <h3 md-line>Korisnik: {{myComment.AppUserId}}</h3>
       <p md-line>
         <span>{{myComment.Text}}</span>
       </p>
