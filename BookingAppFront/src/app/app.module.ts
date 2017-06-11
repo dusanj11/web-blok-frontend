@@ -31,8 +31,7 @@ import { RegionComponent } from './country/region/region.component';
 const Routes =
 [
   {path: "signIn", component: HomeComponent},
-  {path: "country", component: CountryComponent},
-  {path: "accommodation", component: AccommodationComponent },
+  {path: "accommodation", component: CountryComponent },
   {path: "accommodation-details/:id", component: AccommodationDetailsComponent},
   {path: "other", redirectTo:"signIn"}
 ]
