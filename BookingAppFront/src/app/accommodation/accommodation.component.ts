@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { Accommodation } from './accommodation';
 import { HttpService } from '../service/http-service';
 
@@ -12,6 +12,7 @@ export class AccommodationComponent implements OnInit {
   // Klasa dobavlja listu smestaja
   accommodations: Accommodation[];
   httpService: HttpService;
+  @Input() accPlace: number;
 
   // konstruktorom hardkodovana lista smestaja koja bi inace trebalo da se preuzme u onInit metodi
   constructor() {
@@ -51,7 +52,7 @@ export class AccommodationComponent implements OnInit {
                               50,
                               "/assets/images/download.jpg",
                               true,
-                              2,
+                              3,
                               3,
                               1
                             ),
@@ -64,7 +65,7 @@ export class AccommodationComponent implements OnInit {
                             50,
                             "/assets/images/download.jpg",
                             true,
-                            2,
+                            5,
                             3,
                             1
                           ),
@@ -77,7 +78,7 @@ export class AccommodationComponent implements OnInit {
                           50,
                           "/assets/images/download.jpg",
                           true,
-                          2,
+                          5,
                           3,
                           1
                         ),
@@ -90,7 +91,7 @@ export class AccommodationComponent implements OnInit {
                           50,
                           "/assets/images/download.jpg",
                           true,
-                          2,
+                          6,
                           3,
                           1
                         )

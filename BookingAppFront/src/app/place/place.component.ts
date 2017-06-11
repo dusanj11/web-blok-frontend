@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Place } from './place';
 
 @Component({
@@ -9,6 +9,7 @@ import { Place } from './place';
 export class PlaceComponent implements OnInit {
 
   places: Place[];
+  @Input() placeReg : number;
 
   constructor() {
     this.places = [

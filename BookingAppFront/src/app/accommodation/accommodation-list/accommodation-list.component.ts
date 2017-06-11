@@ -10,7 +10,7 @@ import { Accommodation } from '../accommodation';
 export class AccommodationListComponent implements OnInit {
 
   @Input() accommodationList: Accommodation[];
-
+  @Input() accListPlace: number;
   constructor() { }
 
   ngOnInit() {

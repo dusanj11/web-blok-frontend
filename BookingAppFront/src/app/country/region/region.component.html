@@ -2,6 +2,8 @@
   <ng-container *ngFor="let myRegion of regions">
     <!--<ng-container *ngFor="let myCountry of regCountries">-->
       <md-tab *ngIf=" myRegion.CountryId == regCountry" label={{myRegion.Name}}>
+        <app-place [placeReg]="myRegion.Id">
+        </app-place>
       </md-tab>
     <!--</ng-container>-->
   </ng-container>

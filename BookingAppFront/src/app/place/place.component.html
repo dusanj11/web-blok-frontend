@@ -1,18 +1,10 @@
-<!--<md-chip-list>
-  <md-chip>One fish</md-chip>
-  <md-chip>Two fish</md-chip>
-  <md-chip color="primary" selected="true">Primary fish</md-chip>
-  <md-chip color="accent" selected="true">Accent fish</md-chip>
-</md-chip-list>-->
-<p>
-  place komponenta
-  </p>
-  <!--<button md-raised-button md-tooltip="Ja kartica hahaha"  tooltip-position="below">Klikni nisam button</button>
-  <md-toolbar color="accent">
-  <span>Logo</span>
-  <span>Welcome</span>
-  <button md-raised-button color="primary">
-    <md-icon>home</md-icon>
-  </button>
-</md-toolbar>-->
-
+<md-tab-group [selectedIndex]="0">
+  <ng-container *ngFor="let myPlace of places">
+    <!--<ng-container *ngFor="let myCountry of regCountries">-->
+      <md-tab *ngIf=" myPlace.RegionId == placeReg" label={{myPlace.Name}}>
+        <app-accommodation [accPlace]="myPlace.Id">
+        </app-accommodation>
+      </md-tab>
+    <!--</ng-container>-->
+  </ng-container>
+</md-tab-group>
