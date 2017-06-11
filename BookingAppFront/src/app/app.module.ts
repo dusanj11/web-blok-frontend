@@ -28,6 +28,8 @@ import { AccommodationDetailsComponent } from './accommodation/accommodation-det
 import { RegionComponent } from './country/region/region.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { CountryAddComponent } from './country-add/country-add.component';
+import { RegionAddComponent } from './region-add/region-add.component';
+import { PlaceAddComponent } from './place-add/place-add.component';
 
 
 const Routes =
@@ -58,7 +60,9 @@ const Routes =
     AccommodationDetailsComponent,
     RegionComponent,
     AdminPanelComponent,
-    CountryAddComponent
+    CountryAddComponent,
+    RegionAddComponent,
+    PlaceAddComponent
   ],
   imports: [
     BrowserModule,
