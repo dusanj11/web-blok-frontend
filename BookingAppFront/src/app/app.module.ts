@@ -26,6 +26,7 @@ import { AccommodationListComponent } from './accommodation/accommodation-list/a
 import { AccommodationRowComponent } from './accommodation/accommodation-row/accommodation-row.component';
 import { AccommodationDetailsComponent } from './accommodation/accommodation-details/accommodation-details.component';
 import { RegionComponent } from './country/region/region.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 const Routes =
@@ -53,7 +54,8 @@ const Routes =
     AccommodationListComponent,
     AccommodationRowComponent,
     AccommodationDetailsComponent,
-    RegionComponent
+    RegionComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
