@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { IdentityUser } from '../model/identity-user';
 import { AppUser } from '../model/app-user';
+import { Country } from "app/country/country";
+import { Region } from "app/country/region/region";
 
 // injectable omogucava da unutar konsturktora (naseg servisa) stavimo neki dependency
 @Injectable()
@@ -100,9 +102,20 @@ export class HttpService{
           body,opts);
     }
 
+    //sve get metode za dobavljanje sa servera
+
     getAccommodation(): Observable<any>{
         return this.http.get("http://localhost:54042/api/accommodation/accommodations").map(this.extractData);
     }
 
+    getCountries(): Observable<Country>
+    {
+        return this.http.get("http://localhost:54042/api/country/countries").map(this.extractData);
+    }
+
+    getRegions(): Observable<Region>
+    {
+        return this.http.get("http://localhost:54042/api/region/regions").map(this.extractData);
+    }
 
 }

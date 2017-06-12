@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Country} from './country';
+import { HttpService } from "app/service/http-service";
 
 
 @Component({
@@ -11,7 +12,7 @@ export class CountryComponent implements OnInit {
 
   countries: Country[];
 
-  constructor() { 
+  constructor(public httpService: HttpService) { 
     this.countries = [
       new Country(1,"Srbija", "RS"),
       new Country(2,"Bosna i Hercegovina", "BiH"),
@@ -20,7 +21,12 @@ export class CountryComponent implements OnInit {
   }
 
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    // this.httpService.getCountries().subscribe(
+    //    (conts: any) => {this.countries = conts; console.log(this.countries)},//You can set the type to Product.
+    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    // );
   }
 
   addCountry(newCountry: Country) : void
