@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   Router,
   ActivatedRoute
@@ -11,9 +11,21 @@ import {
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor( private router: Router, private activatedRoute: ActivatedRoute) { }
+  @Input() admin: boolean;
+
+  constructor( private router: Router,
+               private activatedRoute: ActivatedRoute) {  }
 
   ngOnInit() {
+      let user = localStorage.getItem('currentUser');
+      // if ( user && user.access_token ) {
+      //     // korisnik se logovao proveri
+      //
+      // }
+      // else {
+      //
+      // }
+
   }
 
   goLogIn()

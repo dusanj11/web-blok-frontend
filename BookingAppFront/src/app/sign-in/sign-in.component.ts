@@ -21,18 +21,23 @@ export class SignInComponent implements OnInit {
   // metoda koja gadja oauth/token url kako bi dobila token za korisnika
   // TODO: potrebno je nekako sacuvati token
   onSubmitSignIn(user: any, form: NgForm){
-    console.log(user);
+    console.log("User data " + user);
     this.httpService.signInUser(user).subscribe(
       (res: any) => {
                         this.registerResponse = res;
-                        console.log(this.registerResponse);
+                        let data = res.json();
+                        //console.log(data.access_token);
+                        // console.log("User");
+                        // console.log(user);
 
-                        let user = res.json();
-                        if ( user && user.access_token) {
+                        if ( data && data.access_token) {
                             // postoji token, tako da postoji registrovan korisnik
                             // smestanje tokena na localstorage
-                            localStorage.setItem('currentUser', JSON.stringify(user));
-                            console.log(localStorage.getItem('currentUser'));
+
+                            let userData = this.httpService.getUserInfo(user.username, data.access_token).subscribe(res => console.log(res));
+                            // console.log(userData);
+                            // localStorage.setItem('currentUser', JSON.stringify(user));
+                            // console.log(localStorage.getItem('currentUser'));
                         }
                     },
       error => {

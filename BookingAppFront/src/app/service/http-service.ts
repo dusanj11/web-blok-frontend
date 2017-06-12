@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { IdentityUser } from '../model/identity-user';
+import { AppUser } from '../model/app-user';
 
 // injectable omogucava da unutar konsturktora (naseg servisa) stavimo neki dependency
 @Injectable()
@@ -24,6 +25,39 @@ export class HttpService{
         return body || [];
     }
 
+    // registerAppUser(user: AppUser): Observable<any> {
+    //     let FullName = user.FirstName + " " + user.LastName;
+    //
+    //     const headers: Headers = new Headers();
+    //     headers.append('Accept', 'application/json');
+    //     headers.append('Content-type', 'application/json');
+    //
+    //     const opts: RequestOptions = new RequestOptions();
+    //     opts.headers = headers;
+    //
+    //     return this.http.post(
+    //       'http://localhost:54042/api/Appuser/AppUsers/Add',
+    //       JSON.stringify({
+    //         UserName: user.UserName,
+    //         FullName: FullName
+    //       }), opts);
+    // }
+
+    getUserInfo(username: string, access_token: string): Observable<any> {
+        console.log("Username " + username );
+        console.log("Token " + access_token);
+
+        const headers: Headers = new Headers();
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+        var url = `http://localhost:54042/api/AppUser/GetUser/${username}`;
+        return this.http.get(url, opts).map(this.extractData);
+    }
+
     registerUser(user: IdentityUser ): Observable<any>  {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
@@ -35,6 +69,9 @@ export class HttpService{
         return this.http.post(
         'http://localhost:54042/api/Account/Register',
         JSON.stringify({
+            Username: user.Username,
+            Name: user.Name,
+            Surname: user.Surname,
             Email: user.Email,
             Password: user.Password,
             ConfirmPassword: user.ConfirmPassword

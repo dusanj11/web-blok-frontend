@@ -1,6 +1,7 @@
 export class AppUser {
     constructor(
-      public FullName: string,
+      public FirstName: string,
+      public LastName: string,
       public UserName: string
   ){}
 }
