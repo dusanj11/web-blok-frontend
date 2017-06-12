@@ -7,15 +7,15 @@
         </md-input-container>
       </td>
       <td>
-        <!--<md-input-container>
-          <input mdInput placeholder="CountryId" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+        <md-input-container>
+          <input mdInput placeholder="Region" [mdAutocomplete]="auto" >
         </md-input-container>
 
         <md-autocomplete #auto="mdAutocomplete">
-          <md-option *ngFor="let myCountry of regCountries" [value]="{{myCountry.Name}}">
-            {{myCountry.Name}}
+          <md-option *ngFor="let myRegion of placeRegs" value={{myRegion.Name}}>
+            {{myRegion.Name}}
           </md-option>
-        </md-autocomplete>-->
+        </md-autocomplete>
       </td>
     </tr>
     <tr>
