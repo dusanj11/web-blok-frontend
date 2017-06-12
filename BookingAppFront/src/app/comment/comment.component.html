@@ -1,9 +1,10 @@
+<div align="center">
 <md-card>
   <md-list>
     <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitAddComment(f1.value, f1)">
       <table class="example-full-width" cellspacing="5">
         <tr>
-          <h3>Comments for this accommodation</h3>
+          <h3>Leave comment for this accommodation</h3>
         </tr>
         <tr>
           <td>
@@ -11,6 +12,9 @@
               <textarea rows="5" cols="50" mdInput placeholder="Comment" width="200" name="comment" ngModel></textarea>
             </md-input-container>
           </td>
+
+        </tr>
+        <tr>
           <td>
             <md-button-toggle-group>
               <md-button-toggle value="good"><md-icon>thumb_down</md-icon></md-button-toggle>
@@ -28,18 +32,23 @@
   </md-list>
 </md-card>
 
+<div align="center">
   <!-- Prikaz liste komentara  -->
-<md-card *ngFor="let myComment of comments">
-  <md-list >
-    <md-list-item>
-      <img md-list-avatar src="/assets/images/comment.png">
-      <h3 md-line>Korisnik: {{myComment.AppUserId}}</h3>
-      <p md-line>
-        <span>{{myComment.Text}}</span>
-      </p>
-      <p md-line>
-        <span>Broj glasova: {{myComment.Grade}}</span>
-      </p>
-    </md-list-item>
-  </md-list>
-</md-card>
+  <h3>Comments for this accommodation</h3>
+
+  <md-card *ngFor="let myComment of comments">
+    <md-list >
+      <md-list-item>
+        <img md-list-avatar src="/assets/images/comment.png">
+        <h3 md-line>Korisnik: {{myComment.AppUserId}}</h3>
+        <p md-line>
+          <span>{{myComment.Text}}</span>
+        </p>
+        <p md-line>
+          <span>Broj glasova: {{myComment.Grade}}</span>
+        </p>
+      </md-list-item>
+    </md-list>
+  </md-card>
+</div>
+</div>

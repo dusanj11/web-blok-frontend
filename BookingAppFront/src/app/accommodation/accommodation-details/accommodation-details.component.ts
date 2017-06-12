@@ -11,7 +11,7 @@ import { HttpService } from '../../service/http-service';
 })
 export class AccommodationDetailsComponent implements OnInit {
 
-  id: string;
+  id: number;
   accommodation: Accommodation;
 
   constructor( private router: Router, private activatedRoute: ActivatedRoute,

@@ -1,3 +1,4 @@
+<div align="center">
 <md-card>
   <md-card-header>
     <img md-card-avatar [src] = 'accommodation.ImageURL'>
@@ -9,9 +10,32 @@
     <p>{{accommodation.Description}}</p>
   </md-card-content>
 </md-card>
-
+</div>
 <!-- Prikaz soba i rezervacije smestaja i komentara za dati smestaj -->
-<table class="example-full-width" cellspacing="5">
+<div align="center">
+<md-tab-group>
+  <md-tab label="Comments">
+      <div align="center">
+        <app-comment [id]="id"></app-comment>
+      </div>
+  </md-tab>
+  <md-tab label="Reservation">
+    <table class="example-full-width" cellspacing="5" align="center">
+      <tr>
+        <td valign="top">
+            <app-room></app-room>
+        </td>
+        <td valign="top">
+            <app-room-reservation></app-room-reservation>
+        </td>
+      </tr>
+
+    </table>
+
+  </md-tab>
+</md-tab-group>
+</div>
+<!-- <table class="example-full-width" cellspacing="5" align="center">
   <tr>
 
     <td valing="top">
@@ -25,4 +49,4 @@
     </td>
   </tr>
 
-</table>
+</table> -->

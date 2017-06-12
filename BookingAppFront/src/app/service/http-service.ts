@@ -125,7 +125,7 @@ export class HttpService{
         return this.http.get("http://localhost:54042/api/place/places").map(this.extractData);
     }
 
-    getAccommodationDetails(id: string): Observable<Accommodation>{
+    getAccommodationDetails(id: number): Observable<Accommodation>{
         return this.http.get(`http://localhost:54042/api/accommodation/accommodation/${id}`).map(this.extractData);
     }
 
