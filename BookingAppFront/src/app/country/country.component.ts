@@ -12,21 +12,28 @@ export class CountryComponent implements OnInit {
 
   countries: Country[];
 
-  constructor(public httpService: HttpService) { 
-    this.countries = [
-      new Country(1,"Srbija", "RS"),
-      new Country(2,"Bosna i Hercegovina", "BiH"),
-      new Country(3,"Makedonija", "MKD")
-    ];
+  constructor(public httpService: HttpService) {
+    // this.countries = [
+    //   new Country(1,"Srbija", "RS"),
+    //   new Country(2,"Bosna i Hercegovina", "BiH"),
+    //   new Country(3,"Makedonija", "MKD")
+    // ];
+
   }
 
 
-  ngOnInit() 
+  ngOnInit()
   {
-    // this.httpService.getCountries().subscribe(
-    //    (conts: any) => {this.countries = conts; console.log(this.countries)},//You can set the type to Product.
-    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
-    // );
+    this.httpService.getCountries().subscribe(
+       (conts: any) => {
+                this.countries = conts;
+                //console.log(this.countries)
+              },
+        error => {
+            alert("Unsuccessful fetch operation!");
+            console.log(error);
+        }
+    );
   }
 
   addCountry(newCountry: Country) : void

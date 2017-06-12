@@ -13,21 +13,27 @@ export class PlaceComponent implements OnInit {
   @Input() placeReg : number;
 
   constructor(public httpService: HttpService) {
-    this.places = [
-      new Place(1,"Novi Sad", 1),
-      new Place(2,"Beograd", 2),
-      new Place(3,"Nis", 2),
-      new Place(4,"Skopje", 4),
-      new Place(5,"Berovo", 5),
-      new Place(6,"Sarajevo", 3)
-    ];
+    // this.places = [
+    //   // new Place(1,"Novi Sad", 1),
+    //   // new Place(2,"Beograd", 2),
+    //   // new Place(3,"Nis", 2),
+    //   // new Place(4,"Skopje", 4),
+    //   // new Place(5,"Berovo", 5),
+    //   // new Place(6,"Sarajevo", 3)
+    // ];
   }
 
   ngOnInit() {
-    // this.httpService.getPlaces().subscribe(
-    //    (plcs: any) => {this.places = plcs; console.log(this.places)},//You can set the type to Product.
-    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
-    // );
+    this.httpService.getPlaces().subscribe(
+       (plcs: any) => {
+            this.places = plcs;
+            //console.log(this.places);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
   }
 
 }

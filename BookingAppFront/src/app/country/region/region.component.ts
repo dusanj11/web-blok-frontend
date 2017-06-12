@@ -13,23 +13,30 @@ export class RegionComponent implements OnInit {
   regions: Region[];
   @Input() regCountry : number;
 
-  constructor(public httpService: HttpService) 
+  constructor(public httpService: HttpService)
   {
-      this.regions = [
-      new Region(1,"Vojvodina", 1),
-      new Region(2,"Juzna Srbija", 1),
-      new Region(3,"Zapadna Bosna", 2),
-      new Region(4,"Centralna Makedonija", 3),
-      new Region(5,"Istocna Makedonija", 3),
-    ];
+    //   this.regions = [
+    //   new Region(1,"Vojvodina", 1),
+    //   new Region(2,"Juzna Srbija", 1),
+    //   new Region(3,"Zapadna Bosna", 2),
+    //   new Region(4,"Centralna Makedonija", 3),
+    //   new Region(5,"Istocna Makedonija", 3),
+    // ];
+
 
    }
 
   ngOnInit() {
-    // this.httpService.getRegions().subscribe(
-    //    (regs: any) => {this.regions = regs; console.log(this.regions)},//You can set the type to Product.
-    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
-    // );
+    this.httpService.getRegions().subscribe(
+       (regs: any) => {
+            this.regions = regs;
+            //console.log(this.regions);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
   }
 
 }
