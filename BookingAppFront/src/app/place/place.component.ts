@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Place } from './place';
+import { HttpService } from "app/service/http-service";
 
 @Component({
   selector: 'app-place',
@@ -11,7 +12,7 @@ export class PlaceComponent implements OnInit {
   places: Place[];
   @Input() placeReg : number;
 
-  constructor() {
+  constructor(public httpService: HttpService) {
     this.places = [
       new Place(1,"Novi Sad", 1),
       new Place(2,"Beograd", 2),
@@ -23,6 +24,10 @@ export class PlaceComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.httpService.getCountries().subscribe(
+    //    (plcs: any) => {this.places = plcs; console.log(this.places)},//You can set the type to Product.
+    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    // );
   }
 
 }

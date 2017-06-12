@@ -6,6 +6,7 @@ import { IdentityUser } from '../model/identity-user';
 import { AppUser } from '../model/app-user';
 import { Country } from "app/country/country";
 import { Region } from "app/country/region/region";
+import { Place } from "app/place/place";
 
 // injectable omogucava da unutar konsturktora (naseg servisa) stavimo neki dependency
 @Injectable()
@@ -116,6 +117,11 @@ export class HttpService{
     getRegions(): Observable<Region>
     {
         return this.http.get("http://localhost:54042/api/region/regions").map(this.extractData);
+    }
+
+    getPlaces(): Observable<Place>
+    {
+        return this.http.get("http://localhost:54042/api/place/places").map(this.extractData);
     }
 
 }
