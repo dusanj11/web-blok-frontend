@@ -1,3 +1,40 @@
-<p>
-  room-reservation works!
-</p>
+<md-card>
+<md-list>
+<h3>Reservation</h3>
+<table cellspacing="5">
+  <tr>
+    <td>
+      <md-input-container>
+          <input mdInput [mdDatepicker]="startpicker" placeholder="Start date">
+          <button mdSuffix [mdDatepickerToggle]="startpicker"></button>
+      </md-input-container>
+      <md-datepicker #startpicker></md-datepicker>
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td >
+      <md-input-container>
+          <input mdInput [mdDatepicker]="endpicker" placeholder="End date">
+          <button mdSuffix [mdDatepickerToggle]="endpicker"></button>
+      </md-input-container>
+      <md-datepicker #endpicker></md-datepicker>
+    </td>
+    <td>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+
+    </td>
+
+    <td>
+        <button type="submit" md-raised-button color="accent">Create reservation</button>
+    </td>
+  </tr>
+</table>
+</md-list>
+</md-card>

@@ -1,15 +1,28 @@
 <md-card>
   <md-card-header>
-    <img md-card-avatar src="/assets/images/download.jpg">
-    <md-card-title>Cards are the best</md-card-title>
-    <md-card-subtitle>Really, they are!</md-card-subtitle>
+    <img md-card-avatar [src] = 'accommodation.ImageURL'>
+    <md-card-title>{{accommodation.Name}}</md-card-title>
+    <md-card-subtitle>Address: {{accommodation.Address}}</md-card-subtitle>
   </md-card-header>
-  <img md-card-lg-image src="/assets/images/download.jpg">
+  <img md-card-lg-image [src] = 'accommodation.ImageURL'>
   <md-card-content>
-    <p>Something pretty...</p>
+    <p>{{accommodation.Description}}</p>
   </md-card-content>
 </md-card>
 
-<!-- Ovde ispod moze da stoji komponenta sa komentarima -->
+<!-- Prikaz soba i rezervacije smestaja i komentara za dati smestaj -->
+<table class="example-full-width" cellspacing="5">
+  <tr>
 
-<app-comment [id]="id"></app-comment>
+    <td valing="top">
+        <app-comment [id]="id"></app-comment>
+    </td>
+    <td valign="top">
+        <app-room></app-room>
+    </td>
+    <td valign="top">
+        <app-room-reservation></app-room-reservation>
+    </td>
+  </tr>
+
+</table>

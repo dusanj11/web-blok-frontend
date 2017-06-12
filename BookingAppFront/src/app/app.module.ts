@@ -1,6 +1,6 @@
 //import { MaterialModule } from '@angular/material';
 import 'hammerjs';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -75,6 +75,7 @@ const Routes =
     RouterModule.forRoot(Routes),
     HttpModule,
     MaterialModule,
+    MdNativeDateModule,
     //NoopAnimationsModule
     BrowserAnimationsModule
     //MaterialModule.forRoot()
