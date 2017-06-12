@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RegionComponent } from "app/country/region/region.component";
+import { Region } from "app/country/region/region";
+
 
 @Component({
   selector: 'app-place-add',
@@ -7,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaceAddComponent implements OnInit {
 
-  constructor() { }
+@Input() placeRegs: Region[];
+
+  constructor() {
+    let rm = new RegionComponent();
+    this.placeRegs = rm.regions;
+   }
 
   ngOnInit() {
   }
