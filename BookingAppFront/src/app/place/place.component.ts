@@ -24,7 +24,7 @@ export class PlaceComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.httpService.getCountries().subscribe(
+    // this.httpService.getPlaces().subscribe(
     //    (plcs: any) => {this.places = plcs; console.log(this.places)},//You can set the type to Product.
     //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
     // );
