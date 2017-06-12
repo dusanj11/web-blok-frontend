@@ -10,7 +10,7 @@ import {
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css'],
-  providers: [HttpService]
+  
 })
 export class SignInComponent implements OnInit {
 

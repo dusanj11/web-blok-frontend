@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { IdentityUser } from '../model/identity-user';
 import { AppUser } from '../model/app-user';
+import { Country } from "app/country/country";
 
 // injectable omogucava da unutar konsturktora (naseg servisa) stavimo neki dependency
 @Injectable()
@@ -102,6 +103,11 @@ export class HttpService{
 
     getAccommodation(): Observable<any>{
         return this.http.get("http://localhost:54042/api/accommodation/accommodations").map(this.extractData);
+    }
+
+    getCountries(): Observable<Country>
+    {
+        return this.http.get("http://localhost:54042/api/country/countries").map(this.extractData);
     }
 
 

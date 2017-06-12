@@ -32,6 +32,7 @@ import { RegionAddComponent } from './region-add/region-add.component';
 import { PlaceAddComponent } from './place-add/place-add.component';
 import { AccommodationAddComponent } from './accommodation-add/accommodation-add.component';
 import { AccommodationTypeAddComponent } from './accommodation-type-add/accommodation-type-add.component';
+import { HttpService } from "app/service/http-service";
 
 
 const Routes =
@@ -78,7 +79,7 @@ const Routes =
     BrowserAnimationsModule
     //MaterialModule.forRoot()
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
