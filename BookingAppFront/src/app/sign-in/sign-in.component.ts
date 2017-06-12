@@ -5,6 +5,7 @@ import {
   Router,
   ActivatedRoute
 } from '@angular/router';
+import { CurrentUser } from '../model/current-user';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,18 +27,33 @@ export class SignInComponent implements OnInit {
       (res: any) => {
                         this.registerResponse = res;
                         let data = res.json();
-                        //console.log(data.access_token);
-                        // console.log("User");
-                        // console.log(user);
+                        let role = res.headers.get("role");
 
                         if ( data && data.access_token) {
                             // postoji token, tako da postoji registrovan korisnik
                             // smestanje tokena na localstorage
 
-                            let userData = this.httpService.getUserInfo(user.username, data.access_token).subscribe(res => console.log(res));
+                            this.httpService.getUserInfo(user.username, data.access_token).subscribe(
+                                res => {
+                                  // console.log(res);
+                                  let currentUser: CurrentUser;
+                                  currentUser = new CurrentUser(res.UserName,
+                                                                res.FullName,
+                                                                role,
+                                                                data.access_token,
+                                                                res.Id);
+
+
+
+                                  console.log(currentUser);
+                                  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                                }
+                            );
                             // console.log(userData);
                             // localStorage.setItem('currentUser', JSON.stringify(user));
                             // console.log(localStorage.getItem('currentUser'));
+
+
                         }
                     },
       error => {
