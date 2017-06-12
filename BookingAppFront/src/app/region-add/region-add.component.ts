@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Country } from "app/country/country";
-import { FormControl } from "@angular/forms";
+import { CountryComponent } from "app/country/country.component";
+
 
 @Component({
   selector: 'app-region-add',
@@ -9,10 +10,13 @@ import { FormControl } from "@angular/forms";
 })
 export class RegionAddComponent implements OnInit {
 
-stateCtrl: FormControl = new FormControl();
 @Input() regCountries : Country[];
 
-  constructor() { }
+  constructor() { 
+    
+    let cm = new CountryComponent();
+    this.regCountries = cm.countries;
+  }
 
   ngOnInit() {
   }
