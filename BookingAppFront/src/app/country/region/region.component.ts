@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Country } from '../country';
 import {Region} from './region';
+import { HttpService } from "app/service/http-service";
 
 @Component({
   selector: 'app-region',
@@ -12,7 +13,7 @@ export class RegionComponent implements OnInit {
   regions: Region[];
   @Input() regCountry : number;
 
-  constructor() 
+  constructor(public httpService: HttpService) 
   {
       this.regions = [
       new Region(1,"Vojvodina", 1),
@@ -25,6 +26,10 @@ export class RegionComponent implements OnInit {
    }
 
   ngOnInit() {
+    // this.httpService.getRegions().subscribe(
+    //    (regs: any) => {this.regions = regs; console.log(this.regions)},//You can set the type to Product.
+    //   error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+    // );
   }
 
 }
