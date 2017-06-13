@@ -3,7 +3,8 @@ export class Place
      constructor(
         public Id: number,
         public Name: string,
-        public RegionId: number){
+        public RegionId: number,
+        public RegionName: string){
 
     }
 }

@@ -169,4 +169,21 @@ export class HttpService{
 
     }
 
+    postPlace(place: Place): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+        "http://localhost:54042/api/region/regions",
+        JSON.stringify({
+            Name: place.Name,
+            RegionId: place.RegionId
+        }), opts);
+    }
+
 }
