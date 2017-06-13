@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ImageUploadModule} from 'angular2-image-upload';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -82,7 +83,7 @@ const Routes =
     HttpModule,
     MaterialModule,
     MdNativeDateModule,
-    //NoopAnimationsModule
+    ImageUploadModule,
     BrowserAnimationsModule
     //MaterialModule.forRoot()
   ],
