@@ -42,7 +42,7 @@ import { AuthService } from "app/service/auth-service";
 
 const Routes =
 [
-  {path: "", component: CountryComponent},
+  {path: '', redirectTo:"accommodation", pathMatch: 'full'},
   {path: "signIn", component: HomeComponent},
   {path: "accommodation", component: CountryComponent },
   {path: "administration", component: AdminPanelComponent, canActivate: [LogInGuard]},

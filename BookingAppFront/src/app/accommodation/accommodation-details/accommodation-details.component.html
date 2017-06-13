@@ -19,14 +19,17 @@
         <app-comment [id]="id"></app-comment>
       </div>
   </md-tab>
-  <md-tab label="Reservation">
+  <md-tab label="Reservation" *ngIf="isLoggedIn()">
     <table class="example-full-width" cellspacing="5" align="center">
       <tr>
         <td valign="top">
-            <app-room [accommodationId]="id"></app-room>
+            
         </td>
         <td valign="top">
-            <app-room-reservation></app-room-reservation>
+            <app-room-reservation 
+              [accommodationId]="id" 
+              (onRoomSelected)="roomWasSelected($event)">
+            </app-room-reservation>
         </td>
       </tr>
 

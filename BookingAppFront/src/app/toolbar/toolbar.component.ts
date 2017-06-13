@@ -22,24 +22,25 @@ export class ToolbarComponent implements OnInit {
                private authService: AuthService) {  }
 
 
-  checkIfAdmin(): boolean {
-     let user = sessionStorage.getItem("currentUser");
+  checkIfAdminManager(): boolean {
+    //  let user = sessionStorage.getItem("currentUser");
 
-      let userR = JSON.parse(user);
-      console.log("CurrentUser***");
-      console.log(userR);
-      if ( userR ) {
-          if ( userR.role == "Admin"){
-            return true;
-          }
-          else
-          {
-            return false;
-          }
-      }
-      else {
-        return false;
-      }
+    //   let userR = JSON.parse(user);
+    //   console.log("CurrentUser***");
+    //   console.log(userR);
+    //   if ( userR ) {
+    //       if ( userR.role == "Admin"){
+    //         return true;
+    //       }
+    //       else
+    //       {
+    //         return false;
+    //       }
+    //   }
+    //   else {
+    //     return false;
+    //   }
+        return this.authService.isLoggedInRole("Admin") || this.authService.isLoggedInRole("Manager");
   }
 
   isLoggedIn(): boolean {
@@ -57,6 +58,7 @@ export class ToolbarComponent implements OnInit {
 
   goLogOut(){
     this.authService.logOut();
+    this.router.navigate(['/accommodation']);
   }
 
 goAdministrate()

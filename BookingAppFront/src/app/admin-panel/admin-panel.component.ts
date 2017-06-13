@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from "app/service/auth-service";
 
 @Component({
   selector: 'app-admin-panel',
@@ -8,8 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AdminPanelComponent implements OnInit {
 
 
-  constructor() {
+  constructor(private authService: AuthService) {
 
+   }
+
+   isLoggedInManager(): boolean {
+      return this.authService.isLoggedInRole("Manager");
    }
 
   ngOnInit() {

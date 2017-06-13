@@ -1,7 +1,7 @@
 <md-card>
 
   <md-tab-group [selectedIndex]="0">
-    <md-tab label="Countries">
+    <md-tab label="Countries" *ngIf="!isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Show All">
         </md-tab>
@@ -13,7 +13,7 @@
         </md-tab>
       </md-tab-group>
     </md-tab>
-    <md-tab label="Regions">
+    <md-tab label="Regions" *ngIf="!isLoggedInManager()" >
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Show All">
         </md-tab>
@@ -25,7 +25,7 @@
         </md-tab>
       </md-tab-group>
     </md-tab>
-    <md-tab label="Places">
+    <md-tab label="Places" *ngIf="!isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Show All">
         </md-tab>
@@ -49,7 +49,30 @@
         </md-tab>
       </md-tab-group>
     </md-tab>
-    <md-tab label="Accommodation Type">
+    <md-tab label="Room">
+      <md-tab-group [selectedIndex]="0">
+        <md-tab label="Show All">
+        </md-tab>
+        <md-tab label="Edit">
+        </md-tab>
+        <md-tab label="Add">
+         
+        </md-tab>
+      </md-tab-group>
+    </md-tab>
+    <md-tab label="Room Type">
+      <md-tab-group [selectedIndex]="0">
+        <md-tab label="Show All">
+        </md-tab>
+        <md-tab label="Edit">
+        </md-tab>
+        <md-tab label="Add">
+          
+          
+        </md-tab>
+      </md-tab-group>
+    </md-tab>
+    <md-tab label="Accommodation Type" >
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Show All">
         </md-tab>
@@ -61,7 +84,7 @@
         </md-tab>
       </md-tab-group>
     </md-tab>
-    <md-tab label="Users">
+    <md-tab label="Users" *ngIf="!isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Show All">
         </md-tab>

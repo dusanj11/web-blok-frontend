@@ -1,7 +1,7 @@
 <md-toolbar color="primary">
     <button  md-raised-button (click)="goAccommodation()" color="accent">Home</button>
     <button  md-raised-button  color="accent">Contact</button>
-    <button *ngIf="checkIfAdmin()" md-raised-button (click)="goAdministrate()" color="accent">Administrating</button>
+    <button *ngIf="checkIfAdminManager()" md-raised-button (click)="goAdministrate()" color="accent">Administrating</button>
     <button *ngIf="isLoggedIn()" md-raised-button (click)="goLogIn()"  color="accent">Register/Log In</button>
     <button *ngIf="isLoggedOut()" md-raised-button (click)="goLogOut()"  color="accent">Log Out</button>
 </md-toolbar>
