@@ -33,13 +33,18 @@ import { PlaceAddComponent } from './place-add/place-add.component';
 import { AccommodationAddComponent } from './accommodation-add/accommodation-add.component';
 import { AccommodationTypeAddComponent } from './accommodation-type-add/accommodation-type-add.component';
 import { HttpService } from "app/service/http-service";
+import { RoomRowComponent } from './room/room-row/room-row.component';
+import { LogInGuard } from "app/sign-in/log-in-guard";
+import { AuthService } from "app/service/auth-service";
+
 
 
 const Routes =
 [
+  {path: "", component: CountryComponent},
   {path: "signIn", component: HomeComponent},
   {path: "accommodation", component: CountryComponent },
-  {path: "administration", component: AdminPanelComponent},
+  {path: "administration", component: AdminPanelComponent, canActivate: [LogInGuard]},
   {path: "accommodation-details/:id", component: AccommodationDetailsComponent},
   {path: "other", redirectTo:"signIn"}
 ]
@@ -67,7 +72,8 @@ const Routes =
     RegionAddComponent,
     PlaceAddComponent,
     AccommodationAddComponent,
-    AccommodationTypeAddComponent
+    AccommodationTypeAddComponent,
+    RoomRowComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,7 @@ const Routes =
     BrowserAnimationsModule
     //MaterialModule.forRoot()
   ],
-  providers: [HttpService],
+  providers: [HttpService, AuthService, LogInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

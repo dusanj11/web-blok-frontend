@@ -9,43 +9,18 @@ import { Region } from "app/country/region/region";
 import { Place } from "app/place/place";
 import { Accommodation } from "../accommodation/accommodation";
 
-// injectable omogucava da unutar konsturktora (naseg servisa) stavimo neki dependency
 @Injectable()
 export class HttpService{
 
     data: any; //covek ovo ti ne treba
 
-    constructor (private http: Http){
-
-    }
-
-    // getProducts(): Observable<any> {
-    //
-    //     return this.http.get("http://localhost:54042/api/country/countries").map(this.extractData);
-    // }
+    constructor (private http: Http){}
 
     private extractData(res: Response) {
         let body = res.json();
         return body || [];
     }
 
-    // registerAppUser(user: AppUser): Observable<any> {
-    //     let FullName = user.FirstName + " " + user.LastName;
-    //
-    //     const headers: Headers = new Headers();
-    //     headers.append('Accept', 'application/json');
-    //     headers.append('Content-type', 'application/json');
-    //
-    //     const opts: RequestOptions = new RequestOptions();
-    //     opts.headers = headers;
-    //
-    //     return this.http.post(
-    //       'http://localhost:54042/api/Appuser/AppUsers/Add',
-    //       JSON.stringify({
-    //         UserName: user.UserName,
-    //         FullName: FullName
-    //       }), opts);
-    // }
 
     getUserInfo(username: string, access_token: string): Observable<any> {
         console.log("Username " + username );
@@ -179,7 +154,7 @@ export class HttpService{
         opts.headers = headers;
 
         return this.http.post(
-        "http://localhost:54042/api/region/regions",
+        "http://localhost:54042/api/place/places",
         JSON.stringify({
             Name: place.Name,
             RegionId: place.RegionId

@@ -1,14 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injectable } from '@angular/core';
 import {
   Router,
   ActivatedRoute
 } from '@angular/router';
 import { CurrentUser } from '../model/current-user';
+import { AuthService } from "app/service/auth-service";
 
+@Injectable()
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css']
+  styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent implements OnInit {
 
@@ -16,32 +18,45 @@ export class ToolbarComponent implements OnInit {
   user: CurrentUser;
 
   constructor( private router: Router,
-               private activatedRoute: ActivatedRoute) {  }
+               private activatedRoute: ActivatedRoute,
+               private authService: AuthService) {  }
 
-  ngOnInit() {
-      let user = localStorage.getItem("currentUser");
+
+  checkIfAdmin(): boolean {
+     let user = sessionStorage.getItem("currentUser");
 
       let userR = JSON.parse(user);
       console.log("CurrentUser***");
       console.log(userR);
       if ( userR ) {
           if ( userR.role == "Admin"){
-            this.admin = true;
+            return true;
           }
           else
           {
-            this.admin = false;
+            return false;
           }
       }
       else {
-        this.admin = false;
+        return false;
       }
+  }
 
+  isLoggedIn(): boolean {
+      return !this.authService.isLoggedIn();
+  }
+
+  isLoggedOut(): boolean {
+      return !this.authService.isLoggedOut();
   }
 
   goLogIn()
   {
     this.router.navigate(['/signIn']);
+  }
+
+  goLogOut(){
+    this.authService.logOut();
   }
 
 goAdministrate()
@@ -52,4 +67,11 @@ goAdministrate()
   goAccommodation(){
     this.router.navigate(['/accommodation']);
   }
+
+  
+  ngOnInit() {
+      
+
+  }
+
 }

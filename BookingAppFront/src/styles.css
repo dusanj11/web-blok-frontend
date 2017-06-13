@@ -1,2 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css'
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.ui.items>.item.selected {
+  border: 1px solid rgba(163, 51, 200, 0.41);
+  border-radius: 5px;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpService } from '../service/http-service';
 import { NgForm } from '@angular/forms';
 import {
@@ -6,16 +6,20 @@ import {
   ActivatedRoute
 } from '@angular/router';
 import { CurrentUser } from '../model/current-user';
+import { AuthService } from "app/service/auth-service";
 
+@Injectable()
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css'],
-  
 })
 export class SignInComponent implements OnInit {
 
-  constructor(public httpService: HttpService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(public httpService: HttpService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private authService: AuthService) { }
 
   registerResponse: any;
 
@@ -46,7 +50,10 @@ export class SignInComponent implements OnInit {
 
 
                                   console.log(currentUser);
-                                  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                                  //localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                                  //sessionStorage.setItem('currentUser',JSON.stringify(currentUser));
+                                  this.authService.logIn(currentUser);
+                                  this.router.navigate(['/accommodation']);
                                 }
                             );
                             // console.log(userData);
