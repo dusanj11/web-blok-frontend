@@ -83,7 +83,7 @@ const Routes =
     HttpModule,
     MaterialModule,
     MdNativeDateModule,
-    ImageUploadModule,
+    ImageUploadModule.forRoot(),
     BrowserAnimationsModule
     //MaterialModule.forRoot()
   ],
