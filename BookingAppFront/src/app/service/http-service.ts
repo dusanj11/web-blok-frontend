@@ -129,4 +129,21 @@ export class HttpService{
         return this.http.get(`http://localhost:54042/api/accommodation/accommodation/${id}`).map(this.extractData);
     }
 
+    postCountry(country: Country): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+         return this.http.post(
+        "http://localhost:54042/api/country/countries",
+        JSON.stringify({
+            Name: country.Name,
+            Code: country.Code
+        }), opts);
+    }
+
 }

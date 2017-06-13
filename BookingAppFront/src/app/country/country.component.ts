@@ -36,10 +36,4 @@ export class CountryComponent implements OnInit {
     );
   }
 
-  addCountry(newCountry: Country) : void
-  {
-    this.countries.push(newCountry);
-  }
-
-
 }
