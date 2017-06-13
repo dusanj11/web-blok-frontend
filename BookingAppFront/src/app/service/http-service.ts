@@ -146,8 +146,27 @@ export class HttpService{
         }), opts);
     }
 
+
     getRoomsForAccommodation(accommodationId: number){
         return this.http.get(`http://localhost:54042/api/room/rooms/${accommodationId}`).map(this.extractData);
+    }
+    
+    postRegion(region: Region): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+        "http://localhost:54042/api/region/regions",
+        JSON.stringify({
+            Name: region.Name,
+            CountryId: region.CountryId
+        }), opts);
+>>>>>>> b46636dee8ef98c6ce9a88ffaffb5827da3649e6
     }
 
 }
