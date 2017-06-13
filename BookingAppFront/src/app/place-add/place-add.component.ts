@@ -21,7 +21,7 @@ export class PlaceAddComponent implements OnInit {
   ngOnInit() {
     this.httpService.getRegions().subscribe(
        (regs: any) => {
-            this.regions = regs;
+            this.placeRegs = regs;
             //console.log(this.regions);
           },
       error => {
