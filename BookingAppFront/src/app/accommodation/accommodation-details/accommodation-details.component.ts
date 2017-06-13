@@ -16,7 +16,9 @@ export class AccommodationDetailsComponent implements OnInit {
 
   constructor( private router: Router, private activatedRoute: ActivatedRoute,
                 private httpService: HttpService ) {
-      activatedRoute.params.subscribe(params => {this.id = params['id']; });
+      activatedRoute.params.subscribe(params => {this.id = params['id'];
+      this.accommodation = new Accommodation(0,"", "", "", null,null,null,"", true, 0,0,0 ); 
+    });
   }
 
   // sa servera treba da dobavi podatke o smestaju sa id koji je prosledjen propertijem this.id

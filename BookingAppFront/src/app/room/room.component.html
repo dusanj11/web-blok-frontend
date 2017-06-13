@@ -1,46 +1,18 @@
 <md-card>
 <md-list>
   <h3>Rooms</h3>
-  <md-list>
+  <md-list *ngFor="let room of rooms">
     <md-list-item>
-      <h3 md-line>Broj sobe: 123</h3>
+      <h3 md-line>Room number: {{room.RoomNumber}} </h3>
       <p md-line>
-        <span>An awesome description</span>
+        <span> {{room.Description}} </span>
+      </p>
+      <h3>Price per night: {{room.PricePerNight}} </h3>
+      <p md-line>
+        <span>Bed count: {{room.BedCount}} </span>
       </p>
     </md-list-item>
   </md-list>
-  <md-list>
-    <md-list-item>
-      <h3 md-line>Broj sobe: 123</h3>
-      <p md-line>
-        <span>An awesome description</span>
-      </p>
-    </md-list-item>
-  </md-list>
-  <md-list>
-    <md-list-item>
-      <h3 md-line>Broj sobe: 123</h3>
-      <p md-line>
-        <span>An awesome description</span>
-      </p>
-    </md-list-item>
-  </md-list>
-  <md-list>
-    <md-list-item>
-      <h3 md-line>Broj sobe: 123</h3>
-      <p md-line>
-        <span>An awesome description</span>
-      </p>
-    </md-list-item>
-  </md-list>
-  <md-list>
-    <md-list-item>
-      <h3 md-line>Broj sobe: 123</h3>
-      <p md-line>
-        <span>An awesome description</span>
-      </p>
-    </md-list-item>
-  </md-list>
-
+  
 </md-list>
 </md-card>

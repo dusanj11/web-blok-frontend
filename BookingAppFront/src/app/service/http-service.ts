@@ -146,4 +146,8 @@ export class HttpService{
         }), opts);
     }
 
+    getRoomsForAccommodation(accommodationId: number){
+        return this.http.get(`http://localhost:54042/api/room/rooms/${accommodationId}`).map(this.extractData);
+    }
+
 }
