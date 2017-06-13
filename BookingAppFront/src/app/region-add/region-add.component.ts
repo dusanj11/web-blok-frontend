@@ -26,6 +26,13 @@ httpService: HttpService;
 
   onSubmitCountry(reg: Region, form: NgForm)
   {
+    this.regCountries.forEach(element => {
+      if(element.Name == reg.CountryName)
+      {
+        reg.CountryId = element.Id;
+      }
+      
+    });
       this.httpService.postRegion(reg).subscribe(
       (conts: any) => {
                 //console.log(this.conts);
