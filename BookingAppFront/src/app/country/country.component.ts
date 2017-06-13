@@ -19,12 +19,14 @@ export class CountryComponent implements OnInit {
     //   new Country(3,"Makedonija", "MKD")
     // ];
 
+   
+
   }
 
 
   ngOnInit()
   {
-    this.httpService.getCountries().subscribe(
+     this.httpService.getCountries().subscribe(
        (conts: any) => {
                 this.countries = conts;
                 //console.log(this.countries)

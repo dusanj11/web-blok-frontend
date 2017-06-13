@@ -166,7 +166,7 @@ export class HttpService{
             Name: region.Name,
             CountryId: region.CountryId
         }), opts);
->>>>>>> b46636dee8ef98c6ce9a88ffaffb5827da3649e6
+
     }
 
 }

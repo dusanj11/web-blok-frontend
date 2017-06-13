@@ -14,17 +14,25 @@ import { Region } from "app/country/region/region";
 export class RegionAddComponent implements OnInit {
 
 @Input() regCountries : Country[];
-httpService: HttpService;
-  constructor() { 
-    
-    let cm = new CountryComponent(this.httpService);
-    this.regCountries = cm.countries;
+
+  constructor(public httpService: HttpService) { 
   }
 
   ngOnInit() {
+
+    this.httpService.getCountries().subscribe(
+       (conts: any) => {
+                this.regCountries = conts;
+                console.log(this.regCountries)
+              },
+        error => {
+            alert("Unsuccessful fetch operation!");
+            console.log(error);
+        }
+    );
   }
 
-  onSubmitCountry(reg: Region, form: NgForm)
+  onSubmitRegion(reg: Region, form: NgForm) :void
   {
     this.regCountries.forEach(element => {
       if(element.Name == reg.CountryName)
