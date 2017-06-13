@@ -8,6 +8,7 @@ import { Country } from "app/country/country";
 import { Region } from "app/country/region/region";
 import { Place } from "app/place/place";
 import { Accommodation } from "../accommodation/accommodation";
+import { RoomReservation } from "app/room-reservation/room-reservation";
 
 @Injectable()
 export class HttpService{
@@ -159,6 +160,24 @@ export class HttpService{
             Name: place.Name,
             RegionId: place.RegionId
         }), opts);
+    }
+
+    createReservation(reservation: RoomReservation){ 
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+                "http://localhost:54042/api/RoomReservation/roomReservations",
+                JSON.stringify({
+                    StartDate: reservation.StartDate,
+                    EndDate: reservation.EndDate,
+                    RoomId: reservation.RoomId,
+                    AppUserId: reservation.AppUserId
+                }), opts);
     }
 
 }

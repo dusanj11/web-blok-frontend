@@ -5,6 +5,7 @@
       </td>
 
       <td valign="top">
+        <!--<form  #f1="ngForm" (ngSubmit)="onSubmitReservation(f1.value, f1)">-->
           <md-card>
             <md-list>
             <h3>Reservation</h3>
@@ -12,7 +13,7 @@
               <tr>
                 <td>
                   <md-input-container>
-                      <input mdInput [mdDatepicker]="startpicker" placeholder="Start date">
+                      <input mdInput [mdDatepicker]="startpicker" placeholder="Start date" [(ngModel)]="startDate">
                       <button mdSuffix [mdDatepickerToggle]="startpicker"></button>
                   </md-input-container>
                   <md-datepicker #startpicker></md-datepicker>
@@ -24,7 +25,7 @@
               <tr>
                 <td >
                   <md-input-container>
-                      <input mdInput [mdDatepicker]="endpicker" placeholder="End date">
+                      <input mdInput [mdDatepicker]="endpicker" placeholder="End date" [(ngModel)]="endDate">
                       <button mdSuffix [mdDatepickerToggle]="endpicker"></button>
                   </md-input-container>
                   <md-datepicker #endpicker></md-datepicker>
@@ -41,12 +42,13 @@
                 </td>
                   
                 <td>
-                    <button type="submit" md-raised-button color="accent">Create reservation</button>
+                    <button type="submit" md-raised-button color="accent" (click)="onSubmitReservation()">Create reservation</button>
                 </td>
               </tr>
             </table>
             </md-list>
           </md-card>
+        <!--</form>-->
       </td>
 
   </tr>

@@ -46,5 +46,17 @@ export class AuthService {
         }
     }
 
+    currentUserId(): number {
+        let curretUser = sessionStorage.getItem("currentUser");
+        if ( curretUser !== null){
+            let user: CurrentUser = JSON.parse(curretUser);
+            return user.id;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
     
 }
