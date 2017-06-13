@@ -19,10 +19,10 @@ export class PlaceAddComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.httpService.getPlaces().subscribe(
-       (plcs: any) => {
-            this.placeRegs = plcs;
-            //console.log(this.places);
+    this.httpService.getRegions().subscribe(
+       (regs: any) => {
+            this.regions = regs;
+            //console.log(this.regions);
           },
       error => {
           alert("Unsuccessful fetch operation!");
