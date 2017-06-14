@@ -85,7 +85,7 @@ region: Region;
       this.place.Name = this.model.Name;
       this.place.RegionName = this.model.RegionName;
 
-      this.places.forEach(element => {
+      this.regions.forEach(element => {
         if(element.Name == this.place.RegionName)
         {
           this.place.RegionId = element.Id;
