@@ -9,6 +9,7 @@ import { Region } from "app/country/region/region";
 import { Place } from "app/place/place";
 import { Accommodation } from "../accommodation/accommodation";
 import { RoomReservation } from "app/room-reservation/room-reservation";
+import { AccomodationType } from "app/accomodation-type/accomodation-type";
 
 @Injectable()
 export class HttpService{
@@ -107,6 +108,10 @@ export class HttpService{
 
     getRoomsForAccommodation(accommodationId: number){
         return this.http.get(`http://localhost:54042/api/room/rooms/${accommodationId}`).map(this.extractData);
+    }
+
+    getAccommodationTypes(): Observable<Accommodation>{
+        return this.http.get("http://localhost:54042/api/acctype/acctypes").map(this.extractData);
     }
 
     //sve post metode za dobavljanje sa servera
@@ -223,6 +228,24 @@ export class HttpService{
         }), opts);
     }
 
+    putAccommodationType(acctype: AccomodationType): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(
+        `http://localhost:54042/api/acctype/acctypes/${acctype.Id}`,
+        JSON.stringify({
+            Name: acctype.Name,
+            Id: acctype.Id,
+
+        }), opts);
+    }
+
     //sve delete metode za dobavljanje sa servera
     deleteCountry(country: Country): Observable<any>
     {
@@ -263,6 +286,20 @@ export class HttpService{
 
         return this.http.delete(
         `http://localhost:54042/api/place/places/${place.Id}`,
+         opts);
+    }
+
+    deleteAccommodationType(acctype: AccomodationType): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.delete(
+        `http://localhost:54042/api/acctype/acctypes/${acctype.Id}`,
          opts);
     }
 
