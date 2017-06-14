@@ -16,7 +16,7 @@
           </md-input-container>
 
         <md-autocomplete #auto="mdAutocomplete">
-          <md-option *ngFor="let myCountry of regCountries" value={{myCountry.Name}}>
+          <md-option *ngFor="let myCountry of countries" value={{myCountry.Name}}>
             {{myCountry.Name}}
           </md-option>
           </md-autocomplete>
