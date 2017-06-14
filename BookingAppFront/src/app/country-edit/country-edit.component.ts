@@ -9,7 +9,8 @@ import { HttpService } from "app/service/http-service";
 })
 export class CountryEditComponent implements OnInit {
 
-  constructor(public countries: Country[], public httpService: HttpService) { }
+countries: Country[];
+  constructor(public httpService: HttpService) { }
 
   ngOnInit() {
     this.httpService.getCountries().subscribe(
