@@ -66,7 +66,7 @@ acctype: AccomodationType;
  
   }
 
-  updateRegion()
+  updateAccommodationType()
   {
       this.acctype.Name = this.model.Name;
 
