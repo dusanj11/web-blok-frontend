@@ -43,7 +43,7 @@ region: Region;
     );
   }
 
-  deleteCountry(regionId: number) 
+  deleteRegion(regionId: number) 
   {
     this.regions.forEach(element => {
       if(element.Id == regionId)

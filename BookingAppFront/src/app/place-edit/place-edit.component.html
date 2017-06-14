@@ -12,19 +12,19 @@
         </td>
         <td>
           <md-input-container>
-          <input mdInput placeholder="CountryName" name="CountryName" [mdAutocomplete]="auto"  [(ngModel)]="model.CountryName">
+          <input mdInput placeholder="RegionName" name="RegionName" [mdAutocomplete]="auto"  [(ngModel)]="model.RegionName">
           </md-input-container>
 
         <md-autocomplete #auto="mdAutocomplete">
-          <md-option *ngFor="let myCountry of countries" value={{myCountry.Name}}>
-            {{myCountry.Name}}
+          <md-option *ngFor="let myRegion of regions" value={{myRegion.Name}}>
+            {{myRegion.Name}}
           </md-option>
           </md-autocomplete>
         </td>
       </tr>
       <tr>
         <td>
-          <button md-raised-button color="primary" (click)="updateRegion()">Save</button>
+          <button md-raised-button color="primary" (click)="updatePlace()">Save</button>
         </td>
       </tr>
     </table>
@@ -40,11 +40,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let myRegion of regions">
-        <td>{{myRegion.Name}}</td>
-        <td>{{myRegion.CountryName}}</td>
-        <td><button  md-raised-button  color="primary"(click)="editRegion(myRegion.Id)">Edit</button></td>
-        <td><button  md-raised-button  color="accent" (click)="deleteRegion(myRegion.Id)">Delete</button></td>
+      <tr *ngFor="let myPlace of places">
+        <td>{{myPlace.Name}}</td>
+        <td>{{myPlace.RegionName}}</td>
+        <td><button  md-raised-button  color="primary"(click)="editPlace(myPlace.Id)">Edit</button></td>
+        <td><button  md-raised-button  color="accent" (click)="deletePlace(myPlace.Id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

@@ -39,6 +39,7 @@ import { LogInGuard } from "app/sign-in/log-in-guard";
 import { AuthService } from "app/service/auth-service";
 import { CountryEditComponent } from './country-edit/country-edit.component';
 import { RegionEditComponent } from './region-edit/region-edit.component';
+import { PlaceEditComponent } from './place-edit/place-edit.component';
 
 
 
@@ -78,7 +79,8 @@ const Routes =
     AccommodationTypeAddComponent,
     RoomRowComponent,
     CountryEditComponent,
-    RegionEditComponent
+    RegionEditComponent,
+    PlaceEditComponent
   ],
   imports: [
     BrowserModule,

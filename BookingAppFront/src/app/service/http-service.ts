@@ -204,6 +204,25 @@ export class HttpService{
         }), opts);
     }
 
+     putPlace(place: Place): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(
+        `http://localhost:54042/api/place/places/${place.Id}`,
+        JSON.stringify({
+            Name: place.Name,
+            RegionId: place.RegionId,
+            Id: place.Id,
+
+        }), opts);
+    }
+
     //sve delete metode za dobavljanje sa servera
     deleteCountry(country: Country): Observable<any>
     {
@@ -233,6 +252,21 @@ export class HttpService{
          opts);
     }
 
+    deletePlace(place: Place): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.delete(
+        `http://localhost:54042/api/place/places/${place.Id}`,
+         opts);
+    }
+
+    //ostalo
     createReservation(reservation: RoomReservation){ 
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
