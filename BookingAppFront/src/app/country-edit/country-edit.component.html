@@ -1,7 +1,7 @@
 <div>
   <h3> Edit / Delete data </h3>
  <!--deo za unos editovanog-->
-  <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitCountry(f1.value, f1)">
+  <form class="example-form" #f1="ngForm">
     <table class="example-full-width" cellspacing="5">
       <tr>
         <td>
@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>
-          <button type="submit" md-raised-button color="primary" (click)="updateCountry()">Save</button>
+          <button md-raised-button color="primary" (click)="updateCountry()">Save</button>
         </td>
       </tr>
     </table>

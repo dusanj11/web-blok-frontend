@@ -71,8 +71,8 @@ country: Country;
 
       this.httpService.putCountry(this.country).subscribe(
        (conts: any) => {
-                this.countries = conts;
-                //console.log(this.countries)
+                // this.countries = conts;
+                console.log(this.countries)
               },
         error => {
             alert("Unsuccessful put operation!");
