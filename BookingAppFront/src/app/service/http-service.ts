@@ -185,6 +185,25 @@ export class HttpService{
         }), opts);
     }
 
+    putRegion(region: Region): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(
+        `http://localhost:54042/api/region/regions/${region.Id}`,
+        JSON.stringify({
+            Name: region.Name,
+            CountryId: region.CountryId,
+            Id: region.Id,
+
+        }), opts);
+    }
+
     //sve delete metode za dobavljanje sa servera
     deleteCountry(country: Country): Observable<any>
     {
@@ -197,6 +216,20 @@ export class HttpService{
 
         return this.http.delete(
         `http://localhost:54042/api/country/countries/${country.Id}`,
+         opts);
+    }
+
+    deleteRegion(region: Region): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.delete(
+        `http://localhost:54042/api/region/regions/${region.Id}`,
          opts);
     }
 

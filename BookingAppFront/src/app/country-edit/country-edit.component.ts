@@ -66,7 +66,7 @@ country: Country;
 
   updateCountry()
   {
-     this.country.Name = this.model.Name;
+      this.country.Name = this.model.Name;
       this.country.Code = this.model.Code;
 
       this.httpService.putCountry(this.country).subscribe(
