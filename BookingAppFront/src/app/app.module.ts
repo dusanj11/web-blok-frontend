@@ -38,6 +38,7 @@ import { RoomRowComponent } from './room/room-row/room-row.component';
 import { LogInGuard } from "app/sign-in/log-in-guard";
 import { AuthService } from "app/service/auth-service";
 import { CountryEditComponent } from './country-edit/country-edit.component';
+import { RegionEditComponent } from './region-edit/region-edit.component';
 
 
 
@@ -76,7 +77,8 @@ const Routes =
     AccommodationAddComponent,
     AccommodationTypeAddComponent,
     RoomRowComponent,
-    CountryEditComponent
+    CountryEditComponent,
+    RegionEditComponent
   ],
   imports: [
     BrowserModule,
