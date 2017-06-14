@@ -31,7 +31,7 @@ region: Region;
         }
     );
 
-    this.httpService.getCountries().subscribe(
+    this.httpService.getPlaces().subscribe(
        (plcs: any) => {
                 this.places = plcs;
                 //console.log(this.countries)
