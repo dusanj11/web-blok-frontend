@@ -1,0 +1,38 @@
+<div>
+  <h3> Edit / Delete data </h3>
+ <!--deo za unos editovanog-->
+  <form class="example-form" #f1="ngForm">
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Name" name="Name" 
+            [(ngModel)]="model.Name">
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button md-raised-button color="primary" (click)="updateAccommodationType()">Save</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+<!--deo za prikaz-->
+  <table>
+    <thead>
+      <tr>
+        <th> Name </th>
+        <th> Edit </th>
+        <th> Delete </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let myAccType of acctypes">
+        <td>{{myAccType.Name}}</td>
+        <td><button  md-raised-button  color="primary"(click)="editAccommodationType(myAccType.Id)">Edit</button></td>
+        <td><button  md-raised-button  color="accent" (click)="deleteAccommodationType(myAccType.Id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
