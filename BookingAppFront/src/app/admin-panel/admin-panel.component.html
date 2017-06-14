@@ -15,9 +15,9 @@
     </md-tab>
     <md-tab label="Regions" *ngIf="!isLoggedInManager()" >
       <md-tab-group [selectedIndex]="0">
-        <md-tab label="Show All">
-        </md-tab>
-        <md-tab label="Edit">
+        <md-tab label="Edit/Delete">
+        <app-region-edit>
+        </app-region-edit>
         </md-tab>
         <md-tab label="Add">
           <app-region-add>
