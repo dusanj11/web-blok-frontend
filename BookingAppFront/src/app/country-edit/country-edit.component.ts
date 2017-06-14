@@ -10,6 +10,9 @@ import { HttpService } from "app/service/http-service";
 export class CountryEditComponent implements OnInit {
 
 countries: Country[];
+model: any={};
+country: Country;
+
   constructor(public httpService: HttpService) { }
 
   ngOnInit() {
@@ -23,6 +26,26 @@ countries: Country[];
             console.log(error);
         }
     );
+  }
+
+  deleteCountry() 
+  {
+    alert("Nes me izbrisat jebem ti sunac!")
+  }
+
+  editCountry(countryId)
+  {
+    this.countries.forEach(element => {
+      if(element.Id == countryId)
+      {
+        this.country = element;
+      }
+    });
+
+    this.model.Name = this.country.Name;
+    this.model.Code = this.country.Code;
+
+    console.log(this.country.Id + " "+ this.country.Name + " "+this.country.Code);
   }
 
 }
