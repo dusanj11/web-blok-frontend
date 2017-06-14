@@ -13,12 +13,13 @@
         <td>
           <md-input-container>
           <input mdInput placeholder="CountryName" name="CountryName" [mdAutocomplete]="auto"  [(ngModel)]="model.CountryName">
-        </md-input-container>
+          </md-input-container>
 
         <md-autocomplete #auto="mdAutocomplete">
           <md-option *ngFor="let myCountry of regCountries" value={{myCountry.Name}}>
             {{myCountry.Name}}
           </md-option>
+          </md-autocomplete>
         </td>
       </tr>
       <tr>
