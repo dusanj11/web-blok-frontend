@@ -27,9 +27,9 @@
     </md-tab>
     <md-tab label="Places" *ngIf="!isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
-        <md-tab label="Show All">
-        </md-tab>
-        <md-tab label="Edit">
+        <md-tab label="Edit/Delete">
+        <app-place-edit>
+        </app-place-edit>
         </md-tab>
         <md-tab label="Add">
           <app-place-add>
