@@ -1,0 +1,21 @@
+<div>
+  <h3> Edit / Delete data </h3>
+  <table>
+    <thead>
+      <tr>
+        <th> Name </th>
+        <th> Code </th>
+        <th> Edit </th>
+        <th> Delete </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let myCountry of countries">
+        <td>{{myCountry.Name}}</td>
+        <td>{{myCountry.Code}}</td>
+        <td><button  md-raised-button  color="orange">Edit</button></td>
+        <td><button  md-raised-button  color="red">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

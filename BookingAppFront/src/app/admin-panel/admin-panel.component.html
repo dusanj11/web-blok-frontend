@@ -3,9 +3,9 @@
   <md-tab-group [selectedIndex]="0">
     <md-tab label="Countries" *ngIf="!isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
-        <md-tab label="Show All">
-        </md-tab>
-        <md-tab label="Edit">
+        <md-tab label="Edit/Delete">
+        <app-country-edit>
+        </app-country-edit>
         </md-tab>
         <md-tab label="Add">
           <app-country-add>
