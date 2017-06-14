@@ -28,12 +28,28 @@ country: Country;
     );
   }
 
-  deleteCountry() 
+  deleteCountry(countryId: number) 
   {
-    alert("Nes me izbrisat jebem ti sunac!")
+    this.countries.forEach(element => {
+      if(element.Id == countryId)
+      {
+        this.country = element;
+      }
+    });
+
+    this.httpService.deleteCountry(this.country).subscribe(
+       (conts: any) => {
+                // this.countries = conts;
+                //console.log(this.countries)
+              },
+        error => {
+            alert("Unsuccessful delete operation!");
+            console.log(error);
+        }
+    );
   }
 
-  editCountry(countryId)
+  editCountry(countryId: number)
   {
     this.countries.forEach(element => {
       if(element.Id == countryId)
@@ -46,6 +62,20 @@ country: Country;
     this.model.Code = this.country.Code;
 
     console.log(this.country.Id + " "+ this.country.Name + " "+this.country.Code);
+  }
+
+  updateCountry()
+  {
+      this.httpService.putCountry(this.country).subscribe(
+       (conts: any) => {
+                this.countries = conts;
+                //console.log(this.countries)
+              },
+        error => {
+            alert("Unsuccessful put operation!");
+            console.log(error);
+        }
+    );
   }
 
 }

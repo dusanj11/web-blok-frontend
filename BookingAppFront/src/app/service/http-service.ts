@@ -105,6 +105,12 @@ export class HttpService{
         return this.http.get(`http://localhost:54042/api/accommodation/accommodation/${id}`).map(this.extractData);
     }
 
+    getRoomsForAccommodation(accommodationId: number){
+        return this.http.get(`http://localhost:54042/api/room/rooms/${accommodationId}`).map(this.extractData);
+    }
+
+    //sve post metode za dobavljanje sa servera
+
     postCountry(country: Country): Observable<any>
     {
         const headers: Headers = new Headers();
@@ -123,9 +129,7 @@ export class HttpService{
     }
 
 
-    getRoomsForAccommodation(accommodationId: number){
-        return this.http.get(`http://localhost:54042/api/room/rooms/${accommodationId}`).map(this.extractData);
-    }
+    
     
     postRegion(region: Region): Observable<any>
     {
@@ -160,6 +164,39 @@ export class HttpService{
             Name: place.Name,
             RegionId: place.RegionId
         }), opts);
+    }
+
+    //sve put metode za dobavljanje sa servera
+    putCountry(country: Country): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(
+        `http://localhost:54042/api/country/countries/${country.Id}`,
+        JSON.stringify({
+            Name: country.Name,
+            Code: country.Code
+        }), opts);
+    }
+
+    //sve delete metode za dobavljanje sa servera
+    deleteCountry(country: Country): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.delete(
+        `http://localhost:54042/api/country/countries/${country.Id}`,
+         opts);
     }
 
     createReservation(reservation: RoomReservation){ 
