@@ -180,7 +180,8 @@ export class HttpService{
         `http://localhost:54042/api/country/countries/${country.Id}`,
         JSON.stringify({
             Name: country.Name,
-            Code: country.Code
+            Code: country.Code,
+            Id: country.Id
         }), opts);
     }
 
