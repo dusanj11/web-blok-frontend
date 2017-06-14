@@ -58,5 +58,16 @@ export class AuthService {
         }
     }
 
+    currentUserName(): string {
+        let currentUser = sessionStorage.getItem("currentUser");
+        if (currentUser !== null) {
+            let user: CurrentUser = JSON.parse(currentUser);
+            return user.username;
+        }
+        else {
+            return null;
+        }
+    }
+
     
 }

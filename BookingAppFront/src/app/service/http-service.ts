@@ -180,4 +180,8 @@ export class HttpService{
                 }), opts);
     }
 
+    checkIfReservationPass(userName: string, accommodationId: number) {
+        return this.http.get(`http://localhost:54042/api/RoomReservation/ReservationPass/${userName}/${accommodationId}`);
+    }
+
 }
