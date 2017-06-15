@@ -50,7 +50,7 @@ acctype: AccomodationType;
         }
     );
 
-    this.ngOnInit();
+    // this.ngOnInit();
   }
 
   editAccommodationType(acctypeId: number)
@@ -83,7 +83,7 @@ acctype: AccomodationType;
         }
     );
 
-    this.ngOnInit();
+    // this.ngOnInit();
   }
 
 }

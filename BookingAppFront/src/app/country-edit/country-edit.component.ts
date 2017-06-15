@@ -48,7 +48,7 @@ country: Country;
         }
     );
 
-    this.ngOnInit();
+    // this.ngOnInit();
   }
 
   editCountry(countryId: number)
@@ -82,7 +82,7 @@ country: Country;
         }
     );
 
-    this.ngOnInit();
+    // this.ngOnInit();
   }
 
 }
