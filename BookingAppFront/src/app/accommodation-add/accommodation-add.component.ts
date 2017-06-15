@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms/src/forms";
 import { Accommodation } from "app/accommodation/accommodation";
+import { HttpService } from "app/service/http-service";
+import { AuthService } from "app/service/auth-service";
 
 @Component({
   selector: 'app-accommodation-add',
@@ -11,11 +13,22 @@ export class AccommodationAddComponent implements OnInit {
 
     uploadImageName: string;
 
-  constructor() { }
+  constructor(public httpService: HttpService, public authService: AuthService) { }
 
-  onSubmitAccommodation(createdAccommodation: any, form: NgForm){
+  onSubmitAccommodation(createdAccommodation: Accommodation, form: NgForm){
       let accommodation: Accommodation;
-      
+      console.log("Kreiran smestaj");
+      createdAccommodation.ImageURL = this.uploadImageName;
+      createdAccommodation.AppUserId = this.authService.currentUserId();
+
+      this.httpService.postAccommodation(createdAccommodation).subscribe(
+          (res: any) => {
+                console.log("Kreiran smestaj");
+          },
+          error => {
+              console.log(error);
+          }
+      );
 
   }
 

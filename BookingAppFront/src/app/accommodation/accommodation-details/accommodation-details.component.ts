@@ -20,7 +20,21 @@ export class AccommodationDetailsComponent implements OnInit {
   constructor( private router: Router, private activatedRoute: ActivatedRoute,
                 private httpService: HttpService, private authService: AuthService ) {
       activatedRoute.params.subscribe(params => {this.id = params['id'];
-      this.accommodation = new Accommodation(0,"", "", "", null,null,null,"", true, 0,0,0 ); 
+      this.accommodation = new Accommodation(); //0,"", "", "", null,null,null,"", true, 0,0,0 
+      this.accommodation.AccomTypeId = -1;
+      this.accommodation.AccomTypeName = "";
+      this.accommodation.Address = "";
+      this.accommodation.Approved = true;
+      this.accommodation.AppUserId = -1;
+      this.accommodation.AverageGrade = 0;
+      this.accommodation.Description = "";
+      this.accommodation.Id = -1;
+      this.accommodation.ImageURL = "";
+      this.accommodation.Latitude = 0;
+      this.accommodation.Longitutde = 0;
+      this.accommodation.Name = "";
+      this.accommodation.PlaceName = "";
+    
     });
   }
 

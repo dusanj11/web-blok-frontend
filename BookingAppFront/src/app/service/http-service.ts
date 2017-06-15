@@ -171,6 +171,33 @@ export class HttpService{
         }), opts);
     }
 
+
+    postAccommodation(accommodation: Accommodation): Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+        "http://localhost:54042/api/accommodation/accommodations",
+        JSON.stringify({
+            Name: accommodation.Name,
+            Description: accommodation.Description,
+            Address: accommodation.Address,
+            AverageGrade: 0,
+            Latitude: accommodation.Latitude,
+            Longitude: accommodation.Longitutde,
+            ImageURL: `http://localhost:54042/content/${accommodation.ImageURL}`,
+            Approved: accommodation.Approved,
+            PlaceId: accommodation.PlaceId,
+            AccommodationTypeId: accommodation.AccomTypeId,
+            AppUserId: accommodation.AppUserId
+
+        }), opts);
+    }
+
     //sve put metode za dobavljanje sa servera
     putCountry(country: Country): Observable<any>
     {
