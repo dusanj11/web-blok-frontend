@@ -43,6 +43,7 @@ import { RegionEditComponent } from './region-edit/region-edit.component';
 import { PlaceEditComponent } from './place-edit/place-edit.component';
 import { AccommodationTypeEditComponent } from './accommodation-type-edit/accommodation-type-edit.component';
 import { MapComponent } from './map/map.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 
 
@@ -98,7 +99,8 @@ const Routes =
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCbacKCVoG5Oplis1L0IOvOy5Dwm3i3ICU'
-    })
+    }),
+    StarRatingModule
     //Material AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk
   ],
   providers: [HttpService, AuthService, LogInGuard],

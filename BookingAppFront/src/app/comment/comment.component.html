@@ -1,54 +1,57 @@
 <div align="center">
-<md-card *ngIf="enableToComment()"> 
-  <md-list>
-    <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitAddComment(f1.value, f1)">
-      <table class="example-full-width" cellspacing="5">
-        <tr>
-          <h3>Leave comment for this accommodation</h3>
-        </tr>
-        <tr>
-          <td>
-            <md-input-container>
-              <textarea rows="5" cols="50" mdInput placeholder="Comment" width="200" name="comment" ngModel></textarea>
-            </md-input-container>
-          </td>
+  <md-card *ngIf="enableToComment()">
+    <md-list>
+      <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitAddComment(f1.value, f1)">
+        <table class="example-full-width" cellspacing="5">
+          <tr>
+            <h3>Leave comment for this accommodation</h3>
+          </tr>
+          <tr>
+            <td>
+              <md-input-container>
+                <textarea rows="5" cols="50" mdInput placeholder="Comment" width="200" name="Text" ngModel></textarea>
+              </md-input-container>
+            </td>
 
-        </tr>
-        <tr>
-          <td>
-            <md-button-toggle-group>
+          </tr>
+          <tr>
+            <td>
+              <!--<md-button-toggle-group>
               <md-button-toggle value="good"><md-icon>thumb_down</md-icon></md-button-toggle>
               <md-button-toggle value="bad"><md-icon>thumb_up</md-icon></md-button-toggle>
-            </md-button-toggle-group>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button type="submit" md-raised-button color="accent">Add comment</button>
-          </td>
-        </tr>
-      </table>
-    </form>
-  </md-list>
-</md-card>
-
-<div align="center">
-  <!-- Prikaz liste komentara  -->
-  <h3>Comments for this accommodation</h3>
-
-  <md-card *ngFor="let myComment of comments">
-    <md-list >
-      <md-list-item>
-        <img md-list-avatar src="/assets/images/comment.png">
-        <h3 md-line>Korisnik: {{myComment.AppUserId}}</h3>
-        <p md-line>
-          <span>{{myComment.Text}}</span>
-        </p>
-        <p md-line>
-          <span>Broj glasova: {{myComment.Grade}}</span>
-        </p>
-      </md-list-item>
+            </md-button-toggle-group>-->
+              <star-rating-comp [starType]="'svg'" [rating]="2.5" [hoverEnabled]="true" (onClick)="onClick($event)" (onRatingChanged)="onRatingChange($event)"
+                (onHoverRatingChange)="onHoverRatingChange($event)">
+              </star-rating-comp>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="submit" md-raised-button color="accent">Add comment</button>
+            </td>
+          </tr>
+        </table>
+      </form>
     </md-list>
   </md-card>
-</div>
+
+  <div align="center">
+    <!-- Prikaz liste komentara  -->
+    <h3>Comments for this accommodation</h3>
+
+    <md-card *ngFor="let myComment of comments">
+      <md-list>
+        <md-list-item>
+          <img md-list-avatar src="/assets/images/comment.png">
+          <!--<h3 md-line>Korisnik: {{myComment.AppUserId}}</h3>-->
+          <p md-line>
+            <span>{{myComment.Text}}</span>
+          </p>
+          <p md-line>
+            <span>Ocena: {{myComment.Grade}}</span>
+          </p>
+        </md-list-item>
+      </md-list>
+    </md-card>
+  </div>
 </div>

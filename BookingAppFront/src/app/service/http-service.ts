@@ -10,6 +10,7 @@ import { Place } from "app/place/place";
 import { Accommodation } from "../accommodation/accommodation";
 import { RoomReservation } from "app/room-reservation/room-reservation";
 import { AccomodationType } from "app/accomodation-type/accomodation-type";
+import { Comment } from "app/comment/comment";
 
 @Injectable()
 export class HttpService{
@@ -23,6 +24,7 @@ export class HttpService{
         return body || [];
     }
 
+    // autorizacija 
 
     getUserInfo(username: string, access_token: string): Observable<any> {
         console.log("Username " + username );
@@ -114,6 +116,14 @@ export class HttpService{
         return this.http.get("http://localhost:54042/api/acctype/acctypes").map(this.extractData);
     }
 
+    checkIfReservationPass(userName: string, accommodationId: number) {
+        return this.http.get(`http://localhost:54042/api/RoomReservation/ReservationPass/${userName}/${accommodationId}`);
+    }
+
+    getAccommodationComments(accomId: number): Observable<any> {
+        return this.http.get(`http://localhost:54042/api/comment/comments/${accomId}`);
+    }
+
     //sve post metode za dobavljanje sa servera
 
     postCountry(country: Country): Observable<any>
@@ -196,6 +206,43 @@ export class HttpService{
             AppUserId: accommodation.AppUserId
 
         }), opts);
+    }
+
+    createReservation(reservation: RoomReservation){ 
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+                "http://localhost:54042/api/RoomReservation/roomReservations",
+                JSON.stringify({
+                    StartDate: reservation.StartDate,
+                    EndDate: reservation.EndDate,
+                    RoomId: reservation.RoomId,
+                    AppUserId: reservation.AppUserId
+                }), opts);
+    }
+
+    createComment(comment: Comment): Observable<any> {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+                "http://localhost:54042/api/comment/comments",
+                JSON.stringify({
+                    Grade: comment.Grade,
+                    Text: comment.Text,
+                    AccommodationId: comment.AccomodationId,
+                    AppUserId: comment.AppUserId
+                }), opts);
+
     }
 
     //sve put metode za dobavljanje sa servera
@@ -331,26 +378,8 @@ export class HttpService{
     }
 
     //ostalo
-    createReservation(reservation: RoomReservation){ 
-        const headers: Headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Content-type', 'application/json');
+    
 
-        const opts: RequestOptions = new RequestOptions();
-        opts.headers = headers;
-
-        return this.http.post(
-                "http://localhost:54042/api/RoomReservation/roomReservations",
-                JSON.stringify({
-                    StartDate: reservation.StartDate,
-                    EndDate: reservation.EndDate,
-                    RoomId: reservation.RoomId,
-                    AppUserId: reservation.AppUserId
-                }), opts);
-    }
-
-    checkIfReservationPass(userName: string, accommodationId: number) {
-        return this.http.get(`http://localhost:54042/api/RoomReservation/ReservationPass/${userName}/${accommodationId}`);
-    }
+    
 
 }

@@ -25,6 +25,18 @@ export class AccommodationAddComponent implements OnInit {
       createdAccommodation.ImageURL = this.uploadImageName;
       createdAccommodation.AppUserId = this.authService.currentUserId();
 
+      this.acctypes.forEach(element => {
+            if(element.Name == createdAccommodation.AccomTypeName){
+                createdAccommodation.AccomTypeId = element.Id;
+            }
+      });
+
+      this.places.forEach(element => {
+            if (element.Name == createdAccommodation.PlaceName){
+                createdAccommodation.PlaceId = element.Id;
+            }
+      });
+
       this.httpService.postAccommodation(createdAccommodation).subscribe(
           (res: any) => {
                 console.log("Kreiran smestaj");

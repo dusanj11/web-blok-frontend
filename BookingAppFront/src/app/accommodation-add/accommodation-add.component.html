@@ -39,10 +39,10 @@
       </td>
       <td>
          <md-input-container>
-          <input mdInput placeholder="AccomTypeName" name="AccomTypeName" [mdAutocomplete]="auto" ngModel >
+          <input mdInput placeholder="AccomTypeName" name="AccomTypeName" [mdAutocomplete]="auto2" ngModel >
         </md-input-container>
 
-        <md-autocomplete #auto="mdAutocomplete">
+        <md-autocomplete #auto2="mdAutocomplete">
           <md-option *ngFor="let myAccType of acctypes" value={{myAccType.Name}}>
             {{myAccType.Name}}
           </md-option>
