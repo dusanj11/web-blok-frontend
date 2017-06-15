@@ -8,6 +8,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ImageUploadModule} from 'angular2-image-upload';
+import { AgmCoreModule } from '@agm/core';
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -92,7 +93,10 @@ const Routes =
     MaterialModule,
     MdNativeDateModule,
     ImageUploadModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCbacKCVoG5Oplis1L0IOvOy5Dwm3i3ICU'
+    })
     //MaterialModule.forRoot()
   ],
   providers: [HttpService, AuthService, LogInGuard],

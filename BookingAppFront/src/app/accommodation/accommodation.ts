@@ -11,7 +11,9 @@ export class Accommodation
         public ImageURL: string,
         public Approved: boolean,
         public PlaceId: number,
+        public PlaceName: string,
         public AccomTypeId: number,
+        public AccomTypeName: string,
         public AppUserId: number){
 
     }
