@@ -47,6 +47,8 @@ country: Country;
             console.log(error);
         }
     );
+
+    this.ngOnInit();
   }
 
   editCountry(countryId: number)
@@ -79,6 +81,8 @@ country: Country;
             console.log(error);
         }
     );
+
+    this.ngOnInit();
   }
 
 }

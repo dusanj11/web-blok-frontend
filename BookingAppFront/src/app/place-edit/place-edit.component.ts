@@ -41,6 +41,19 @@ region: Region;
             console.log(error);
         }
     );
+
+    this.places.forEach(elementP => {
+      
+      this.regions.forEach(elementR => {
+
+            if(elementP.RegionId== elementR.Id)
+            {
+              elementP.RegionName = elementR.Name;
+            }
+      });
+
+    });
+
   }
 
   deletePlace(placeId: number) 
@@ -62,6 +75,8 @@ region: Region;
             console.log(error);
         }
     );
+
+    this.ngOnInit();
   }
 
   editPlace(placeId: number)
@@ -103,6 +118,8 @@ region: Region;
             console.log(error);
         }
     );
+
+    this.ngOnInit();
   }
 
 }

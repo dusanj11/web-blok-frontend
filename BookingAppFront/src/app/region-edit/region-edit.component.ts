@@ -41,6 +41,20 @@ region: Region;
             console.log(error);
         }
     );
+
+    this.regions.forEach(elementR => {
+      
+      this.countries.forEach(elementC => {
+
+            if(elementR.CountryId == elementC.Id)
+            {
+              elementR.CountryName = elementC.Name;
+            }
+      });
+
+    });
+
+       
   }
 
   deleteRegion(regionId: number) 
@@ -62,6 +76,8 @@ region: Region;
             console.log(error);
         }
     );
+
+    this.ngOnInit();
   }
 
   editRegion(regionId: number)
@@ -103,6 +119,8 @@ region: Region;
             console.log(error);
         }
     );
+
+    this.ngOnInit();
   }
 
 }
