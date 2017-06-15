@@ -90,25 +90,25 @@ export class CommentComponent implements OnInit {
 
   enableToComment(): boolean {
 
-    // let username: string = this.authService.currentUserName();
-    // this.httpService.checkIfReservationPass(username, this.id).subscribe(
-    //   (res: any) => {
-    //       if (res._body == "true")
-    //         this.enabled = true;
-    //       else
-    //         this.enabled = false;
-    //   },
-    //   error => {
-    //       console.log(error);
-    //       this.enabled = false;
-    //   }
-    // );
+    let username: string = this.authService.currentUserName();
+    this.httpService.checkIfReservationPass(username, this.id).subscribe(
+      (res: any) => {
+          if (res._body == "true")
+            this.enabled = true;
+          else
+            this.enabled = false;
+      },
+      error => {
+          console.log(error);
+          this.enabled = false;
+      }
+    );
 
-    // if (this.enabled == true)
-    //   return true;
-    // else 
-    //   return false;
-    return true;
+    if (this.enabled == true)
+      return true;
+    else 
+      return false;
+  
 
   }
 

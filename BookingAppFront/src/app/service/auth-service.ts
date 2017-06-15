@@ -9,29 +9,29 @@ export class AuthService {
     }
 
     logIn(currentUser: CurrentUser): void{
-        sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
     }
 
     logOut(): void{
-        sessionStorage.removeItem("currentUser");
+        localStorage.removeItem("currentUser");
     }
 
     isLoggedIn(): boolean{
-        if(sessionStorage.getItem("currentUser") !== null)
+        if(localStorage.getItem("currentUser") !== null)
             return true;
         else
             return false;
     }
 
     isLoggedOut(): boolean{
-        if(sessionStorage.getItem("currentUser") !== null)
+        if(localStorage.getItem("currentUser") !== null)
             return false;
         else
             return true;
     }
 
     isLoggedInRole(role: string): boolean {
-        let curretUser = sessionStorage.getItem("currentUser");
+        let curretUser = localStorage.getItem("currentUser");
         if ( curretUser !== null){
             let user: CurrentUser = JSON.parse(curretUser);
             if (user.role == role){
@@ -47,7 +47,7 @@ export class AuthService {
     }
 
     currentUserId(): number {
-        let curretUser = sessionStorage.getItem("currentUser");
+        let curretUser = localStorage.getItem("currentUser");
         if ( curretUser !== null){
             let user: CurrentUser = JSON.parse(curretUser);
             return user.id;
@@ -59,7 +59,7 @@ export class AuthService {
     }
 
     currentUserName(): string {
-        let currentUser = sessionStorage.getItem("currentUser");
+        let currentUser = localStorage.getItem("currentUser");
         if (currentUser !== null) {
             let user: CurrentUser = JSON.parse(currentUser);
             return user.username;
