@@ -3,6 +3,8 @@ import { NgForm } from "@angular/forms/src/forms";
 import { Accommodation } from "app/accommodation/accommodation";
 import { HttpService } from "app/service/http-service";
 import { AuthService } from "app/service/auth-service";
+import { AccomodationType } from "app/accomodation-type/accomodation-type";
+import { Place } from "app/place/place";
 
 @Component({
   selector: 'app-accommodation-add',
@@ -12,6 +14,8 @@ import { AuthService } from "app/service/auth-service";
 export class AccommodationAddComponent implements OnInit {
 
     uploadImageName: string;
+    acctypes: AccomodationType[];
+    places: Place[];
 
   constructor(public httpService: HttpService, public authService: AuthService) { }
 
@@ -51,6 +55,28 @@ export class AccommodationAddComponent implements OnInit {
   }
 
   ngOnInit() {
+
+      this.httpService.getPlaces().subscribe(
+       (regs: any) => {
+            this.places = regs;
+            //console.log(this.regions);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
+
+    this.httpService.getAccommodationTypes().subscribe(
+       (accts: any) => {
+            this.acctypes = accts;
+            //console.log(this.regions);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
   }
 
 }
