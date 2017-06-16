@@ -32,7 +32,7 @@ export class AccommodationDetailsComponent implements OnInit {
       this.accommodation.Id = -1;
       this.accommodation.ImageURL = "";
       this.accommodation.Latitude = 0;
-      this.accommodation.Longitutde = 0;
+      this.accommodation.Longitude = 0;
       this.accommodation.Name = "";
       this.accommodation.PlaceName = "";
     

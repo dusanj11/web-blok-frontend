@@ -55,7 +55,7 @@ export class ManagerService {
             Address: accommodation.Address,
             AverageGrade: 0,
             Latitude: accommodation.Latitude,
-            Longitude: accommodation.Longitutde,
+            Longitute: accommodation.Longitude,
             ImageURL: `http://localhost:54042/content/${accommodation.ImageURL}`,
             Approved: accommodation.Approved,
             PlaceId: accommodation.PlaceId,
