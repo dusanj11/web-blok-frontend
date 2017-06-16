@@ -6,6 +6,7 @@ export class Room {
     public Description: string;
     public PricePerNight: number;
     public AccomodationId: number;
+    public AccommodationName: string;
 
     constructor(  
     ){}

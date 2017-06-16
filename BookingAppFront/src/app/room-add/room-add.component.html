@@ -1,0 +1,48 @@
+<form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitRoom(f1.value, f1)">
+  <table class="example-full-width" cellspacing="5">
+    <tr>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="RoomNumber" name="RoomNumber" ngModel>
+        </md-input-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="BedCount" name="BedCount" ngModel>
+        </md-input-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="PricePerNight" name="PricePerNight" ngModel>
+        </md-input-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="AccommodationName" name="AccommodationName" [mdAutocomplete]="auto" ngModel>
+        </md-input-container>
+
+        <md-autocomplete #auto="mdAutocomplete">
+          <md-option *ngFor="let myAccommodation of accommodations" value={{myAccommodation.Name}}>
+            {{myAccommodation.Name}}
+          </md-option>
+        </md-autocomplete>
+      </td>
+    </tr>
+    <tr>
+      <md-input-container>
+        <textarea rows="5" cols="50" mdInput placeholder="Description" width="200" name="Description" ngModel></textarea>
+      </md-input-container>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" md-raised-button color="primary">Add</button>
+      </td>
+    </tr>
+  </table>
+</form>

@@ -1,0 +1,73 @@
+<div>
+  <h3> Edit / Delete data </h3>
+ <!--deo za unos editovanog-->
+  <form class="example-form" #f1="ngForm">
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="RoomNumber" name="RoomNumber" 
+            [(ngModel)]="model.RoomNumber">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="BedCount" name="BedCount" 
+            [(ngModel)]="model.BedCount">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="PricePerNight" name="PricePerNight" 
+            [(ngModel)]="model.PricePerNight">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Description" name="Description" 
+            [(ngModel)]="model.Description">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container>
+          <input mdInput placeholder="AccommodationName" name="AccommodationName" [mdAutocomplete]="auto"  [(ngModel)]="model.AccommodationName">
+          </md-input-container>
+
+        <md-autocomplete #auto="mdAutocomplete">
+          <md-option *ngFor="let myAccommodation of accommodations" value={{myAccommodation.Name}}>
+            {{myAccommodation.Name}}
+          </md-option>
+          </md-autocomplete>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button md-raised-button color="primary" (click)="updateRoom()">Save</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+<!--deo za prikaz-->
+  <table>
+    <thead>
+      <tr>
+        <th> Room Number </th>
+        <th> Bed Count </th>
+        <th> Price Per Night </th>
+        <th> Description </th>
+        <th> Accommodation Name </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let myRoom of rooms">
+        <td>{{myRoom.RoomNumber}}</td>
+        <td>{{myRoom.BedCount}}</td>
+        <td>{{myRoom.PricePerNight}}</td>
+        <td>{{myRoom.Description}}</td>
+        <td>{{myRoom.AccommodationName}}</td>
+        <td><button  md-raised-button  color="primary"(click)="editRoom(myRoom.Id)">Edit</button></td>
+        <td><button  md-raised-button  color="accent" (click)="deleteRoom(myRoom.Id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

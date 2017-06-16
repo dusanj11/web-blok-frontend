@@ -7,6 +7,7 @@ import { Region } from "app/country/region/region";
 import { Country } from "app/country/country";
 import { AccomodationType } from "app/accomodation-type/accomodation-type";
 import { Injectable } from '@angular/core';
+import { Room } from "app/room/room";
 
 @Injectable()
 export class ManagerService {
@@ -32,6 +33,10 @@ export class ManagerService {
 
     getAccommodationTypes(): Observable<Accommodation>{
         return this.http.get("http://localhost:54042/api/acctype/acctypes").map(this.extractData);
+    }
+
+    getRooms(): Observable<Room>{
+        return this.http.get("http://localhost:54042/api/room/rooms").map(this.extractData);
     }
 
    
@@ -65,6 +70,27 @@ export class ManagerService {
         }), opts);
     }
 
+    postRoom(room: Room, access_token: string): Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+        "http://localhost:54042/api/room/rooms",
+        JSON.stringify({
+            RoomNumber: room.RoomNumber,
+            BedCount: room.BedCount,
+            PricePerNight: room.PricePerNight,
+            Description: room.Description,
+            AccommodationId: room.AccomodationId
+        }), opts);
+    }
+
     
 
     putAccommodationType(acctype: AccomodationType, access_token: string): Observable<any>
@@ -87,6 +113,30 @@ export class ManagerService {
         }), opts);
     }
 
+    putRoom(room: Room, access_token: string): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(
+        `http://localhost:54042/api/room/rooms/${room.Id}`,
+        JSON.stringify({
+            RoomNumber: room.RoomNumber,
+            Id: room.Id,
+            BedCount: room.BedCount,
+            PricePerNight: room.PricePerNight,
+            Description: room.Description,
+            AccommodationId: room.AccomodationId
+
+        }), opts);
+    }
+
     deleteAccommodationType(acctype: AccomodationType, access_token: string): Observable<any>
     {
         const headers: Headers = new Headers();
@@ -102,4 +152,22 @@ export class ManagerService {
         `http://localhost:54042/api/acctype/acctypes/${acctype.Id}`,
          opts);
     }
+
+    deleteRoom(room: Room,  access_token: string): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.delete(
+        `http://localhost:54042/api/room/rooms/${room.Id}`,
+         opts);
+
+    }
+
 }
