@@ -1,5 +1,5 @@
 
-<md-card>
+<!--<md-card>
 
 <md-list>
   <md-list-item>
@@ -11,7 +11,20 @@
     </p>
   </md-list-item>
 </md-list>
-</md-card>
+</md-card>-->
 
+<h1>Current Time</h1>
+<button (click) = "startTimer()">Start Timer</button>
+<button (click) = "stopTimer()">Stop Timer</button>
 
+<div *ngIf="time">
+  <h3>{{time}}</h3>
+</div>
 
+<h1> Notifications </h1>
+
+<button (click) = "GetHello()">Get Hello</button>
+
+<ul> 
+  <li *ngFor="let notif of notifications">{{notif}}</li>
+</ul>
