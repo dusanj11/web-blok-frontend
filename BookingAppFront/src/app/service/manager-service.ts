@@ -7,6 +7,7 @@ import { Region } from "app/country/region/region";
 import { Country } from "app/country/country";
 import { AccomodationType } from "app/accomodation-type/accomodation-type";
 import { Injectable } from '@angular/core';
+import { Room } from "app/room/room";
 
 @Injectable()
 export class ManagerService {
@@ -62,6 +63,27 @@ export class ManagerService {
             AccommodationTypeId: accommodation.AccomTypeId,
             AppUserId: accommodation.AppUserId
 
+        }), opts);
+    }
+
+    postRoom(room: Room, access_token: string): Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+        "http://localhost:54042/api/room/rooms",
+        JSON.stringify({
+            RoomNumber: room.RoomNumber,
+            BedCount: room.BedCount,
+            PricePerNight: room.PricePerNight,
+            Description: room.Description,
+            AccommodationId: room.AccomodationId
         }), opts);
     }
 
