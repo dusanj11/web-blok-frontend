@@ -19,6 +19,7 @@ export class AccommodationAddComponent implements OnInit {
     acctypes: AccomodationType[];
     places: Place[];
     token: string;
+    model: any={};
 
   constructor(private httpService: HttpService, private authService: AuthService,
               private managerService: ManagerService, private adminService: AdminService ) { }
@@ -53,6 +54,17 @@ export class AccommodationAddComponent implements OnInit {
       );
 
   }
+
+  mapClicked($event: any)
+    {
+      this.model = 
+      {
+        Latitude: $event.coords.lat,
+        Longitude: $event.coords.lng
+      }
+
+      console.log(this.model.Latitude + " " + this.model.Longitude);
+    }
 
   imageUploaded(mess: any){
       console.log("Image Uploaded name:");

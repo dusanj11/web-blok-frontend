@@ -7,8 +7,8 @@
         </md-input-container>
       </td>
       <td>
-        <app-map>
-        </app-map>
+        <agm-map [latitude]=45.25167 [longitude]=19.83694 (mapClick)="mapClicked($event)">
+        </agm-map>
       </td>
     </tr>
     <tr>
@@ -52,12 +52,12 @@
     <tr>
       <td>
         <md-input-container class="example-full-width">
-          <input mdInput placeholder="Longitude" name="Longitude" ngModel>
+          <input mdInput placeholder="Latitude" name="Latitude" [(ngModel)]="model.Latitude">
         </md-input-container>
       </td>
       <td>
         <md-input-container class="example-full-width">
-          <input mdInput placeholder="Latitude" name="Latitude" ngModel>
+          <input mdInput placeholder="Longitude" name="Longitude" [(ngModel)]="model.Longitude">
         </md-input-container>
       </td>
     </tr>
