@@ -49,6 +49,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { NotificationService } from "app/service/notification-service";
 import { RoomAddComponent } from './room-add/room-add.component';
 import { RoomEditComponent } from './room-edit/room-edit.component';
+import { AccommodationEditComponent } from './accommodation-edit/accommodation-edit.component';
 
 
 
@@ -93,7 +94,8 @@ const Routes =
     AccommodationTypeEditComponent,
     NotificationComponent,
     RoomAddComponent,
-    RoomEditComponent
+    RoomEditComponent,
+    AccommodationEditComponent
   ],
   imports: [
     BrowserModule,
