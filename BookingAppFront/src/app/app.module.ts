@@ -42,7 +42,6 @@ import { CountryEditComponent } from './country-edit/country-edit.component';
 import { RegionEditComponent } from './region-edit/region-edit.component';
 import { PlaceEditComponent } from './place-edit/place-edit.component';
 import { AccommodationTypeEditComponent } from './accommodation-type-edit/accommodation-type-edit.component';
-import { MapComponent } from './map/map.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { AdminService } from "app/service/admin-service";
 import { ManagerService } from "app/service/manager-service";
@@ -89,7 +88,6 @@ const Routes =
     RegionEditComponent,
     PlaceEditComponent,
     AccommodationTypeEditComponent,
-    MapComponent,
     NotificationComponent
   ],
   imports: [
