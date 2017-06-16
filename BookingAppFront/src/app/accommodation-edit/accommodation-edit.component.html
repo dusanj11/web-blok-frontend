@@ -1,0 +1,106 @@
+<div>
+  <h3> Edit / Delete data </h3>
+  <!--deo za unos editovanog-->
+  <form class="example-form" #f1="ngForm">
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Name" name="Name" [(ngModel)]="model.Name">
+          </md-input-container>
+        </td>
+        <td>
+          <agm-map [latitude]=45.25167 [longitude]=19.83694 (mapClick)="mapClicked($event)">
+          </agm-map>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Code" name="Code" [(ngModel)]="model.Code">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Address" name="Address" [(ngModel)]="model.Address">
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput placeholder="PlaceName" name="PlaceName" [mdAutocomplete]="auto" [(ngModel)]="model.PlaceName">
+          </md-input-container>
+
+          <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let myPlace of places" value={{myPlace.Name}}>
+              {{myPlace.Name}}
+            </md-option>
+          </md-autocomplete>
+        </td>
+        <td>
+          <md-input-container>
+            <input mdInput placeholder="AccomTypeName" name="AccomTypeName" [mdAutocomplete]="auto2" [(ngModel)]="model.AccomTypeName">
+          </md-input-container>
+
+          <md-autocomplete #auto2="mdAutocomplete">
+            <md-option *ngFor="let myAccType of acctypes" value={{myAccType.Name}}>
+              {{myAccType.Name}}
+            </md-option>
+          </md-autocomplete>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Description" name="Description" [(ngModel)]="model.Description">
+          </md-input-container>
+        </td>
+        <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Latitude" name="Latitude" [(ngModel)]="model.Latitude">
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Longitude" name="Longitude" [(ngModel)]="model.Longitude">
+        </md-input-container>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <button md-raised-button color="primary" (click)="updateAccommodation()">Save</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!--deo za prikaz-->
+  <table>
+    <thead>
+      <tr>
+        <th> Name </th>
+        <th> Code </th>
+        <th> Address </th>
+        <th> Place Name </th>
+        <th> Accommodation Type </th>
+        <th> Latitude </th>
+        <th> Longitude </th>
+        <th> Description </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let myAccom of accommodations">
+        <td>{{myAccom.Name}}</td>
+        <td>{{myAccom.Code}}</td>
+        <td>{{myAccom.Address}}</td>
+        <td>{{myAccom.PlaceName}}</td>
+        <td>{{myAccom.AccomTypeName}}</td>
+        <td>{{myAccom.Latitude}}</td>
+        <td>{{myAccom.Longitude}}</td>
+        <td>{{myAccom.Description}}</td>
+        <td><button md-raised-button color="primary" (click)="editAccommodation(myAccom.Id)">Edit</button></td>
+        <td><button md-raised-button color="accent" (click)="deleteAccommodation(myAccom.Id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

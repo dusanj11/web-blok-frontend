@@ -48,6 +48,7 @@ import { ManagerService } from "app/service/manager-service";
 import { NotificationComponent } from './notification/notification.component';
 import { RoomAddComponent } from './room-add/room-add.component';
 import { RoomEditComponent } from './room-edit/room-edit.component';
+import { AccommodationEditComponent } from './accommodation-edit/accommodation-edit.component';
 
 
 
@@ -92,7 +93,8 @@ const Routes =
     AccommodationTypeEditComponent,
     NotificationComponent,
     RoomAddComponent,
-    RoomEditComponent
+    RoomEditComponent,
+    AccommodationEditComponent
   ],
   imports: [
     BrowserModule,
