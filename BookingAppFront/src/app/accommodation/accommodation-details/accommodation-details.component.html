@@ -6,6 +6,24 @@
     <md-card-subtitle>Address: {{accommodation.Address}}</md-card-subtitle>
   </md-card-header>
   <img md-card-lg-image [src] = 'accommodation.ImageURL' height="350" width="350">
+  <agm-map [latitude]="accommodation.Latitude" [longitude]="accommodation.Longitude" [zoom]=10 >
+     <!--Postavljamo markere -->
+    <agm-marker [latitude]="accommodation.Latitude" [longitude]="accommodation.Longitude" 
+    label="accommodation.Name">
+
+      <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
+      <!--<agm-info-window [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" >-->
+
+        <!-- U info-window stavljamo html -->
+        <!--<span style="font-size: 16px;font-family:'Times New Roman'">Fakultet tehničkih nauka</span>
+        <br/>
+        <span style="font-family:'Times New Roman'; color:gray;"><strong>Jugodrvo</strong></span>
+        <span style="font-family:'Times New Roman'; color:gray;">Bulevar oslobođenja 131</span>
+        <a [href]="mapInfo.link">See the site.</a>
+      </agm-info-window>-->
+
+    </agm-marker>
+    </agm-map>
   <md-card-content>
     <p>{{accommodation.Description}}</p>
   </md-card-content>

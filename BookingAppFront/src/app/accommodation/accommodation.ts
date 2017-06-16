@@ -5,7 +5,7 @@ export class Accommodation {
     public Address: string;
     public AverageGrade: number;
     public Latitude: number;
-    public Longitutde: number;
+    public Longitude: number;
     public ImageURL: string;
     public Approved: boolean;
     public PlaceId: number;
