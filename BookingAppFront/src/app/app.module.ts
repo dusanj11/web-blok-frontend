@@ -46,6 +46,7 @@ import { MapComponent } from './map/map.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { AdminService } from "app/service/admin-service";
 import { ManagerService } from "app/service/manager-service";
+import { NotificationComponent } from './notification/notification.component';
 
 
 
@@ -88,7 +89,8 @@ const Routes =
     RegionEditComponent,
     PlaceEditComponent,
     AccommodationTypeEditComponent,
-    MapComponent
+    MapComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
