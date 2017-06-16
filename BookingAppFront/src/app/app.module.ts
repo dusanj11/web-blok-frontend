@@ -46,12 +46,9 @@ import { StarRatingModule } from 'angular-star-rating';
 import { AdminService } from "app/service/admin-service";
 import { ManagerService } from "app/service/manager-service";
 import { NotificationComponent } from './notification/notification.component';
-<<<<<<< HEAD
 import { NotificationService } from "app/service/notification-service";
-=======
 import { RoomAddComponent } from './room-add/room-add.component';
 import { RoomEditComponent } from './room-edit/room-edit.component';
->>>>>>> e7daa5a16967e8c454ba628e9bb87dba8603747f
 
 
 
