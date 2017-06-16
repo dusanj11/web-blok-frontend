@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Accommodation } from './accommodation';
 import { HttpService } from '../service/http-service';
+import { ManagerService } from "app/service/manager-service";
 
 @Component({
     selector: 'app-accommodation',
@@ -14,13 +15,13 @@ export class AccommodationComponent implements OnInit {
 
     @Input() accPlace: number;
   
-    constructor(private httpService: HttpService) {
+    constructor(private httpService: HttpService, private managerService: ManagerService) {
 
     }
 
     // ngOnInit sadrzi poziv ka bazi kako bi se prikupila lista smestaja
     ngOnInit() {
-        this.httpService.getAccommodation().subscribe(
+        this.managerService.getAccommodation().subscribe(
             (res: Accommodation[]) => {
                 this.accommodations = res;
                 console.log(this.accommodations);

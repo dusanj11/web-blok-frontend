@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Place } from "app/place/place";
 import { Region } from "app/country/region/region";
 import { HttpService } from "app/service/http-service";
+import { AdminService } from "app/service/admin-service";
+import { AuthService } from "app/service/auth-service";
 
 @Component({
   selector: 'app-place-edit',
@@ -16,15 +18,16 @@ export class PlaceEditComponent implements OnInit {
   place: Place;
   region: Region;
 
-  constructor(public httpService: HttpService) { }
+  constructor(private httpService: HttpService, private adminService: AdminService,
+              private authService: AuthService) { }
 
   ngOnInit() {
 
-    this.httpService.getRegions().subscribe(
+    this.adminService.getRegions().subscribe(
       (regs: any) => {
         this.regions = regs;
         //console.log(this.countries)
-        this.httpService.getPlaces().subscribe(
+        this.adminService.getPlaces().subscribe(
           (plcs: any) => {
             this.places = plcs;
             //console.log(this.countries)
@@ -64,7 +67,10 @@ export class PlaceEditComponent implements OnInit {
       }
     });
 
-    this.httpService.deletePlace(this.place).subscribe(
+    let access_token: string = this.authService.currentUserToken();
+
+
+    this.adminService.deletePlace(this.place, access_token).subscribe(
       (plcs: any) => {
         // this.countries = conts;
         //console.log(this.countries)
@@ -102,8 +108,9 @@ export class PlaceEditComponent implements OnInit {
       }
     });
 
+    let access_token: string = this.authService.currentUserToken();
 
-    this.httpService.putPlace(this.place).subscribe(
+    this.adminService.putPlace(this.place, access_token).subscribe(
       (plcs: any) => {
         // this.countries = conts;
         console.log(this.places)

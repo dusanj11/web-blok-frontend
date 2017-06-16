@@ -1,6 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Place } from './place';
 import { HttpService } from "app/service/http-service";
+import { AdminService } from "app/service/admin-service";
 
 @Component({
   selector: 'app-place',
@@ -12,7 +13,7 @@ export class PlaceComponent implements OnInit {
   places: Place[];
   @Input() placeReg : number;
 
-  constructor(public httpService: HttpService) {
+  constructor(private httpService: HttpService, private adminService: AdminService) {
     // this.places = [
     //   // new Place(1,"Novi Sad", 1),
     //   // new Place(2,"Beograd", 2),
@@ -24,7 +25,7 @@ export class PlaceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getPlaces().subscribe(
+    this.adminService.getPlaces().subscribe(
        (plcs: any) => {
             this.places = plcs;
             //console.log(this.places);

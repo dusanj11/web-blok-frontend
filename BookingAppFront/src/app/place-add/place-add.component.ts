@@ -4,6 +4,8 @@ import { Region } from "app/country/region/region";
 import { HttpService } from "app/service/http-service";
 import { NgForm } from "@angular/forms";
 import { Place } from "app/place/place";
+import { AdminService } from "app/service/admin-service";
+import { AuthService } from "app/service/auth-service";
 
 
 @Component({
@@ -15,11 +17,11 @@ export class PlaceAddComponent implements OnInit {
 
 @Input() placeRegs: Region[];
 
-  constructor(public httpService: HttpService) {
+  constructor(private adminService: AdminService, private authService: AuthService) {
    }
 
   ngOnInit() {
-    this.httpService.getRegions().subscribe(
+    this.adminService.getRegions().subscribe(
        (regs: any) => {
             this.placeRegs = regs;
             //console.log(this.regions);
@@ -40,7 +42,9 @@ export class PlaceAddComponent implements OnInit {
       }
       
     });
-      this.httpService.postPlace(plc).subscribe(
+      let access_token: string = this.authService.currentUserToken();
+
+      this.adminService.postPlace(plc, access_token).subscribe(
       (conts: any) => {
                 //console.log(this.conts);
               },

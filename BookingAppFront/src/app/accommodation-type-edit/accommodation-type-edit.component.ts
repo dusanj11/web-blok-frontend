@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccomodationType } from "app/accomodation-type/accomodation-type";
 import { HttpService } from "app/service/http-service";
+import { ManagerService } from "app/service/manager-service";
+import { AuthService } from "app/service/auth-service";
 
 @Component({
   selector: 'app-accommodation-type-edit',
@@ -14,11 +16,12 @@ model: any={};
 acctype: AccomodationType;
 
 
-  constructor(public httpService: HttpService) { }
+  constructor(private httpService: HttpService, private managerService: ManagerService,
+              private authService: AuthService) { }
 
   ngOnInit() {
 
-    this.httpService.getAccommodationTypes().subscribe(
+    this.managerService.getAccommodationTypes().subscribe(
        (conts: any) => {
                 this.acctypes = conts;
                 //console.log(this.countries)
@@ -39,7 +42,9 @@ acctype: AccomodationType;
       }
     });
 
-    this.httpService.deleteAccommodationType(this.acctype).subscribe(
+    let access_token: string = this.authService.currentUserToken();
+
+    this.managerService.deleteAccommodationType(this.acctype, access_token).subscribe(
        (regs: any) => {
                 // this.countries = conts;
                 //console.log(this.countries)
@@ -72,7 +77,8 @@ acctype: AccomodationType;
   {
       this.acctype.Name = this.model.Name;
 
-      this.httpService.putAccommodationType(this.acctype).subscribe(
+      let access_token = this.authService.currentUserToken();
+      this.managerService.putAccommodationType(this.acctype, access_token).subscribe(
        (regs: any) => {
                 // this.countries = conts;
                 console.log(this.acctypes)

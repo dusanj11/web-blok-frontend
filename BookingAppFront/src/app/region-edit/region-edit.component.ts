@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Country } from "app/country/country";
 import { Region } from "app/country/region/region";
 import { HttpService } from "app/service/http-service";
+import { AdminService } from "app/service/admin-service";
+import { AuthService } from "app/service/auth-service";
 
 @Component({
   selector: 'app-region-edit',
@@ -16,15 +18,16 @@ export class RegionEditComponent implements OnInit {
   country: Country;
   region: Region;
 
-  constructor(public httpService: HttpService) { }
+  constructor(private httpService: HttpService, private adminService: AdminService,
+              private authService: AuthService) { }
 
   ngOnInit() {
 
-    this.httpService.getCountries().subscribe(
+    this.adminService.getCountries().subscribe(
       (conts: any) => {
         this.countries = conts;
         //console.log(this.countries)
-        this.httpService.getRegions().subscribe(
+        this.adminService.getRegions().subscribe(
           (regs: any) => {
             this.regions = regs;
             //console.log(this.countries)
@@ -60,7 +63,9 @@ export class RegionEditComponent implements OnInit {
       }
     });
 
-    this.httpService.deleteRegion(this.region).subscribe(
+    let access_token: string = this.authService.currentUserToken();
+
+    this.adminService.deleteRegion(this.region, access_token).subscribe(
       (regs: any) => {
         // this.countries = conts;
         //console.log(this.countries)
@@ -98,8 +103,8 @@ export class RegionEditComponent implements OnInit {
       }
     });
 
-
-    this.httpService.putRegion(this.region).subscribe(
+    let access_token: string = this.authService.currentUserToken();
+    this.adminService.putRegion(this.region, access_token).subscribe(
       (regs: any) => {
         // this.countries = conts;
         console.log(this.regions)

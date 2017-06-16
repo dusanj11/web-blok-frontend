@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from "app/country/country";
 import { HttpService } from "app/service/http-service";
+import { AuthService } from "app/service/auth-service";
+import { AdminService } from "app/service/admin-service";
 
 @Component({
   selector: 'app-country-edit',
@@ -13,10 +15,10 @@ countries: Country[];
 model: any={};
 country: Country;
 
-  constructor(public httpService: HttpService) { }
+  constructor(private httpService: HttpService, private authService: AuthService, private adminService: AdminService) { }
 
   ngOnInit() {
-    this.httpService.getCountries().subscribe(
+    this.adminService.getCountries().subscribe(
        (conts: any) => {
                 this.countries = conts;
                 //console.log(this.countries)
@@ -37,7 +39,9 @@ country: Country;
       }
     });
 
-    this.httpService.deleteCountry(this.country).subscribe(
+    let access_token: string = this.authService.currentUserToken();
+
+    this.adminService.deleteCountry(this.country, access_token).subscribe(
        (conts: any) => {
                 // this.countries = conts;
                 //console.log(this.countries)
@@ -70,8 +74,9 @@ country: Country;
   {
       this.country.Name = this.model.Name;
       this.country.Code = this.model.Code;
+      let access_token: string = this.authService.currentUserToken();
 
-      this.httpService.putCountry(this.country).subscribe(
+      this.adminService.putCountry(this.country, access_token).subscribe(
        (conts: any) => {
                 // this.countries = conts;
                 console.log(this.countries)

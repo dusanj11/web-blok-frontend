@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Country} from './country';
 import { HttpService } from "app/service/http-service";
+import { AdminService } from "app/service/admin-service";
 
 
 @Component({
@@ -12,7 +13,7 @@ export class CountryComponent implements OnInit {
 
   countries: Country[];
 
-  constructor(public httpService: HttpService) {
+  constructor(private httpService: HttpService, private adminService: AdminService) {
     // this.countries = [
     //   new Country(1,"Srbija", "RS"),
     //   new Country(2,"Bosna i Hercegovina", "BiH"),
@@ -26,7 +27,7 @@ export class CountryComponent implements OnInit {
 
   ngOnInit()
   {
-     this.httpService.getCountries().subscribe(
+     this.adminService.getCountries().subscribe(
        (conts: any) => {
                 this.countries = conts;
                 //console.log(this.countries)

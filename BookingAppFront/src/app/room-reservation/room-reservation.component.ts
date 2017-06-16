@@ -56,7 +56,9 @@ export class RoomReservationComponent implements OnInit {
     this.reservation.StartDate = this.startDate;
     this.reservation.EndDate = this.endDate;
     
-    this.httpService.createReservation(this.reservation).subscribe(
+    let access_token: string = this.authService.currentUserToken();
+
+    this.httpService.createReservation(this.reservation, access_token).subscribe(
         (res: any) => {
             console.log("Reservation successfully created");
         },

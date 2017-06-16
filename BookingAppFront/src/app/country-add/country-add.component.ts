@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Country } from "app/country/country";
 import { HttpService } from "app/service/http-service";
 import { NgForm } from "@angular/forms";
+import { AdminService } from "app/service/admin-service";
+import { AuthService } from "app/service/auth-service";
 
 @Component({
   selector: 'app-country-add',
@@ -10,14 +12,17 @@ import { NgForm } from "@angular/forms";
 })
 export class CountryAddComponent implements OnInit {
 
-  constructor(public httpService: HttpService) { }
+  constructor(private httpService: HttpService, private adminService: AdminService,
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   onSubmitCountry(con: Country, form: NgForm)
   {
-      this.httpService.postCountry(con).subscribe(
+      let access_token: string = this.authService.currentUserToken();
+
+      this.adminService.postCountry(con, access_token).subscribe(
       (conts: any) => {
                 //console.log(this.conts);
               },

@@ -44,6 +44,8 @@ import { PlaceEditComponent } from './place-edit/place-edit.component';
 import { AccommodationTypeEditComponent } from './accommodation-type-edit/accommodation-type-edit.component';
 import { MapComponent } from './map/map.component';
 import { StarRatingModule } from 'angular-star-rating';
+import { AdminService } from "app/service/admin-service";
+import { ManagerService } from "app/service/manager-service";
 
 
 
@@ -103,7 +105,7 @@ const Routes =
     StarRatingModule
     //Material AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk
   ],
-  providers: [HttpService, AuthService, LogInGuard],
+  providers: [HttpService, AuthService, LogInGuard, ManagerService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

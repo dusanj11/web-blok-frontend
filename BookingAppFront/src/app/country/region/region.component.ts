@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Country } from '../country';
 import {Region} from './region';
 import { HttpService } from "app/service/http-service";
+import { AdminService } from "app/service/admin-service";
 
 @Component({
   selector: 'app-region',
@@ -13,7 +14,7 @@ export class RegionComponent implements OnInit {
   regions: Region[];
   @Input() regCountry : number;
 
-  constructor(public httpService: HttpService)
+  constructor(private httpService: HttpService, private adminService: AdminService)
   {
     //   this.regions = [
     //   new Region(1,"Vojvodina", 1),
@@ -27,7 +28,7 @@ export class RegionComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.httpService.getRegions().subscribe(
+    this.adminService.getRegions().subscribe(
        (regs: any) => {
             this.regions = regs;
             //console.log(this.regions);

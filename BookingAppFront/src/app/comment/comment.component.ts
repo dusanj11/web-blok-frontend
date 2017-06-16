@@ -78,7 +78,9 @@ export class CommentComponent implements OnInit {
     comment.AccomodationId = this.id;
     console.log(comment);
 
-    this.httpService.createComment(comment).subscribe(
+    let access_token: string = this.authService.currentUserToken();
+
+    this.httpService.createComment(comment, access_token).subscribe(
       (res: any) => {
           alert("Uspesno dodat komentar");
       },

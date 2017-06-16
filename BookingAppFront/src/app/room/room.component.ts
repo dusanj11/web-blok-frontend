@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../service/http-service';
 import { Room } from './room';
+import { ManagerService } from "app/service/manager-service";
 
 @Component({
   selector: 'app-room',
@@ -17,7 +18,7 @@ export class RoomComponent implements OnInit {
 
   selectedRoom: Room;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private managerService: ManagerService) {
       this.rooms = [];
       this.onRoomSelected = new EventEmitter();
    }
@@ -38,7 +39,7 @@ export class RoomComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.httpService.getRoomsForAccommodation(this.accommodationId).subscribe(
+      this.managerService.getRoomsForAccommodation(this.accommodationId).subscribe(
           (res: Room[]) => {
                 this.rooms = res;
                 console.log(res);

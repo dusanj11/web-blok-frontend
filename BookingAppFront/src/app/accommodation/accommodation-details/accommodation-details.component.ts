@@ -4,6 +4,7 @@ import { Accommodation } from '../accommodation';
 import { HttpService } from '../../service/http-service';
 import { AuthService } from "app/service/auth-service";
 import { Room } from "app/room/room";
+import { ManagerService } from "app/service/manager-service";
 
 
 @Component({
@@ -18,7 +19,7 @@ export class AccommodationDetailsComponent implements OnInit {
   room: Room;
 
   constructor( private router: Router, private activatedRoute: ActivatedRoute,
-                private httpService: HttpService, private authService: AuthService ) {
+                private httpService: HttpService, private authService: AuthService, private managerService: ManagerService ) {
       activatedRoute.params.subscribe(params => {this.id = params['id'];
       this.accommodation = new Accommodation(); //0,"", "", "", null,null,null,"", true, 0,0,0 
       this.accommodation.AccomTypeId = -1;
@@ -52,7 +53,7 @@ export class AccommodationDetailsComponent implements OnInit {
   ngOnInit() {
     console.log("Accommodation Details: " + this.id);
     // console.log("LogIn " + localStorage.getItem('currentUser'));
-    this.httpService.getAccommodationDetails(this.id).subscribe(
+    this.managerService.getAccommodationDetails(this.id).subscribe(
       (res: Accommodation) => {
             console.log(res);
             this.accommodation = res;
