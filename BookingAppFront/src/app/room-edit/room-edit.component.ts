@@ -34,7 +34,7 @@ export class RoomEditComponent implements OnInit {
 
               this.accommodations.forEach(elementC => {
 
-                if (elementR.AccomodationId == elementC.Id) {
+                if (elementR.AccommodationId == elementC.Id) {
                   elementR.AccommodationName = elementC.Name;
                 }
               });
@@ -102,7 +102,7 @@ export class RoomEditComponent implements OnInit {
 
     this.accommodations.forEach(element => {
       if (element.Name == this.room.AccommodationName) {
-        this.room.AccomodationId = element.Id;
+        this.room.AccommodationId = element.Id;
       }
     });
 

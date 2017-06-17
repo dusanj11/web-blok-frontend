@@ -64,7 +64,7 @@ export class ManagerService {
             ImageURL: `http://localhost:54042/content/${accommodation.ImageURL}`,
             Approved: accommodation.Approved,
             PlaceId: accommodation.PlaceId,
-            AccommodationTypeId: accommodation.AccomTypeId,
+            AccommodationTypeId: accommodation.AccommodationTypeId,
             AppUserId: accommodation.AppUserId
 
         }), opts);
@@ -87,10 +87,26 @@ export class ManagerService {
             BedCount: room.BedCount,
             PricePerNight: room.PricePerNight,
             Description: room.Description,
-            AccommodationId: room.AccomodationId
+            AccommodationId: room.AccommodationId
         }), opts);
     }
 
+    postAccommodationType(accommodationType: AccomodationType, access_token: string): Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(
+        "http://localhost:54042/api/acctype/acctypes",
+        JSON.stringify({
+            Name: accommodationType.Name
+        }), opts);
+    }
     
 
     putAccommodationType(acctype: AccomodationType, access_token: string): Observable<any>
@@ -132,7 +148,41 @@ export class ManagerService {
             BedCount: room.BedCount,
             PricePerNight: room.PricePerNight,
             Description: room.Description,
-            AccommodationId: room.AccomodationId
+            AccommodationId: room.AccommodationId
+
+        }), opts);
+    }
+
+    putAccommodation(accommodation: Accommodation, access_token: string){
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        // let imageUrl: string = "";
+        // if (accommodation.ImageURL != ""){
+        //     imageUrl = `http://localhost:54042/content/${accommodation.Id}/${accommodation.ImageURL}`;
+        // }
+
+        return this.http.put(
+        `http://localhost:54042/api/accommodation/accommodations/${accommodation.Id}`,
+        JSON.stringify({
+            Id: accommodation.Id,
+            Name: accommodation.Name,
+            Description: accommodation.Description,
+            Address: accommodation.Address,
+            AverageGrade: 0,
+            Latitude: accommodation.Latitude,
+            Longitute: accommodation.Longitude,
+            ImageURL: accommodation.ImageURL,
+            Approved: accommodation.Approved,
+            PlaceId: accommodation.PlaceId,
+            AccommodationTypeId: accommodation.AccommodationTypeId,
+            AppUserId: accommodation.AppUserId
 
         }), opts);
     }
@@ -168,6 +218,20 @@ export class ManagerService {
         `http://localhost:54042/api/room/rooms/${room.Id}`,
          opts);
 
+    }
+
+    deleteAccommodation(accommodation: Accommodation, access_token: string): Observable<any>
+    {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.delete(`http://localhost:54042/api/accommodation/delete/${accommodation.Id}`,opts);
     }
 
 }

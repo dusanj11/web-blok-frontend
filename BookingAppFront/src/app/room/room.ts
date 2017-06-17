@@ -5,7 +5,7 @@ export class Room {
     public BedCount: number;
     public Description: string;
     public PricePerNight: number;
-    public AccomodationId: number;
+    public AccommodationId: number;
     public AccommodationName: string;
 
     constructor(  

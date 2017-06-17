@@ -16,9 +16,9 @@
       </tr>
       <tr>
         <td>
-          <md-input-container class="example-full-width">
+          <!--<md-input-container class="example-full-width">
             <input mdInput placeholder="Code" name="Code" [(ngModel)]="model.Code">
-          </md-input-container>
+          </md-input-container>-->
         </td>
         <td>
           <md-input-container class="example-full-width">
@@ -68,6 +68,22 @@
       </td>
       </tr>
       <tr>
+         <td>
+            <image-upload
+                  [max]="100"
+                  [url]="'http://localhost:54042/api/accommodation/upload'"
+                  [headers]="[
+                  {header: 'Authorization', value: token}
+                  ]"
+                  [buttonCaption]="'Select Images!'"
+                  [dropBoxMessage]="'Drop your images here!'"
+                  (onFileUploadFinish)="imageUploaded($event)"
+                  (onRemove)="imageRemoved($event)"
+                  (isPending)="disableSendButton($event)">
+            </image-upload>
+        </td>
+      </tr>
+      <tr>
         <td>
           <button md-raised-button color="primary" (click)="updateAccommodation()">Save</button>
         </td>
@@ -96,7 +112,7 @@
         <td>{{myAccom.PlaceName}}</td>
         <td>{{myAccom.AccomTypeName}}</td>
         <td>{{myAccom.Latitude}}</td>
-        <td>{{myAccom.Longitude}}</td>
+        <td>{{myAccom.Longitute}}</td>
         <td>{{myAccom.Description}}</td>
         <td><button md-raised-button color="primary" (click)="editAccommodation(myAccom.Id)">Edit</button></td>
         <td><button md-raised-button color="accent" (click)="deleteAccommodation(myAccom.Id)">Delete</button></td>
