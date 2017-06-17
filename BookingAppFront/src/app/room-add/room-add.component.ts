@@ -36,7 +36,7 @@ export class RoomAddComponent implements OnInit {
     {
         if(element.Name == room.AccommodationName)
         {
-          room.AccomodationId = element.Id;
+          room.AccommodationId = element.Id;
         }
     });
 

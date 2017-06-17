@@ -32,7 +32,7 @@ export class AccommodationAddComponent implements OnInit {
 
       this.acctypes.forEach(element => {
             if(element.Name == createdAccommodation.AccomTypeName){
-                createdAccommodation.AccomTypeId = element.Id;
+                createdAccommodation.AccommodationTypeId = element.Id;
             }
       });
 

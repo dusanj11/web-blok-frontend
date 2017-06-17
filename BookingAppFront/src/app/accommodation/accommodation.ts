@@ -10,7 +10,7 @@ export class Accommodation {
     public Approved: boolean;
     public PlaceId: number;
     public PlaceName: string;
-    public AccomTypeId: number;
+    public AccommodationTypeId: number;
     public AccomTypeName: string;
     public AppUserId: number;
 

@@ -22,7 +22,7 @@ export class AccommodationDetailsComponent implements OnInit {
                 private httpService: HttpService, private authService: AuthService, private managerService: ManagerService ) {
       activatedRoute.params.subscribe(params => {this.id = params['id'];
       this.accommodation = new Accommodation(); //0,"", "", "", null,null,null,"", true, 0,0,0 
-      this.accommodation.AccomTypeId = -1;
+      this.accommodation.AccommodationTypeId = -1;
       this.accommodation.AccomTypeName = "";
       this.accommodation.Address = "";
       this.accommodation.Approved = true;
