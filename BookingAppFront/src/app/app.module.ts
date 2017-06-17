@@ -59,7 +59,7 @@ const Routes =
   {path: "accommodation", component: CountryComponent },
   {path: "administration", component: AdminPanelComponent, canActivate: [LogInGuard]},
   {path: "accommodation-details/:id", component: AccommodationDetailsComponent},
-  {path: "other", redirectTo:"signIn"}
+  {path: "other", redirectTo:"accommodation"}
 ]
 
 @NgModule({

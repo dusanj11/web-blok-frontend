@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Accommodation } from '../accommodation';
+import { HttpService } from "app/service/http-service";
 
 
 @Component({
@@ -11,9 +12,27 @@ export class AccommodationListComponent implements OnInit {
 
   @Input() accommodationList: Accommodation[];
   @Input() accListPlace: number;
-  constructor() { }
+
+  model: any = {};
+  constructor(private httpService: HttpService) { 
+   this.model.Name= "";
+  }
 
   ngOnInit() {
+  }
+
+  doFilter()
+  {
+    this.httpService.getFilteredAccommodation(this.model.Name).subscribe(
+       (accs: any) => {
+            this.accommodationList = accs;
+            //console.log(this.places);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
   }
 
 }
