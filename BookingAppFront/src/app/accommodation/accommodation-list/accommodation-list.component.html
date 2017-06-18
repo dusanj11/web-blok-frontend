@@ -1,8 +1,5 @@
 <!-- <md-list> -->
 <md-card>
-  <table>
-    <tr>
-      <td>
         <table class="example-full-width" cellspacing="5">
           <tr>
             <td>
@@ -31,9 +28,6 @@
             </td>
           </tr>
         </table>
-      </td>
-      <td>
-        <md-card>
           <md-grid-list cols="3">
             <ng-container *ngFor="let myAccommodation of accommodationList">
               <md-grid-tile *ngIf=" myAccommodation.PlaceId == accListPlace">
@@ -43,8 +37,4 @@
             </ng-container>
             <!-- </md-list> -->
           </md-grid-list>
-        </md-card>
-      </td>
-    </tr>
-  </table>
 </md-card>
