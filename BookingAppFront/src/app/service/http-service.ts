@@ -145,4 +145,10 @@ export class HttpService {
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq ${id}`);
     }
 
+    getBedCountFiltered(num: number): Observable<any>
+    {
+       return this.http.get(`http://localhost:54042/api/room/rooms?$filter=BedCount eq ${num}`);
+     
+    }
+
 }

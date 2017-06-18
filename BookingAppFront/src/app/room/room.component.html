@@ -1,16 +1,45 @@
-
 <md-card>
-<md-list>
-  <h3>Rooms</h3>
-  <md-list *ngFor="let room of rooms" class="ui items">
-   
-      <app-room-row 
-        [room]="room"
-        (click)="clicked(room)"
-        [class.selected]="isSelected(room)">
+  <md-list>
+    <h3>Rooms</h3>
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="BedCount" name="BedCount" [(ngModel)]="model.BedCount">
+          </md-input-container>
+        </td>
+        <td>
+          <button md-raised-button color="primary" (click)="doBedCountFilter()">Filter BedCount</button>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Description" name="Description" [(ngModel)]="model.Description">
+          </md-input-container>
+        </td>
+        <td>
+          <button md-raised-button color="primary" (click)="doDescriptionFilter()">Filter Description</button>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Minimum Price" name="MinPrice" [(ngModel)]="model.MinPrice">
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Maximum Price" name="MaxPrice" [(ngModel)]="model.MaxPrice">
+          </md-input-container>
+        </td>
+        <td>
+          <button md-raised-button color="primary" (click)="doPriceFilter()">Filter Price</button>
+        </td>
+      </tr>
+    </table>
+    <md-list *ngFor="let room of rooms" class="ui items">
+
+      <app-room-row [room]="room" (click)="clicked(room)" [class.selected]="isSelected(room)">
       </app-room-row>
-  
+
+    </md-list>
+
   </md-list>
-  
-</md-list>
 </md-card>

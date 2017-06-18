@@ -15,12 +15,17 @@ export class RoomComponent implements OnInit {
   @Output() onRoomSelected: EventEmitter<Room>;
 
   rooms: Room[];
+  model: any ={};
 
   selectedRoom: Room;
 
   constructor(private httpService: HttpService, private managerService: ManagerService) {
       this.rooms = [];
       this.onRoomSelected = new EventEmitter();
+      this.model.BedCount = 0;
+      this.model.Description ="";
+      this.model.MinPrice = 0;
+      this.model.MaxPrice = 0;
    }
 
   clicked(room: Room): void {
@@ -48,6 +53,20 @@ export class RoomComponent implements OnInit {
                 console.log(error);
           }
       );
+  }
+
+  doBedCountFilter()
+  {
+        this.httpService.getBedCountFiltered(this.model.BedCount).subscribe(
+       (rs: any) => {
+            this.rooms = JSON.parse(rs._body);
+            //console.log(this.places);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
   }
 
 }
