@@ -23,6 +23,7 @@ export class AccommodationListComponent implements OnInit {
   ngOnInit() {
     this.model.Name= "";
     this.model.AccomTypeName="";
+    this.model.Description="";
     this.model.ATId=0;
     this.managerService.getAccommodationTypes().subscribe(
        (accts: any) => {
@@ -61,6 +62,20 @@ export class AccommodationListComponent implements OnInit {
       
     });
     this.httpService.getFilteredAccommodationTypes(this.model.ATId).subscribe(
+       (accs: any) => {
+            this.accommodationList = JSON.parse(accs._body);
+            //console.log(this.places);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
+  }
+
+  doDescriptionFilter()
+  {
+    this.httpService.getDescriptionAccommodationFiltered(this.model.Description).subscribe(
        (accs: any) => {
             this.accommodationList = JSON.parse(accs._body);
             //console.log(this.places);

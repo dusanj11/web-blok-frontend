@@ -11,6 +11,14 @@
               <button md-raised-button color="primary" (click)="doNameFilter()">Filter Names</button>
             </td>
             <td>
+              <md-input-container class="example-full-width">
+                <input mdInput placeholder="Description" name="Description" [(ngModel)]="model.Description">
+              </md-input-container>
+            </td>
+            <td>
+              <button md-raised-button color="primary" (click)="doDescriptionFilter()">Filter Description</button>
+            </td>
+            <td>
               <md-input-container>
                 <input mdInput placeholder="AccommodationType" name="AccomTypeName" [mdAutocomplete]="auto" [(ngModel)]="model.AccomTypeName">
               </md-input-container>
