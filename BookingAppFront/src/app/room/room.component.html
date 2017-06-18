@@ -19,7 +19,7 @@
         <td>
           <button md-raised-button color="primary" (click)="doDescriptionFilter()">Filter Description</button>
         </td>
-        <!--<td>
+        <td>
           <md-input-container class="example-full-width">
             <input mdInput placeholder="Minimum Price" name="MinPrice" [(ngModel)]="model.MinPrice">
           </md-input-container>
@@ -28,20 +28,7 @@
           <md-input-container class="example-full-width">
             <input mdInput placeholder="Maximum Price" name="MaxPrice" [(ngModel)]="model.MaxPrice">
           </md-input-container>
-        </td>-->
-        <ion-range-slider item-width="100" #sliderElement
-          type="double"
-          min="10"
-          max="100"
-          from="28"
-          from_min="10"
-          from_max="30"
-          from_shadow="true"
-          to_shadow="true"
-          grid="true"
-          grid_num="10"
-          prefix="$"></ion-range-slider>
-
+        </td>
         <td>
           <button md-raised-button color="primary" (click)="doPriceFilter()">Filter Price</button>
         </td>
