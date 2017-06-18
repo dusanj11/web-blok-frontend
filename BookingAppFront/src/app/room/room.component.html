@@ -29,6 +29,26 @@
             <input mdInput placeholder="Maximum Price" name="MaxPrice" [(ngModel)]="model.MaxPrice">
           </md-input-container>
         </td>
+        <ion-range-slider #sliderElement
+          type="double"
+          min="10"
+          max="100"
+          from="28"
+          from_min="10"
+          from_max="30"
+          from_shadow="true"
+          to="40"
+          to_min="40"
+          to_max="90"
+          to_shadow="true"
+          grid="true"
+          grid_num="10"
+          prefix="$"
+          decorate_both="false"
+          (onUpdate)="myOnUpdate($event)"
+          (onChange)="myOnChange($event)"
+          (onFinish)="myOnFinish($event)"></ion-range-slider>
+
         <td>
           <button md-raised-button color="primary" (click)="doPriceFilter()">Filter Price</button>
         </td>
