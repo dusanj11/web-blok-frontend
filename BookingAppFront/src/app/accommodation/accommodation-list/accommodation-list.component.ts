@@ -22,7 +22,7 @@ export class AccommodationListComponent implements OnInit {
     this.model.Name= "";
   }
 
-  doFilter()
+  doNameFilter()
   {
     this.httpService.getFilteredAccommodation(this.model.Name).subscribe(
        (accs: any) => {

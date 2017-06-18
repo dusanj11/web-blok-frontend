@@ -1,28 +1,32 @@
 <!-- <md-list> -->
 <md-card>
-  
-    <table class="example-full-width" cellspacing="5">
-      <tr>
-        <td>
-          <md-input-container class="example-full-width">
-            <input mdInput placeholder="Name" name="Name" [(ngModel)]="model.Name">
-          </md-input-container>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button md-raised-button color="primary" (click)="doFilter()">Filter</button>
-        </td>
-      </tr>
-    </table>
- 
-  <md-grid-list cols="3">
-    <ng-container *ngFor="let myAccommodation of accommodationList">
-      <md-grid-tile *ngIf=" myAccommodation.PlaceId == accListPlace">
-        <app-accommodation-row [accommodation]="myAccommodation">
-        </app-accommodation-row>
-      </md-grid-tile>
-    </ng-container>
-    <!-- </md-list> -->
-  </md-grid-list>
+  <table>
+    <tr>
+      <td>
+        <table class="example-full-width" cellspacing="5">
+          <tr>
+            <td>
+              <md-input-container class="example-full-width">
+                <input mdInput placeholder="Name" name="Name" [(ngModel)]="model.Name">
+              </md-input-container>
+            </td>
+            <td>
+              <button md-raised-button color="primary" (click)="doNameFilter()">Filter Names</button>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <md-grid-list cols="3">
+          <ng-container *ngFor="let myAccommodation of accommodationList">
+            <md-grid-tile *ngIf=" myAccommodation.PlaceId == accListPlace">
+              <app-accommodation-row [accommodation]="myAccommodation">
+              </app-accommodation-row>
+            </md-grid-tile>
+          </ng-container>
+          <!-- </md-list> -->
+        </md-grid-list>
+      </td>
+    </tr>
+  </table>
 </md-card>
