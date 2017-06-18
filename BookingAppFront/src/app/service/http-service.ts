@@ -136,13 +136,13 @@ export class HttpService {
     getFilteredAccommodation(name: string): Observable<any>
     {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
-        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'$(name)\',Name)`);
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Name)`);
     }
 
     getFilteredAccommodationTypes(id: number): Observable<any>
     {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
-        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq $(id)`);
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq ${id}`);
     }
 
 }
