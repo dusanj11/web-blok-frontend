@@ -1,5 +1,5 @@
 <div align="center">
-  <md-card *ngIf="enableToComment()">
+  <md-card *ngIf="enabled">
     <md-list>
       <form class="example-form" #f1="ngForm" (ngSubmit)="onSubmitAddComment(f1.value, f1)">
         <table class="example-full-width" cellspacing="5">

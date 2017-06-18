@@ -23,7 +23,7 @@ export class CommentComponent implements OnInit {
   onHoverRatingChangeResult: IStarRatingIOnHoverRatingChangeEvent;
   onRatingChangeResult: IStarRatingOnRatingChangeEven;
 
-
+  
 
   // konstrutkor inicijalizuje listu komentara za odredjeni smestaj
   constructor(public httpService: HttpService, public authService: AuthService) {
@@ -90,15 +90,21 @@ export class CommentComponent implements OnInit {
     );
   }
 
-  enableToComment(): boolean {
-
+  enableToComment(){
+    console.log("Provera dozvole ostavljanja komentara");
     let username: string = this.authService.currentUserName();
     this.httpService.checkIfReservationPass(username, this.id).subscribe(
       (res: any) => {
           if (res._body == "true")
+          {
+            console.log("Enable to comment: true");
             this.enabled = true;
-          else
-            this.enabled = false;
+          }
+          else{
+
+             console.log("Enable to comment: false");
+             this.enabled = false;
+          }
       },
       error => {
           console.log(error);
@@ -106,11 +112,11 @@ export class CommentComponent implements OnInit {
       }
     );
 
-    if (this.enabled == true)
-      return true;
-    else 
-      return false;
-  
+    // if (this.enabled == true)
+    //   return true;
+    // else 
+    //   return false;
+    // return true;
 
   }
 
@@ -127,6 +133,8 @@ export class CommentComponent implements OnInit {
           console.log(error);
       }
     );
+    
+    this.enableToComment();
   }
 
 }

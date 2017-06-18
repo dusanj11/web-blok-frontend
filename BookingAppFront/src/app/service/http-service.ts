@@ -167,4 +167,17 @@ export class HttpService {
         return this.http.get(`http://localhost:54042/api/room/rooms?$filter=PricePerNight ge ${minPrice} and PricePerNight le ${maxPrice}`);
     
     }
+
+    getUserById(userId: number, access_token: string): Observable<any>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.get(`http://localhost:54042/api/AppUser/AppUsers/${userId}`, opts);
+    }
 }

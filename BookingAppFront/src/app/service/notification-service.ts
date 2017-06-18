@@ -1,6 +1,7 @@
 // import the packages  
 import { Injectable, EventEmitter } from '@angular/core';
 import { AuthService } from "app/service/auth-service";
+import { Accommodation } from "app/accommodation/accommodation";
 
 // declare the global variables
 declare var $: any;  
@@ -13,7 +14,7 @@ export class NotificationService {
     private connection: any;  
 
     // create the Event Emitter  
-    public notificationReceived: EventEmitter < string >;  
+    public notificationReceived: EventEmitter < Accommodation >;  
     public connectionEstablished: EventEmitter < Boolean >;  
     public timeReceived: EventEmitter< string >;
     public connectionExists: Boolean;  
@@ -22,7 +23,7 @@ export class NotificationService {
     constructor() {  
         // Constructor initialization  
         this.connectionEstablished = new EventEmitter < Boolean > ();  
-        this.notificationReceived = new EventEmitter < string > (); 
+        this.notificationReceived = new EventEmitter < Accommodation > (); 
         this.timeReceived = new EventEmitter < string > (); 
         this.connectionExists = false;  
         this.authService = new AuthService();
@@ -65,7 +66,7 @@ export class NotificationService {
     }  
     private registerOnServerEvents(): void {  
         
-        this.proxy.on('clickNotification', (data: string) => {  
+        this.proxy.on('clickNotification', (data: Accommodation) => {  
             console.log('received notification: ' + data);  
             this.notificationReceived.emit(data);  
         }); 

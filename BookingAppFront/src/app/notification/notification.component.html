@@ -13,7 +13,26 @@
 </md-list>
 </md-card>-->
 
-<h1>Current Time</h1>
+<table>
+    <thead>
+      <tr>
+        <th> Manager </th>
+        <th> Accommodation Name </th>
+        <th> </th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let notification of notifications">
+        <td>{{notification.FullName}}</td>
+        <td>{{notification.Name}}</td>
+        <td><button  md-raised-button  color="primary"(click)="acceptAccommodation(notification.Id)">Accept</button></td>
+        <td><button  md-raised-button  color="accent" (click)="declineAccommodation(notification.Id)">Decline</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+<!--<h1>Current Time</h1>
 <button (click) = "startTimer()">Start Timer</button>
 <button (click) = "stopTimer()">Stop Timer</button>
 
@@ -27,4 +46,4 @@
 
 <ul> 
   <li *ngFor="let notif of notifications">{{notif}}</li>
-</ul>
+</ul>-->

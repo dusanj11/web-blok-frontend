@@ -32,7 +32,7 @@
 <!-- Prikaz soba i rezervacije smestaja i komentara za dati smestaj -->
 <div align="center">
 <md-tab-group>
-  <md-tab label="Comments">
+  <md-tab label="Comments" (selectChange)="checkForComment()">
       <div align="center">
         <app-comment [id]="id"></app-comment>
       </div>

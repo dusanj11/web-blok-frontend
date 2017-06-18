@@ -5,6 +5,7 @@ import { HttpService } from '../../service/http-service';
 import { AuthService } from "app/service/auth-service";
 import { Room } from "app/room/room";
 import { ManagerService } from "app/service/manager-service";
+import { CommentComponent } from "app/comment/comment.component";
 
 
 @Component({
@@ -47,6 +48,12 @@ export class AccommodationDetailsComponent implements OnInit {
       this.room = room;
       console.log('Selected room***');
       console.log(this.room);
+  }
+
+  checkForComment(){
+      let comment: CommentComponent = new CommentComponent(this.httpService, this.authService);
+      comment.enableToComment();
+      console.log("Click check for comment");
   }
 
   // sa servera treba da dobavi podatke o smestaju sa id koji je prosledjen propertijem this.id
