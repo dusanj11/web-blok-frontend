@@ -35,7 +35,7 @@ export class AccommodationComponent implements OnInit {
                 this.pageNumber = 1;
                 this.totalNumber = this.accommodationsAll.length;
                 this.totalPages = this.totalNumber / 3;
-                for (var index = 1; index <= this.totalPages; index++) {
+                for (var index = 1; index < (this.totalPages+1); index++) {
                     this.pageNumbers.push(index);
 
                 }
