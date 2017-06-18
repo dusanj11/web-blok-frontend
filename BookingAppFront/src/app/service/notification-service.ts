@@ -29,8 +29,8 @@ export class NotificationService {
 
         // create hub connection  
         
-        // this.connection = $.hubConnection("http://localhost:54042/");  
-        this.connection.qs = { 'Authorization' : this.authService.currentUserToken() };
+        this.connection = $.hubConnection("http://localhost:54042/");  
+        // this.connection.qs = { 'Authorization' : this.authService.currentUserToken() };
         // create new proxy as name already given in top  
         
         this.proxy = this.connection.createHubProxy(this.proxyName);  
