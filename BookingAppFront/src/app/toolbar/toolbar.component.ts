@@ -5,6 +5,7 @@ import {
 } from '@angular/router';
 import { CurrentUser } from '../model/current-user';
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "app/service/notification-service";
 
 @Injectable()
 @Component({
@@ -19,7 +20,8 @@ export class ToolbarComponent implements OnInit {
 
   constructor( private router: Router,
                private activatedRoute: ActivatedRoute,
-               private authService: AuthService) {  }
+               private authService: AuthService,
+               private notifService: NotificationService) {  }
 
 
   checkIfAdminManager(): boolean {
@@ -58,6 +60,15 @@ export class ToolbarComponent implements OnInit {
 
   goLogOut(){
     this.authService.logOut();
+    // this.notifService.OnDisconected().subscribe(
+    //     (res: any) => {
+    //         console.log(res);
+    //     },
+    //     error => {
+    //         console.log(error);
+    //     }
+
+    // );
     this.router.navigate(['/accommodation']);
   }
 

@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 import { CurrentUser } from '../model/current-user';
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "app/service/notification-service";
 
 @Injectable()
 @Component({
@@ -19,7 +20,8 @@ export class SignInComponent implements OnInit {
   constructor(public httpService: HttpService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private notifService: NotificationService) { }
 
   registerResponse: any;
 
@@ -53,6 +55,19 @@ export class SignInComponent implements OnInit {
                                   //localStorage.setItem('currentUser', JSON.stringify(currentUser));
                                   //sessionStorage.setItem('currentUser',JSON.stringify(currentUser));
                                   this.authService.logIn(currentUser);
+
+                                  // subscribovanje na dobijanje notifikacije 
+                                  // this.notifService.OnConnected();
+
+                                  // // .subscribe(
+                                  // //     (res: any) => {
+                                  // //         console.log(res);
+                                  // //     },
+                                  // //     error => {
+                                  // //         console.log(error);
+                                  // //     }
+
+                                  // // );
                                   this.router.navigate(['/accommodation']);
                                 }
                             );

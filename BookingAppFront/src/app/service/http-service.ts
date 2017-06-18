@@ -135,7 +135,8 @@ export class HttpService {
     //filtriranje
     getFilteredAccommodation(name: string): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof('${name}',Name)`);
+        // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'$(name)\',Name)`);
     }
 
 }

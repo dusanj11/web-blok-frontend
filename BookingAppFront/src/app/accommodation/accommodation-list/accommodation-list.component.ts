@@ -15,17 +15,18 @@ export class AccommodationListComponent implements OnInit {
 
   model: any = {};
   constructor(private httpService: HttpService) { 
-   this.model.Name= "";
+   
   }
 
   ngOnInit() {
+    this.model.Name= "";
   }
 
   doFilter()
   {
     this.httpService.getFilteredAccommodation(this.model.Name).subscribe(
        (accs: any) => {
-            this.accommodationList = accs;
+            this.accommodationList = JSON.parse(accs._body);
             //console.log(this.places);
           },
       error => {

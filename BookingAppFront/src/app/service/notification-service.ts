@@ -1,7 +1,8 @@
 // import the packages  
 import { Injectable, EventEmitter } from '@angular/core';
+import { AuthService } from "app/service/auth-service";
 
-// declare the global variables  
+// declare the global variables
 declare var $: any;  
 
 @Injectable()  
@@ -16,6 +17,7 @@ export class NotificationService {
     public connectionEstablished: EventEmitter < Boolean >;  
     public timeReceived: EventEmitter< string >;
     public connectionExists: Boolean;  
+    public authService: AuthService;
    
     constructor() {  
         // Constructor initialization  
@@ -23,9 +25,14 @@ export class NotificationService {
         this.notificationReceived = new EventEmitter < string > (); 
         this.timeReceived = new EventEmitter < string > (); 
         this.connectionExists = false;  
+        this.authService = new AuthService();
+
         // create hub connection  
-        this.connection = $.hubConnection("http://localhost:54042/");  
+        
+        // this.connection = $.hubConnection("http://localhost:54042/");  
+        this.connection.qs = { 'Authorization' : this.authService.currentUserToken() };
         // create new proxy as name already given in top  
+        
         this.proxy = this.connection.createHubProxy(this.proxyName);  
         // register on server events  
         this.registerOnServerEvents();
@@ -36,7 +43,7 @@ export class NotificationService {
         // this.proxy.on('hello', (data:string)=>{
         //     console.log(data);
         // })
-
+        
         
     }  
     // method to hit from client  
@@ -50,6 +57,7 @@ export class NotificationService {
             console.log('Now connected ' + data.transport.name + ', connection ID= ' + data.id);  
             this.connectionEstablished.emit(true);  
             this.connectionExists = true;  
+
         }).fail((error: any) => {  
             console.log('Could not connect ' + error);  
             this.connectionEstablished.emit(false);  
@@ -77,6 +85,16 @@ export class NotificationService {
 
     public StartTimer() {
         this.proxy.invoke("TimeServerUpdates");
+        
+    }
+
+    public OnConnected(): any {
+       return this.proxy.invoke("OnConnected");
+        
+    }
+
+    public OnDisconected(): any {
+        return this.proxy.invoke("OnDisconected");
     }
 
    
