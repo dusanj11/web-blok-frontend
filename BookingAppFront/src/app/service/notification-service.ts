@@ -88,13 +88,16 @@ export class NotificationService {
         
     }
 
-    public OnConnected(): any {
-       return this.proxy.invoke("OnConnected");
-        
+    public RegisterForNotifications(){
+        let userId: number = this.authService.currentUserId();
+        let userRole: string = this.authService.currentUserRole();
+        this.proxy.invoke("RegisterForNotification", userId, userRole);
     }
 
-    public OnDisconected(): any {
-        return this.proxy.invoke("OnDisconected");
+    public UnsubscribeForNotifications(){
+        let userId: number = this.authService.currentUserId();
+        let userRole: string = this.authService.currentUserRole();
+        this.proxy.invoke("UnsubscribeForNotifications", userId, userRole);
     }
 
    

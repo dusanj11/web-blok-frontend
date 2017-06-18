@@ -60,6 +60,7 @@ export class ToolbarComponent implements OnInit {
 
   goLogOut(){
     this.authService.logOut();
+    this.notifService.UnsubscribeForNotifications();
     // this.notifService.OnDisconected().subscribe(
     //     (res: any) => {
     //         console.log(res);

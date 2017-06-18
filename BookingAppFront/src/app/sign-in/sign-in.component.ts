@@ -55,7 +55,8 @@ export class SignInComponent implements OnInit {
                                   //localStorage.setItem('currentUser', JSON.stringify(currentUser));
                                   //sessionStorage.setItem('currentUser',JSON.stringify(currentUser));
                                   this.authService.logIn(currentUser);
-
+                                  
+                                  this.notifService.RegisterForNotifications();
                                   // subscribovanje na dobijanje notifikacije 
                                   // this.notifService.OnConnected();
 

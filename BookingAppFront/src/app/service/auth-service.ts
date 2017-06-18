@@ -80,5 +80,16 @@ export class AuthService {
         }
     }
 
+    currentUserRole(): string { 
+        let currentUser = localStorage.getItem("currentUser");
+        if (currentUser !== null) {
+            let user: CurrentUser = JSON.parse(currentUser);
+            return user.role;
+        }
+        else {
+            return null;
+        }
+    }
+
     
 }
