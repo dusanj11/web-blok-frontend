@@ -23,6 +23,7 @@ export class AccommodationListComponent implements OnInit {
   ngOnInit() {
     this.model.Name= "";
     this.model.AccomTypeName="";
+    this.model.ATId=0;
     this.managerService.getAccommodationTypes().subscribe(
        (accts: any) => {
             this.acctypes = accts;
@@ -51,7 +52,15 @@ export class AccommodationListComponent implements OnInit {
 
   doATypeFilter()
   {
-    this.httpService.getFilteredAccommodationTypes(this.model.AccomTypeName).subscribe(
+
+    this.acctypes.forEach(element => {
+      if(element.Name == this.model.AccomTypeName)
+      {
+        this.model.ATId = element.Id;
+      }
+      
+    });
+    this.httpService.getFilteredAccommodationTypes(this.model.ATId).subscribe(
        (accs: any) => {
             this.accommodationList = JSON.parse(accs._body);
             //console.log(this.places);
