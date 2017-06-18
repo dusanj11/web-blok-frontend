@@ -18,10 +18,10 @@ export class AccommodationComponent implements OnInit {
     pageNumber: number;
     totalNumber: number;
     totalPages: number;
-    pageNumbers: number[] =[];
+    pageNumbers: number[] = [];
 
     constructor(private httpService: HttpService, private managerService: ManagerService) {
-        
+
 
 
     }
@@ -35,9 +35,9 @@ export class AccommodationComponent implements OnInit {
                 this.pageNumber = 1;
                 this.totalNumber = this.accommodationsAll.length;
                 this.totalPages = this.totalNumber / 3;
-                for (var index = 0; index < this.totalPages; index++) {
+                for (var index = 1; index <= this.totalPages; index++) {
                     this.pageNumbers.push(index);
-                    
+
                 }
                 //this.pageNumbers = Array(Math.ceil(this.totalPages)).map((x, i) => i);
                 this.managerService.getPaginationAccommodation(this.pageNumber).subscribe(
@@ -57,8 +57,19 @@ export class AccommodationComponent implements OnInit {
                 console.log(error);
             }
         );
+    }
 
-
+    doPaginacija(pageNumber: number) {
+        this.managerService.getPaginationAccommodation(pageNumber).subscribe(
+            (res2: any) => {
+                this.accommodations = JSON.parse(res2._body);
+                console.log(this.accommodations);
+            },
+            error => {
+                alert("Unsuccessful fetch operation!");
+                console.log(error);
+            }
+        );
     }
 
 }
