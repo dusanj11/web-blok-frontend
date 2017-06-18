@@ -14,16 +14,30 @@ export class AccommodationComponent implements OnInit {
     accommodations: Accommodation[];
 
     @Input() accPlace: number;
+    pageNumber: number;
+    totalNumber: number;
   
     constructor(private httpService: HttpService, private managerService: ManagerService) {
-
+        this.pageNumber = 1;
+        this.totalNumber = 0;
     }
 
     // ngOnInit sadrzi poziv ka bazi kako bi se prikupila lista smestaja
     ngOnInit() {
-        this.managerService.getAccommodation().subscribe(
-            (res: Accommodation[]) => {
-                this.accommodations = res;
+        // this.managerService.getAccommodation().subscribe(
+        //     (res: Accommodation[]) => {
+        //         this.accommodations = res;
+        //         console.log(this.accommodations);
+        //     },
+        //     error => {
+        //         alert("Unsuccessful fetch operation!");
+        //         console.log(error);
+        //     }
+        // );
+
+        this.managerService.getPaginationAccommodation(this.pageNumber).subscribe(
+            (res: any) => {
+                this.accommodations = JSON.parse(res._body);
                 console.log(this.accommodations);
             },
             error => {
