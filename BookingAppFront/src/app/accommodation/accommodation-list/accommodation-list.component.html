@@ -14,6 +14,22 @@
               <button md-raised-button color="primary" (click)="doNameFilter()">Filter Names</button>
             </td>
           </tr>
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput placeholder="AccommodationType" name="AccomTypeName" [mdAutocomplete]="auto" [(ngModel)]="model.AccomTypeName">
+              </md-input-container>
+
+              <md-autocomplete #auto="mdAutocomplete">
+                <md-option *ngFor="let myAccType of acctypes" value={{myAccType.Name}}>
+                  {{myAccType.Name}}
+                </md-option>
+              </md-autocomplete>
+            </td>
+            <td>
+              <button md-raised-button color="primary" (click)="doATypeFilter()">Filter Accommodation Types</button>
+            </td>
+          </tr>
         </table>
       </td>
       <td>
