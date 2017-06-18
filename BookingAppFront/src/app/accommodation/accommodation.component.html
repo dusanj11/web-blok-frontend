@@ -1,17 +1,15 @@
-
 <div>
-  
-  <app-accommodation-list 
-    [accommodationList]="accommodations" [accListPlace]="accPlace">
+
+  <app-accommodation-list [accommodationList]="accommodations" [accListPlace]="accPlace">
   </app-accommodation-list>
-</div>
-
-<div>
   <table>
     <tr>
-      <td *ngFor="#number of pageNumbers">
-        <button md-raised-button>{{number}} </button>
+      <td>
+        <ng-container *ngFor="let number of pageNumbers">
+          <button md-raised-button>{{number}} </button>
+        </ng-container>
       </td>
     </tr>
   </table>
 </div>
+
