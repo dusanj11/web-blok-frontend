@@ -155,4 +155,10 @@ export class HttpService {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/room/rooms?$filter=substringof(\'${name}\',Description)`);
     }
+
+    getPriceFiltered(minPrice: number, maxPrice: number)
+    {
+        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=PricePerNight ge ${minPrice} and PricePerNight le ${maxPrice}`);
+    
+    }
 }

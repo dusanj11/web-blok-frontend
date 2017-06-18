@@ -25,7 +25,7 @@ export class RoomComponent implements OnInit {
       this.model.BedCount = 0;
       this.model.Description ="";
       this.model.MinPrice = 0;
-      this.model.MaxPrice = 0;
+      this.model.MaxPrice = 100000;
    }
 
   clicked(room: Room): void {
@@ -60,7 +60,7 @@ export class RoomComponent implements OnInit {
         this.httpService.getBedCountFiltered(this.model.BedCount).subscribe(
        (rs: any) => {
             this.rooms = JSON.parse(rs._body);
-            //console.log(this.places);
+            console.log(this.rooms);
           },
       error => {
           alert("Unsuccessful fetch operation!");
@@ -74,7 +74,21 @@ export class RoomComponent implements OnInit {
       this.httpService.getDescriptionRoomsFiltered(this.model.Description).subscribe(
        (rs: any) => {
             this.rooms = JSON.parse(rs._body);
-            //console.log(this.places);
+            console.log(this.rooms);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
+  }
+
+  doPriceFilter()
+  {
+      this.httpService.getPriceFiltered(this.model.MinPrice, this.model.MaxPrice).subscribe(
+       (rs: any) => {
+            this.rooms = JSON.parse(rs._body);
+            console.log(this.rooms);
           },
       error => {
           alert("Unsuccessful fetch operation!");
