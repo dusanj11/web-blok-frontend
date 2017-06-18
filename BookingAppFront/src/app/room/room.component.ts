@@ -69,4 +69,18 @@ export class RoomComponent implements OnInit {
     );
   }
 
+  doDescriptionFilter()
+  {
+      this.httpService.getDescriptionRoomsFiltered(this.model.Description).subscribe(
+       (rs: any) => {
+            this.rooms = JSON.parse(rs._body);
+            //console.log(this.places);
+          },
+      error => {
+          alert("Unsuccessful fetch operation!");
+          console.log(error);
+      }
+    );
+  }
+
 }

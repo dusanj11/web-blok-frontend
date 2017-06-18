@@ -148,7 +148,11 @@ export class HttpService {
     getBedCountFiltered(num: number): Observable<any>
     {
        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=BedCount eq ${num}`);
-     
     }
 
+    getDescriptionRoomsFiltered(name: string): Observable<any>
+    {
+        // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
+        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=substringof(\'${name}\',Description)`);
+    }
 }
