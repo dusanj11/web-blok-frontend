@@ -9,7 +9,6 @@ import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ImageUploadModule} from 'angular2-image-upload';
 import { AgmCoreModule } from '@agm/core';
-import { IonRangeSliderModule } from "ng2-ion-range-slider";
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -110,8 +109,7 @@ const Routes =
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCbacKCVoG5Oplis1L0IOvOy5Dwm3i3ICU'
     }),
-    StarRatingModule,
-    IonRangeSliderModule
+    StarRatingModule
     //Material AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk
   ],
   providers: [HttpService, AuthService, LogInGuard, ManagerService, AdminService, NotificationService],
