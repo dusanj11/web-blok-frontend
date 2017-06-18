@@ -51,7 +51,7 @@ export class AccommodationListComponent implements OnInit {
 
   doATypeFilter()
   {
-    this.httpService.getFilteredAccommodationTypes(this.model.Name).subscribe(
+    this.httpService.getFilteredAccommodationTypes(this.model.AccomTypeName).subscribe(
        (accs: any) => {
             this.accommodationList = JSON.parse(accs._body);
             //console.log(this.places);
