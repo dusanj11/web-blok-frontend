@@ -5,3 +5,13 @@
     [accommodationList]="accommodations" [accListPlace]="accPlace">
   </app-accommodation-list>
 </div>
+
+<div>
+  <table>
+    <tr>
+      <td *ngFor="#number of pageNumbers">
+        <button md-raised-button>{{number}} </button>
+      </td>
+    </tr>
+  </table>
+</div>

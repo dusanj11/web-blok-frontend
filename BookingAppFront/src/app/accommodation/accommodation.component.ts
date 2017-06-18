@@ -11,29 +11,34 @@ import { ManagerService } from "app/service/manager-service";
 })
 export class AccommodationComponent implements OnInit {
     // Klasa dobavlja listu smestaja
+    accommodationsAll: Accommodation[];
     accommodations: Accommodation[];
 
     @Input() accPlace: number;
     pageNumber: number;
     totalNumber: number;
+    totalPages: number;
+    pageNumbers: number[];
   
     constructor(private httpService: HttpService, private managerService: ManagerService) {
         this.pageNumber = 1;
-        this.totalNumber = 0;
+        this.totalNumber = this.accommodationsAll.length;
+        this.totalPages = this.totalNumber / 3;
+        this.pageNumbers = Array(this.totalPages).map((x,i)=>i);
     }
 
     // ngOnInit sadrzi poziv ka bazi kako bi se prikupila lista smestaja
     ngOnInit() {
-        // this.managerService.getAccommodation().subscribe(
-        //     (res: Accommodation[]) => {
-        //         this.accommodations = res;
-        //         console.log(this.accommodations);
-        //     },
-        //     error => {
-        //         alert("Unsuccessful fetch operation!");
-        //         console.log(error);
-        //     }
-        // );
+        this.managerService.getAccommodation().subscribe(
+            (res: Accommodation[]) => {
+                this.accommodationsAll = res;
+                console.log(this.accommodations);
+            },
+            error => {
+                alert("Unsuccessful fetch operation!");
+                console.log(error);
+            }
+        );
 
         this.managerService.getPaginationAccommodation(this.pageNumber).subscribe(
             (res: any) => {
