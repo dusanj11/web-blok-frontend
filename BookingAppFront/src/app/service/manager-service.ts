@@ -28,7 +28,7 @@ export class ManagerService {
         let skipNumber: number;
         skipNumber = pgNumber*3 - 3;
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
-        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$top=3&$skip=${skipNumber}&$inlinecount=allpages`);
+        return this.http.get(`http://localhost:54042/odata/AccommodationsPaging?$top=3&$skip=${skipNumber}&$inlinecount=allpages`);
     }
 
     getAccommodationDetails(id: number): Observable<Accommodation>{
