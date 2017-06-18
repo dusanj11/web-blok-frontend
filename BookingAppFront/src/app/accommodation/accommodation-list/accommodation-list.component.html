@@ -33,15 +33,17 @@
         </table>
       </td>
       <td>
-        <md-grid-list cols="3">
-          <ng-container *ngFor="let myAccommodation of accommodationList">
-            <md-grid-tile *ngIf=" myAccommodation.PlaceId == accListPlace">
-              <app-accommodation-row [accommodation]="myAccommodation">
-              </app-accommodation-row>
-            </md-grid-tile>
-          </ng-container>
-          <!-- </md-list> -->
-        </md-grid-list>
+        <md-card>
+          <md-grid-list cols="3">
+            <ng-container *ngFor="let myAccommodation of accommodationList">
+              <md-grid-tile *ngIf=" myAccommodation.PlaceId == accListPlace">
+                <app-accommodation-row [accommodation]="myAccommodation">
+                </app-accommodation-row>
+              </md-grid-tile>
+            </ng-container>
+            <!-- </md-list> -->
+          </md-grid-list>
+        </md-card>
       </td>
     </tr>
   </table>
