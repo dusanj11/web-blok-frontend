@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RoomReservation } from "app/room-reservation/room-reservation";
+import { AuthService } from "app/service/auth-service";
+import { HttpService } from "app/service/http-service";
 
 @Component({
   selector: 'app-reservation-edit',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationEditComponent implements OnInit {
 
-  constructor() { }
+  roomReservations: any[];
+
+  constructor(private httpService: HttpService, private authService: AuthService) { }
 
   ngOnInit() {
+
+      let userId: number = this.authService.currentUserId();
+      let token: string = this.authService.currentUserToken();
+      this.httpService.getRoomReservations(userId, token).subscribe(
+        (res: any) => {
+            console.log(res);
+
+            this.roomReservations = JSON.parse(res._body);
+        },
+        error => {
+            console.log(error);
+        } 
+      );
   }
 
 }

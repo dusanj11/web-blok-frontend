@@ -1,3 +1,23 @@
-<p>
-  reservation-edit works!
-</p>
+
+<!--deo za prikaz-->
+  <table>
+    <thead>
+      <tr>
+        <th> Accommodation </th>
+        <th> Room number </th>
+        <th> Start date </th>
+        <th> End date </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of roomReservations">
+        <td> {{reservation.Room.Accommodation.Name}} </td>
+        <td> {{reservation.Room.RoomNumber}} </td>
+        <td> {{reservation.StartDate}} </td>
+        <td> {{reservation.EndDate}} </td>
+        
+        <!--<td><button  md-raised-button  color="primary"(click)="editRoom(myRoom.Id)">Edit</button></td>-->
+        <td><button  md-raised-button  color="accent" (click)="deleteReservation(myRoom.Id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>

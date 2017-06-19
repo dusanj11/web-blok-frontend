@@ -184,4 +184,18 @@ export class HttpService {
     getApprovedAccommodations(){
         return this.http.get("http://localhost:54042/api/accommodation/accommodations/approved");
     }
+
+
+    getRoomReservations(id: number, access_token: string){
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.get(`http://localhost:54042/api/RoomReservation/roomReservations/${id}`, opts);
+    }
 }
