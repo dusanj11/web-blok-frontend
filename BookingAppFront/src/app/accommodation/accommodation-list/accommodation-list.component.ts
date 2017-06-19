@@ -155,56 +155,98 @@ export class AccommodationListComponent implements OnInit {
     this.actypeFilterOn = false;
     this.descFilterOn = false;
     this.noneFilterOn = true;
-    this.managerService.getPaginationAccommodation(1, this.accListPlace).subscribe(
-      (res2: any) => {
-        this.pageAccommodations = JSON.parse(res2._body);
-        console.log(this.pageAccommodations);
-        this.pageNumbers = [];
-        this.totalNumber = this.pageAccommodations.length;
-        this.totalPages = this.totalNumber / 3;
-        for (var index = 1; index < (this.totalPages + 1); index++) {
-          this.pageNumbers.push(index);
+    this.accommodationsOfThisPlace = [];
+    this.managerService.getAccommodation().subscribe(
+      (res: any) => {
+        this.accommodationList = res; //JSON.parse(res._body);
+        console.log(this.accommodationList);
+
+        this.managerService.getPaginationAccommodation(1, this.accListPlace).subscribe(
+          (res2: any) => {
+            this.pageAccommodations = JSON.parse(res2._body);
+            console.log(this.pageAccommodations);
+            this.pageNumbers = [];
+            this.accommodationList.forEach(element => {
+              if (element.PlaceId == this.accListPlace) {
+                this.accommodationsOfThisPlace.push(element);
+              }
+
+            });
+
+            this.totalNumber = this.accommodationsOfThisPlace.length;
+            this.totalPages = this.totalNumber / 3;
+            for (var index = 1; index < (this.totalPages + 1); index++) {
+              this.pageNumbers.push(index);
 
 
-        }
-      },
-      error => {
-        // alert("Unsuccessful fetch operation!");
-        this.notifService.show("Error fetching page accommodations!", { type: 'error', position: 'bottom' });
+            }
+          },
+          error => {
+            // alert("Unsuccessful fetch operation!");
+            this.notifService.show("Error fetching page accommodations!", { type: 'error', position: 'bottom' });
 
-        console.log(error);
-      }
-    );
+            console.log(error);
+          }
+        );
 
-
-  }
-
-  doNameFilter() {
-    this.httpService.getFilteredAccommodation(this.model.Name, this.accListPlace).subscribe(
-      (accs: any) => {
-        this.pageAccommodations = JSON.parse(accs._body);
-        //console.log(this.places);
-        this.nameFilterOn = true;
-        this.actypeFilterOn = false;
-        this.descFilterOn = false;
-        this.noneFilterOn = false;
-
-        this.pageNumbers = [];
-        this.totalNumber = this.pageAccommodations.length;
-        this.totalPages = this.totalNumber / 3;
-        for (var index = 1; index < (this.totalPages + 1); index++) {
-          this.pageNumbers.push(index);
-
-
-        }
       },
       error => {
         //alert("Unsuccessful fetch operation!");
-        this.notifService.show("Error fetching name filtered accommodations!", { type: 'error', position: 'bottom' });
+        this.notifService.show("Error fetching all accommodations!", { type: 'error', position: 'bottom' });
 
         console.log(error);
       }
     );
+  }
+
+  doNameFilter() {
+    this.accommodationsOfThisPlace = [];
+    this.managerService.getAccommodation().subscribe(
+      (res: any) => {
+        this.accommodationList = res; //JSON.parse(res._body);
+        console.log(this.accommodationList);
+
+        this.httpService.getNamePaginationAccommodation(this.model.Name, 1, this.accListPlace).subscribe(
+          (accs: any) => {
+            this.pageAccommodations = JSON.parse(accs._body);
+            //console.log(this.places);
+            this.nameFilterOn = true;
+            this.actypeFilterOn = false;
+            this.descFilterOn = false;
+            this.noneFilterOn = false;
+
+            this.pageNumbers = [];this.accommodationList.forEach(element => {
+              if (element.PlaceId == this.accListPlace) {
+                this.accommodationsOfThisPlace.push(element);
+              }
+
+            });
+
+            this.totalNumber = this.accommodationsOfThisPlace.length;
+            this.totalPages = this.totalNumber / 3;
+            for (var index = 1; index < (this.totalPages + 1); index++) {
+              this.pageNumbers.push(index);
+
+
+            }
+          },
+          error => {
+            //alert("Unsuccessful fetch operation!");
+            this.notifService.show("Error fetching name filtered accommodations!", { type: 'error', position: 'bottom' });
+
+            console.log(error);
+          }
+        );
+
+      },
+      error => {
+        //alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching all accommodations!", { type: 'error', position: 'bottom' });
+
+        console.log(error);
+      }
+    );
+
   }
 
   doATypeFilter() {
@@ -215,7 +257,7 @@ export class AccommodationListComponent implements OnInit {
       }
 
     });
-    this.httpService.getFilteredAccommodationTypes(this.model.ATId, this.accListPlace).subscribe(
+    this.httpService.getAccommodationTypesPagination(this.model.ATId, 1, this.accListPlace).subscribe(
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
 
@@ -243,7 +285,7 @@ export class AccommodationListComponent implements OnInit {
   }
 
   doDescriptionFilter() {
-    this.httpService.getDescriptionAccommodationFiltered(this.model.Description, this.accListPlace).subscribe(
+    this.httpService.getDescriptionPaginationAccommodation(this.model.Description, 1, this.accListPlace).subscribe(
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
