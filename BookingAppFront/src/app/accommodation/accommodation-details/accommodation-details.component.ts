@@ -52,7 +52,7 @@ export class AccommodationDetailsComponent implements OnInit {
   }
 
   checkForComment(){
-      let comment: CommentComponent = new CommentComponent(this.httpService, this.authService);
+      let comment: CommentComponent = new CommentComponent(this.notifService, this.httpService, this.authService);
       comment.enableToComment();
       console.log("Click check for comment");
   }

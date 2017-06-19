@@ -17,8 +17,9 @@
     <thead>
       <tr>
         <!--<th> Manager </th>-->
-        <th> Accommodation Name </th>
-        <th> Accommodation Address </th>
+        <th>  Name </th>
+        <th>  Address </th>
+        <th>  Manager </th>
         <th> </th>
         <th> </th>
       </tr>
@@ -26,10 +27,11 @@
     <tbody>
       <tr *ngFor="let notification of notifications">
         <!--<td>{{notification.FullName}}</td>-->
-        <td>{{notification.Name}}</td>
-        <td> {{notification.Address}} </td>
-        <td><button  md-raised-button  color="primary"(click)="acceptAccommodation(notification.Id)">Accept</button></td>
-        <td><button  md-raised-button  color="accent" (click)="declineAccommodation(notification.Id)">Decline</button></td>
+        <td>{{notification.accommodation.Name}}</td>
+        <td> {{notification.accommodation.Address}} </td>
+        <td> {{notification.manager.UserName}} </td>
+        <td><button  md-raised-button  color="primary"(click)="acceptAccommodation(notification.accommodation.Id)">Accept</button></td>
+        <!--<td><button  md-raised-button  color="accent" (click)="declineAccommodation(notification.Id)">Decline</button></td>-->
       </tr>
     </tbody>
   </table>

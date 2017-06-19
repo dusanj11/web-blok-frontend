@@ -12,15 +12,16 @@ import { AuthService } from "app/service/auth-service";
 export class NotificationComponent implements OnInit {
 
   isConnected: Boolean;
-  notifications: Accommodation[]; // **
+  notifications: any[]; // **
   time: string;
-  
+  Manager: any;
+
   constructor(private notifService: NotificationServiceWS, private ngZone: NgZone,
-              private httpService: HttpService, private authService: AuthService) {
+    private httpService: HttpService, private authService: AuthService) {
     this.isConnected = false;
     this.notifications = [];
 
-    this.ngZone = new NgZone({enableLongStackTrace: false});
+    this.ngZone = new NgZone({ enableLongStackTrace: false });
   }
 
 
@@ -34,7 +35,7 @@ export class NotificationComponent implements OnInit {
 
   private checkConnection() {
     this.notifService.connectionEstablished.subscribe(e => {
-    this.isConnected = e;
+      this.isConnected = e;
       if (e) {
         this.notifService.sendHello()
       }
@@ -46,23 +47,29 @@ export class NotificationComponent implements OnInit {
   }
 
   public onNotification(notif: Accommodation) { // * 
-    let FullName: string;
+    //let Manager: any = {};
+    let Notification: any = {};
 
     this.ngZone.run(() => {
-      // let token = this.authService.currentUserToken();
-      // this.httpService.getUserById(notif.AppUserId, token).subscribe(
-      //   (res: any) => {
-      //       FullName = res.FullName;
-      //       notif.FullName = res.FullName;
-      //   },
-      //   error => {
-      //       console.log(error);
-      //   }
-      // );
-      console.log("Notification received");
-      this.notifications.push(notif);
+      let token = this.authService.currentUserToken();
+      this.httpService.getUserById(notif.AppUserId, token).subscribe(
+        (res: any) => {
+          this.Manager = res;
+          Notification.accommodation = notif;
+          Notification.manager = this.Manager;
+          console.log("Notification received");
+          this.notifications.push(Notification);
+
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
+
     });
   }
+
 
   subscribeForTime() {
     this.notifService.timeReceived.subscribe(e => this.onTimeEvent(e));
@@ -79,7 +86,7 @@ export class NotificationComponent implements OnInit {
   //     this.http.click().subscribe(data => console.log(data));
   //   }
   // }
-  public GetNotification(){
+  public GetNotification() {
     this.notifService.GetNotification();
   }
 
@@ -92,5 +99,7 @@ export class NotificationComponent implements OnInit {
     this.time = "";
   }
 
-  
+  acceptAccommodation(id: number){
+      console.log(`Notification approved: ${id}`);
+  }
 }
