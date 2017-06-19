@@ -100,7 +100,7 @@ export class AccommodationListComponent implements OnInit {
   }
 
   doNamePaginacija(pageNumber: number, placeId: number) {
-    this.httpService.getNamePaginationAccommodation(this.model.Name, pageNumber, placeId).subscribe(
+    this.httpService.getNamePaginationAccommodation(this.model.Name, placeId, pageNumber).subscribe(
       (res2: any) => {
         this.pageAccommodations = JSON.parse(res2._body);
         console.log(this.pageAccommodations);
@@ -121,7 +121,7 @@ export class AccommodationListComponent implements OnInit {
       }
     });
 
-    this.httpService.getAccommodationTypesPagination(this.model.ATId, pageNumber, placeId).subscribe(
+    this.httpService.getAccommodationTypesPagination(this.model.ATId, placeId, pageNumber).subscribe(
       (res2: any) => {
         this.pageAccommodations = JSON.parse(res2._body);
         console.log(this.pageAccommodations);
@@ -136,7 +136,7 @@ export class AccommodationListComponent implements OnInit {
   }
 
   doDescriptionPaginacija(pageNumber: number, placeId: number) {
-    this.httpService.getDescriptionPaginationAccommodation(this.model.Description, pageNumber, placeId).subscribe(
+    this.httpService.getDescriptionPaginationAccommodation(this.model.Description, placeId, pageNumber).subscribe(
       (res2: any) => {
         this.pageAccommodations = JSON.parse(res2._body);
         console.log(this.pageAccommodations);
