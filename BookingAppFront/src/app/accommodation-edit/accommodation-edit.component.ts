@@ -94,6 +94,17 @@ export class AccommodationEditComponent implements OnInit {
 
   }
 
+  mapClicked($event: any)
+    {
+      this.model = 
+      {
+        Latitude: $event.coords.lat,
+        Longitude: $event.coords.lng
+      }
+
+      console.log(this.model.Latitude + " " + this.model.Longitude);
+    }
+
   deleteAccommodation(accommodationId: number)
   {
       this.accommodations.forEach(element => {
