@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../service/http-service';
 import { Room } from './room';
 import { ManagerService } from "app/service/manager-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
   selector: 'app-room',
@@ -19,7 +20,7 @@ export class RoomComponent implements OnInit {
 
   selectedRoom: Room;
 
-  constructor(private httpService: HttpService, private managerService: ManagerService) {
+  constructor(private notifService: NotificationService, private httpService: HttpService, private managerService: ManagerService) {
       this.rooms = [];
       this.onRoomSelected = new EventEmitter();
       this.model.BedCount = 0;
@@ -51,6 +52,8 @@ export class RoomComponent implements OnInit {
           },
           error => {
                 console.log(error);
+                this.notifService.show("Error fetching rooms for accommodation!", {type: 'error', position:'bottom'});
+
           }
       );
   }
@@ -63,7 +66,9 @@ export class RoomComponent implements OnInit {
             console.log(this.rooms);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+        //   alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetchinging filtered rooms!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
@@ -77,7 +82,9 @@ export class RoomComponent implements OnInit {
             console.log(this.rooms);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+        //   alert("Unsuccessful fetch operation!");
+         this.notifService.show("Error fetchinging filtered rooms!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
@@ -91,7 +98,9 @@ export class RoomComponent implements OnInit {
             console.log(this.rooms);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+        //   alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetchinging filtered rooms!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );

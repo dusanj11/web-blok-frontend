@@ -3,6 +3,7 @@ import { Accommodation } from "app/accommodation/accommodation";
 import { Room } from "app/room/room";
 import { ManagerService } from "app/service/manager-service";
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
   selector: 'app-room-edit',
@@ -17,7 +18,7 @@ export class RoomEditComponent implements OnInit {
   room: Room;
   model: any = {};
 
-  constructor(private managerService: ManagerService,
+  constructor(private notifService: NotificationService, private managerService: ManagerService,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -41,13 +42,17 @@ export class RoomEditComponent implements OnInit {
             });
           },
           error => {
-            alert("Unsuccessful fetch operation!");
+            // alert("Unsuccessful fetch operation!");
+            this.notifService.show("Error fetching accommodations!", {type: 'error', position:'bottom'});
+
             console.log(error);
           }
         );
       },
       error => {
-        alert("Unsuccessful fetch operation!");
+        // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching rooms!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );
@@ -68,9 +73,13 @@ export class RoomEditComponent implements OnInit {
       (regs: any) => {
         // this.countries = conts;
         //console.log(this.countries)
+        this.notifService.show("Successfully deleted room!", {type: 'success', position:'bottom'});
+        this.ngOnInit();
       },
       error => {
-        alert("Unsuccessful delete operation!");
+        // alert("Unsuccessful delete operation!");
+        this.notifService.show("Error deleting room!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );
@@ -110,10 +119,17 @@ export class RoomEditComponent implements OnInit {
     this.managerService.putRoom(this.room, access_token).subscribe(
       (regs: any) => {
         // this.countries = conts;
-        console.log(this.rooms)
+        this.notifService.show("Successfully edited room!", {type: 'success', position:'bottom'});
+
+        console.log(this.rooms);
+        this.model = {};
+        this.ngOnInit();
+
       },
       error => {
-        alert("Unsuccessful put operation!");
+        // alert("Unsuccessful put operation!");
+        this.notifService.show("Error editing room!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );

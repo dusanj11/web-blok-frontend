@@ -6,6 +6,7 @@ import { HttpService } from "app/service/http-service";
 import { RoomReservation } from "app/room-reservation/room-reservation";
 import { CurrentUser } from "app/model/current-user";
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
   selector: 'app-room-reservation',
@@ -24,7 +25,7 @@ export class RoomReservationComponent implements OnInit {
 
   reservation: RoomReservation;
 
-  constructor(private httpService: HttpService, private authService: AuthService) {
+  constructor(private notifService: NotificationService,private httpService: HttpService, private authService: AuthService) {
       this.selectedRoom = new Room();
       this.selectedRoom.RoomNumber = -1;
    }
@@ -61,9 +62,13 @@ export class RoomReservationComponent implements OnInit {
     this.httpService.createReservation(this.reservation, access_token).subscribe(
         (res: any) => {
             console.log("Reservation successfully created");
+            this.notifService.show("Successfully added new reservation!", {type: 'success', position:'bottom'});
+
         },
         error => {
             console.log(error);
+            this.notifService.show("Error making reservation!", {type: 'error', position:'bottom'});
+
         }
     );
 
