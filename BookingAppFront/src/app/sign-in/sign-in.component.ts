@@ -8,6 +8,7 @@ import {
 import { CurrentUser } from '../model/current-user';
 import { AuthService } from "app/service/auth-service";
 import { NotificationServiceWS } from "app/service/notification-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Injectable()
 @Component({
@@ -17,7 +18,8 @@ import { NotificationServiceWS } from "app/service/notification-service";
 })
 export class SignInComponent implements OnInit {
 
-  constructor(public httpService: HttpService,
+  constructor(private notifyService: NotificationService,
+              public httpService: HttpService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private authService: AuthService,
@@ -82,7 +84,9 @@ export class SignInComponent implements OnInit {
                         }
                     },
       error => {
-                  alert("Unsuccessful fetch operation!");
+                  // alert("Unsuccessful fetch operation!");
+                  this.notifyService.show("Error fetching user information!", {type: 'error', position:'bottom'});
+
                   console.log(error);
                }
 
