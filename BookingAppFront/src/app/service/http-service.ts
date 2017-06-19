@@ -133,22 +133,22 @@ export class HttpService {
     }
 
     //filtriranje
-    getFilteredAccommodation(name: string): Observable<any>
+    getFilteredAccommodation(name: string, placeId: number): Observable<any>
     {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
-        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Name)`);
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Name) and PlaceId eq ${placeId}`);
     }
 
-    getFilteredAccommodationTypes(id: number): Observable<any>
+    getFilteredAccommodationTypes(id: number, placeId: number): Observable<any>
     {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
-        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq ${id}`);
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq ${id} and PlaceId eq ${placeId}`);
     }
 
-    getDescriptionAccommodationFiltered(name: string): Observable<any>
+    getDescriptionAccommodationFiltered(name: string, placeId: number): Observable<any>
     {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
-        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Description)`);
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Description) and PlaceId eq ${placeId}`);
     }
 
     getBedCountFiltered(num: number): Observable<any>

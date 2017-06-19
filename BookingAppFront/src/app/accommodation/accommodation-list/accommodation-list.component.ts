@@ -94,10 +94,17 @@ export class AccommodationListComponent implements OnInit {
   }
 
   doNameFilter() {
-    this.httpService.getFilteredAccommodation(this.model.Name).subscribe(
+    this.httpService.getFilteredAccommodation(this.model.Name, this.accListPlace).subscribe(
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
+
+            this.totalNumber = this.pageAccommodations.length;
+            this.totalPages = this.totalNumber / 3;
+            for (var index = 1; index < (this.totalPages + 1); index++) {
+              this.pageNumbers.push(index);
+
+            }
       },
       error => {
         //alert("Unsuccessful fetch operation!");
@@ -116,9 +123,16 @@ export class AccommodationListComponent implements OnInit {
       }
 
     });
-    this.httpService.getFilteredAccommodationTypes(this.model.ATId).subscribe(
+    this.httpService.getFilteredAccommodationTypes(this.model.ATId, this.accListPlace).subscribe(
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
+
+        this.totalNumber = this.pageAccommodations.length;
+            this.totalPages = this.totalNumber / 3;
+            for (var index = 1; index < (this.totalPages + 1); index++) {
+              this.pageNumbers.push(index);
+
+            }
         //console.log(this.places);
       },
       error => {
@@ -131,10 +145,17 @@ export class AccommodationListComponent implements OnInit {
   }
 
   doDescriptionFilter() {
-    this.httpService.getDescriptionAccommodationFiltered(this.model.Description).subscribe(
+    this.httpService.getDescriptionAccommodationFiltered(this.model.Description, this.accListPlace).subscribe(
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
+
+        this.totalNumber = this.pageAccommodations.length;
+            this.totalPages = this.totalNumber / 3;
+            for (var index = 1; index < (this.totalPages + 1); index++) {
+              this.pageNumbers.push(index);
+
+            }
       },
       error => {
         // alert("Unsuccessful fetch operation!");
