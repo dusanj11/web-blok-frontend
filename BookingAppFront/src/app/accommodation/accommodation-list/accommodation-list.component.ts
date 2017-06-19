@@ -13,15 +13,15 @@ import { NotificationService } from "ng2-notify-popup";
 })
 export class AccommodationListComponent implements OnInit {
 
-  @Input() accommodationList: Accommodation[];
-  accommodationsOfThisPlace: Accommodation[];
-  pageAccommodations: Accommodation[];
+  @Input() accommodationList: Accommodation[] = [];
+  accommodationsOfThisPlace: Accommodation[] =[];
+  pageAccommodations: Accommodation[] = [];
   @Input() accListPlace: number;
-  acctypes: AccomodationType[];
+  acctypes: AccomodationType[] =[];
   model: any = {};
-  pageNumber: number;
-  totalNumber: number;
-  totalPages: number;
+  pageNumber: number = 1;
+  totalNumber: number = 0;
+  totalPages: number  = 1;
   pageNumbers: number[] = [];
   constructor(private notifService: NotificationService, private httpService: HttpService, private managerService: ManagerService) {
 
@@ -37,27 +37,25 @@ export class AccommodationListComponent implements OnInit {
         this.model.AccomTypeName = "";
         this.model.Description = "";
         this.model.ATId = 0;
-
-        this.pageNumber = 1;
-        this.accommodationList.forEach(element => {
-          if (element.PlaceId == this.accListPlace) {
-            this.accommodationsOfThisPlace.push(element);
-          }
-
-        });
-
-        this.totalNumber = this.accommodationsOfThisPlace.length;
-        this.totalPages = this.totalNumber / 3;
-        for (var index = 1; index < (this.totalPages + 1); index++) {
-          this.pageNumbers.push(index);
-
-        }
-
         //this.pageNumbers = Array(Math.ceil(this.totalPages)).map((x, i) => i);
         this.managerService.getPaginationAccommodation(this.pageNumber, this.accListPlace).subscribe(
           (res2: any) => {
             this.pageAccommodations = JSON.parse(res2._body);
             console.log(this.pageAccommodations);
+
+            this.accommodationList.forEach(element => {
+              if (element.PlaceId == this.accListPlace) {
+                this.accommodationsOfThisPlace.push(element);
+              }
+
+            });
+
+            this.totalNumber = this.accommodationsOfThisPlace.length;
+            this.totalPages = this.totalNumber / 3;
+            for (var index = 1; index < (this.totalPages + 1); index++) {
+              this.pageNumbers.push(index);
+
+            }
 
 
           },
@@ -98,7 +96,7 @@ export class AccommodationListComponent implements OnInit {
   doNameFilter() {
     this.httpService.getFilteredAccommodation(this.model.Name).subscribe(
       (accs: any) => {
-        this.accommodationList = JSON.parse(accs._body);
+        this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
       },
       error => {
@@ -120,7 +118,7 @@ export class AccommodationListComponent implements OnInit {
     });
     this.httpService.getFilteredAccommodationTypes(this.model.ATId).subscribe(
       (accs: any) => {
-        this.accommodationList = JSON.parse(accs._body);
+        this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
       },
       error => {
@@ -135,7 +133,7 @@ export class AccommodationListComponent implements OnInit {
   doDescriptionFilter() {
     this.httpService.getDescriptionAccommodationFiltered(this.model.Description).subscribe(
       (accs: any) => {
-        this.accommodationList = JSON.parse(accs._body);
+        this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
       },
       error => {
