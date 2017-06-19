@@ -14,14 +14,14 @@ import { NotificationService } from "ng2-notify-popup";
 export class AccommodationListComponent implements OnInit {
 
   @Input() accommodationList: Accommodation[] = [];
-  accommodationsOfThisPlace: Accommodation[] =[];
+  accommodationsOfThisPlace: Accommodation[] = [];
   pageAccommodations: Accommodation[] = [];
   @Input() accListPlace: number;
-  acctypes: AccomodationType[] =[];
+  acctypes: AccomodationType[] = [];
   model: any = {};
   pageNumber: number = 1;
   totalNumber: number = 0;
-  totalPages: number  = 1;
+  totalPages: number = 1;
   pageNumbers: number[] = [];
   constructor(private notifService: NotificationService, private httpService: HttpService, private managerService: ManagerService) {
 
@@ -98,13 +98,13 @@ export class AccommodationListComponent implements OnInit {
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
+        this.pageNumbers = [];
+        this.totalNumber = this.pageAccommodations.length;
+        this.totalPages = this.totalNumber / 3;
+        for (var index = 1; index < (this.totalPages + 1); index++) {
+          this.pageNumbers.push(index);
 
-            this.totalNumber = this.pageAccommodations.length;
-            this.totalPages = this.totalNumber / 3;
-            for (var index = 1; index < (this.totalPages + 1); index++) {
-              this.pageNumbers.push(index);
-
-            }
+        }
       },
       error => {
         //alert("Unsuccessful fetch operation!");
@@ -126,13 +126,13 @@ export class AccommodationListComponent implements OnInit {
     this.httpService.getFilteredAccommodationTypes(this.model.ATId, this.accListPlace).subscribe(
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
-
+        this.pageNumbers = [];
         this.totalNumber = this.pageAccommodations.length;
-            this.totalPages = this.totalNumber / 3;
-            for (var index = 1; index < (this.totalPages + 1); index++) {
-              this.pageNumbers.push(index);
+        this.totalPages = this.totalNumber / 3;
+        for (var index = 1; index < (this.totalPages + 1); index++) {
+          this.pageNumbers.push(index);
 
-            }
+        }
         //console.log(this.places);
       },
       error => {
@@ -149,13 +149,13 @@ export class AccommodationListComponent implements OnInit {
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
-
+        this.pageNumbers = [];
         this.totalNumber = this.pageAccommodations.length;
-            this.totalPages = this.totalNumber / 3;
-            for (var index = 1; index < (this.totalPages + 1); index++) {
-              this.pageNumbers.push(index);
+        this.totalPages = this.totalNumber / 3;
+        for (var index = 1; index < (this.totalPages + 1); index++) {
+          this.pageNumbers.push(index);
 
-            }
+        }
       },
       error => {
         // alert("Unsuccessful fetch operation!");
