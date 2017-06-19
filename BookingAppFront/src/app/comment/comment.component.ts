@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { HttpService } from "app/service/http-service";
 import { AuthService } from "app/service/auth-service";
 import { IStarRatingIOnHoverRatingChangeEvent, IStarRatingOnClickEvent, IStarRatingOnRatingChangeEven } from "angular-star-rating";
+import { NotificationService } from "ng2-notify-popup";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class CommentComponent implements OnInit {
   
 
   // konstrutkor inicijalizuje listu komentara za odredjeni smestaj
-  constructor(public httpService: HttpService, public authService: AuthService) {
+  constructor(private notifService: NotificationService, public httpService: HttpService, public authService: AuthService) {
     this.comments = [];
     // this.comments = [
     //   new Comment(
@@ -82,10 +83,14 @@ export class CommentComponent implements OnInit {
 
     this.httpService.createComment(comment, access_token).subscribe(
       (res: any) => {
-          alert("Uspesno dodat komentar");
+        this.notifService.show("Successfully added new comment!", {type: 'success', position:'bottom'});
+
+         // alert("Uspesno dodat komentar");
       },
       error => {
           console.log(error);
+          this.notifService.show("Error adding new comment!", {type: 'error', position:'bottom'});
+
       }
     );
   }
@@ -128,8 +133,11 @@ export class CommentComponent implements OnInit {
           // this.comments = res;
           this.comments = JSON.parse(res._body);
           console.log(res);
+          
       },
       error => {
+        this.notifService.show("Error fetching comments!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
