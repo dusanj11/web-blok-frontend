@@ -8,8 +8,7 @@
   <img md-card-lg-image [src] = 'accommodation.ImageURL' height="350" width="350">
   <agm-map [latitude]="accommodation.Latitude" [longitude]="accommodation.Longitude" [zoom]=10 >
      <!--Postavljamo markere -->
-    <agm-marker [latitude]="accommodation.Latitude" [longitude]="accommodation.Longitude" 
-    label="accommodation.Name">
+    <agm-marker [latitude]="accommodation.Latitude" [longitude]="accommodation.Longitude">
 
       <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
       <!--<agm-info-window [latitude]="mapInfo.centerLat" [longitude]="mapInfo.centerLong" >-->

@@ -8,6 +8,8 @@
       </td>
       <td>
         <agm-map [latitude]=45.25167 [longitude]=19.83694 (mapClick)="mapClicked($event)">
+           <agm-marker [latitude]="model.Latitude" [longitude]="model.Longitude">
+           </agm-marker>
         </agm-map>
       </td>
     </tr>
