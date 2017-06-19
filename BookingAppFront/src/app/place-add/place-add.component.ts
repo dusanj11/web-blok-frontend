@@ -6,6 +6,8 @@ import { NgForm } from "@angular/forms";
 import { Place } from "app/place/place";
 import { AdminService } from "app/service/admin-service";
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "ng2-notify-popup";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -17,7 +19,7 @@ export class PlaceAddComponent implements OnInit {
 
 @Input() placeRegs: Region[];
 
-  constructor(private adminService: AdminService, private authService: AuthService) {
+  constructor(private router: Router, private notifService: NotificationService, private adminService: AdminService, private authService: AuthService) {
    }
 
   ngOnInit() {
@@ -27,7 +29,9 @@ export class PlaceAddComponent implements OnInit {
             //console.log(this.regions);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+          // alert("Unsuccessful fetch operation!");
+          this.notifService.show("Error fetching regions!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
@@ -47,9 +51,13 @@ export class PlaceAddComponent implements OnInit {
       this.adminService.postPlace(plc, access_token).subscribe(
       (conts: any) => {
                 //console.log(this.conts);
+                this.notifService.show("Successfully added new region!", {type: 'success', position:'bottom'});
+                this.router.navigate(['/administration']);
               },
         error => {
-            alert("Unsuccessful post operation!");
+            // alert("Unsuccessful post operation!");
+            this.notifService.show("Error adding region!", {type: 'error', position:'bottom'});
+
             console.log(error);
         }
     );
