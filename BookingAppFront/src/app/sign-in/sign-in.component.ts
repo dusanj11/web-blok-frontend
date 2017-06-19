@@ -57,6 +57,8 @@ export class SignInComponent implements OnInit {
                                   this.authService.logIn(currentUser);
                                   
                                   this.notifService.RegisterForNotifications();
+
+                                  this.notifService.GetNotification();
                                   // subscribovanje na dobijanje notifikacije 
                                   // this.notifService.OnConnected();
 
