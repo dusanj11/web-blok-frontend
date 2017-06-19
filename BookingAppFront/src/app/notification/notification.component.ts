@@ -19,7 +19,7 @@ export class NotificationComponent implements OnInit {
               private httpService: HttpService, private authService: AuthService) {
     this.isConnected = false;
     this.notifications = [];
-    
+
     this.ngZone = new NgZone({enableLongStackTrace: false});
   }
 
@@ -28,6 +28,7 @@ export class NotificationComponent implements OnInit {
     this.checkConnection();
     this.subscribeForNotifications();
     this.subscribeForTime();
+    this.GetNotification();
   }
 
 
@@ -78,6 +79,9 @@ export class NotificationComponent implements OnInit {
   //     this.http.click().subscribe(data => console.log(data));
   //   }
   // }
+  public GetNotification(){
+    this.notifService.GetNotification();
+  }
 
   public startTimer() {
     this.notifService.StartTimer();

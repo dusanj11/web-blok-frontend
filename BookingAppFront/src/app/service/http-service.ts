@@ -180,4 +180,8 @@ export class HttpService {
 
         return this.http.get(`http://localhost:54042/api/AppUser/AppUsers/${userId}`, opts);
     }
+
+    getApprovedAccommodations(){
+        return this.http.get("http://localhost:54042/api/accommodation/accommodations/approved");
+    }
 }
