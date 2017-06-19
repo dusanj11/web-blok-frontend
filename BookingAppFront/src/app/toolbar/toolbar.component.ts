@@ -82,6 +82,11 @@ goAdministrate()
     this.router.navigate(['/accommodation']);
   }
 
+  goProfile()
+  {
+     this.router.navigate(['/profile']);
+  }
+
   
   ngOnInit() {
       

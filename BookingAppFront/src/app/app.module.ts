@@ -53,6 +53,9 @@ import { NotificationServiceWS } from "app/service/notification-service";
 import { RoomAddComponent } from './room-add/room-add.component';
 import { RoomEditComponent } from './room-edit/room-edit.component';
 import { AccommodationEditComponent } from './accommodation-edit/accommodation-edit.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ReservationEditComponent } from './reservation-edit/reservation-edit.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 
 
@@ -60,6 +63,7 @@ const Routes =
 [
   {path: '', redirectTo:"accommodation", pathMatch: 'full'},
   {path: "signIn", component: HomeComponent},
+  {path: "profile", component: ProfileComponent},
   {path: "accommodation", component: CountryComponent },
   {path: "administration", component: AdminPanelComponent, canActivate: [LogInGuard]},
   {path: "accommodation-details/:id", component: AccommodationDetailsComponent},
@@ -99,6 +103,9 @@ const Routes =
     RoomAddComponent,
     RoomEditComponent,
     AccommodationEditComponent,
+    ProfileComponent,
+    ReservationEditComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
