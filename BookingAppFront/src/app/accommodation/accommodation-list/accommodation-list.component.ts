@@ -201,7 +201,7 @@ export class AccommodationListComponent implements OnInit {
 
   doNameFilter() {
     this.accommodationsOfThisPlace = [];
-    this.httpService.getFilteredAccommodation(this.model.Name, this.accListPlace).subscribe(
+    this.managerService.getAccommodation().subscribe(
       (res: any) => {
         this.accommodationList = res; //JSON.parse(res._body);
         console.log(this.accommodationList);
@@ -216,7 +216,7 @@ export class AccommodationListComponent implements OnInit {
             this.noneFilterOn = false;
 
             this.pageNumbers = []; this.accommodationList.forEach(element => {
-              if (element.PlaceId == this.accListPlace) {
+              if ((element.PlaceId == this.accListPlace)&&(element.Name.includes(this.model.Name))) {
                 this.accommodationsOfThisPlace.push(element);
               }
 
@@ -251,18 +251,17 @@ export class AccommodationListComponent implements OnInit {
 
   doATypeFilter() {
     this.accommodationsOfThisPlace = [];
-    this.acctypes.forEach(element => {
-      if (element.Name == this.model.AccomTypeName) {
-        this.model.ATId = element.Id;
-      }
-
-    });
-    this.httpService.getFilteredAccommodationTypes(this.model.ATId, this.accListPlace).subscribe(
+    this.managerService.getAccommodation().subscribe(
       (res: any) => {
         this.accommodationList = res; //JSON.parse(res._body);
         console.log(this.accommodationList);
 
+        this.acctypes.forEach(element => {
+          if (element.Name == this.model.AccomTypeName) {
+            this.model.ATId = element.Id;
+          }
 
+        });
         this.httpService.getAccommodationTypesPagination(this.model.ATId, this.accListPlace, 1).subscribe(
           (accs: any) => {
             this.pageAccommodations = JSON.parse(accs._body);
@@ -274,7 +273,7 @@ export class AccommodationListComponent implements OnInit {
 
             this.pageNumbers = [];
             this.accommodationList.forEach(element => {
-              if (element.PlaceId == this.accListPlace) {
+              if ((element.PlaceId == this.accListPlace) &&(element.AccommodationTypeId == this.model.ATId)) {
                 this.accommodationsOfThisPlace.push(element);
               }
 
@@ -310,7 +309,7 @@ export class AccommodationListComponent implements OnInit {
 
   doDescriptionFilter() {
     this.accommodationsOfThisPlace = [];
-    this.httpService.getDescriptionAccommodationFiltered(this.model.Description, this.accListPlace).subscribe(
+    this.managerService.getAccommodation().subscribe(
       (res: any) => {
         this.accommodationList = res; //JSON.parse(res._body);
         console.log(this.accommodationList);
@@ -327,7 +326,7 @@ export class AccommodationListComponent implements OnInit {
 
             this.pageNumbers = [];
             this.accommodationList.forEach(element => {
-              if (element.PlaceId == this.accListPlace) {
+              if ((element.PlaceId == this.accListPlace) && (element.Description.includes(this.model.Description))) {
                 this.accommodationsOfThisPlace.push(element);
               }
 
