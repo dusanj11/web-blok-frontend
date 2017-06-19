@@ -6,6 +6,7 @@ import { AuthService } from "app/service/auth-service";
 import { Room } from "app/room/room";
 import { ManagerService } from "app/service/manager-service";
 import { CommentComponent } from "app/comment/comment.component";
+import { NotificationService } from "ng2-notify-popup";
 
 
 @Component({
@@ -19,7 +20,7 @@ export class AccommodationDetailsComponent implements OnInit {
   accommodation: Accommodation;
   room: Room;
 
-  constructor( private router: Router, private activatedRoute: ActivatedRoute,
+  constructor(private notifService: NotificationService, private router: Router, private activatedRoute: ActivatedRoute,
                 private httpService: HttpService, private authService: AuthService, private managerService: ManagerService ) {
       activatedRoute.params.subscribe(params => {this.id = params['id'];
       this.accommodation = new Accommodation(); //0,"", "", "", null,null,null,"", true, 0,0,0 
@@ -66,6 +67,8 @@ export class AccommodationDetailsComponent implements OnInit {
             this.accommodation = res;
       },
       error => {
+      this.notifService.show("Error fetching accommodation details!", {type: 'error', position:'bottom'});
+
             console.log(error);
       }
 

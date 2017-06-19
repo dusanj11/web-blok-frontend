@@ -5,6 +5,8 @@ import { AccomodationType } from "app/accomodation-type/accomodation-type";
 import { AuthService } from "app/service/auth-service";
 import { ManagerService } from "app/service/manager-service";
 import { AdminService } from "app/service/admin-service";
+import { NotificationService } from "ng2-notify-popup";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-accommodation-edit',
@@ -23,7 +25,7 @@ export class AccommodationEditComponent implements OnInit {
 
   currentUserToken: string;
 
-  constructor(private adminService: AdminService, private authService: AuthService, private managerService: ManagerService) { }
+  constructor(private router: Router, private notifService: NotificationService, private adminService: AdminService, private authService: AuthService, private managerService: ManagerService) { }
 
   ngOnInit() {
 
@@ -65,13 +67,17 @@ export class AccommodationEditComponent implements OnInit {
             });
           },
           error => {
-            alert("Unsuccessful fetch operation!");
+            // alert("Unsuccessful fetch operation!");
+            this.notifService.show("Error fetching places!", {type: 'error', position:'bottom'});
+
             console.log(error);
           }
         );
           },
           error => {
-            alert("Unsuccessful fetch operation!");
+            // alert("Unsuccessful fetch operation!");
+            this.notifService.show("Error fetching accommodation types!", {type: 'error', position:'bottom'});
+
             console.log(error);
           }
         );
@@ -79,7 +85,9 @@ export class AccommodationEditComponent implements OnInit {
         
       },
       error => {
-        alert("Unsuccessful fetch operation!");
+        // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching accommodations!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );
@@ -96,10 +104,15 @@ export class AccommodationEditComponent implements OnInit {
 
       this.managerService.deleteAccommodation(this.accommodation, this.currentUserToken).subscribe(
         (resp: any) => {
+          this.notifService.show("Successfully deleted accommodation!", {type: 'success', position:'bottom'});
             console.log("Accommodation deleted");
+            //kada uspesno izbrises vrati na administraciju
+            this.router.navigate(['/administration']);
         },
         error => {
-            alert("Unsuccessful delete operation!");
+            // alert("Unsuccessful delete operation!");
+            this.notifService.show("Error deleting Accommodation!", {type: 'error', position:'bottom'});
+
             console.log(error);
         }
       );
@@ -162,9 +175,15 @@ export class AccommodationEditComponent implements OnInit {
 
       this.managerService.putAccommodation(this.accommodation, this.currentUserToken).subscribe(
         (resp: any) => {
+          this.notifService.show("Successfully edited accommodation!", {type: 'success', position:'bottom'});
             console.log("Updated accommodation");
+              
+            //kada uspesno edituje isprazniti model
+            this.model = {};
         },
         error => {
+          this.notifService.show("Error editing accommodation!", {type: 'error', position:'bottom'});
+
           console.log(error);
         }
       );

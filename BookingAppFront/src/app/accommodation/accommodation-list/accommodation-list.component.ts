@@ -3,6 +3,7 @@ import { Accommodation } from '../accommodation';
 import { HttpService } from "app/service/http-service";
 import { AccomodationType } from "app/accomodation-type/accomodation-type";
 import { ManagerService } from "app/service/manager-service";
+import { NotificationService } from "ng2-notify-popup";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class AccommodationListComponent implements OnInit {
   @Input() accListPlace: number;
   acctypes: AccomodationType[];
   model: any = {};
-  constructor(private httpService: HttpService, private managerService: ManagerService) { 
+  constructor(private notifService: NotificationService, private httpService: HttpService, private managerService: ManagerService) { 
    
   }
 
@@ -31,7 +32,9 @@ export class AccommodationListComponent implements OnInit {
             //console.log(this.regions);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+          // alert("Unsuccessful fetch operation!");
+          this.notifService.show("Error fetching accommodation types!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
@@ -45,7 +48,9 @@ export class AccommodationListComponent implements OnInit {
             //console.log(this.places);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+          //alert("Unsuccessful fetch operation!");
+          this.notifService.show("Error fetching name filtered accommodations!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
@@ -67,7 +72,9 @@ export class AccommodationListComponent implements OnInit {
             //console.log(this.places);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+          // alert("Unsuccessful fetch operation!");
+          this.notifService.show("Error fetching accommodation type filtered accommodations!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
@@ -81,7 +88,9 @@ export class AccommodationListComponent implements OnInit {
             //console.log(this.places);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+          // alert("Unsuccessful fetch operation!");
+      this.notifService.show("Error fetching description filtered accommodations!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );

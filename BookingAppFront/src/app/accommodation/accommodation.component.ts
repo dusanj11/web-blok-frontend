@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Accommodation } from './accommodation';
 import { HttpService } from '../service/http-service';
 import { ManagerService } from "app/service/manager-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
     selector: 'app-accommodation',
@@ -20,7 +21,7 @@ export class AccommodationComponent implements OnInit {
     totalPages: number;
     pageNumbers: number[] = [];
 
-    constructor(private httpService: HttpService, private managerService: ManagerService) {
+    constructor(private notifService: NotificationService, private httpService: HttpService, private managerService: ManagerService) {
 
 
 
@@ -46,14 +47,17 @@ export class AccommodationComponent implements OnInit {
                         console.log(this.accommodations);
                     },
                     error => {
-                        alert("Unsuccessful fetch operation!");
+                        //alert("Unsuccessful fetch operation!");
+                        this.notifService.show("Error fetching page accommodations!", {type: 'error', position:'bottom'});
                         console.log(error);
                     }
                 );
 
             },
             error => {
-                alert("Unsuccessful fetch operation!");
+                //alert("Unsuccessful fetch operation!");
+                this.notifService.show("Error fetching all accommodations!", {type: 'error', position:'bottom'});
+
                 console.log(error);
             }
         );
@@ -66,7 +70,9 @@ export class AccommodationComponent implements OnInit {
                 console.log(this.accommodations);
             },
             error => {
-                alert("Unsuccessful fetch operation!");
+                // alert("Unsuccessful fetch operation!");
+                this.notifService.show("Error fetching page accommodations!", {type: 'error', position:'bottom'});
+
                 console.log(error);
             }
         );

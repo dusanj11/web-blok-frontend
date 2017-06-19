@@ -7,6 +7,8 @@ import { AccomodationType } from "app/accomodation-type/accomodation-type";
 import { Place } from "app/place/place";
 import { ManagerService } from "app/service/manager-service";
 import { AdminService } from "app/service/admin-service";
+import { NotificationService } from "ng2-notify-popup";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-accommodation-add',
@@ -21,7 +23,7 @@ export class AccommodationAddComponent implements OnInit {
     token: string;
     model: any={};
 
-  constructor(private httpService: HttpService, private authService: AuthService,
+  constructor(private router: Router,private notifService: NotificationService, private httpService: HttpService, private authService: AuthService,
               private managerService: ManagerService, private adminService: AdminService ) { }
 
   onSubmitAccommodation(createdAccommodation: Accommodation, form: NgForm){
@@ -46,12 +48,17 @@ export class AccommodationAddComponent implements OnInit {
 
       this.managerService.postAccommodation(createdAccommodation, access_token).subscribe(
           (res: any) => {
+              this.notifService.show("Successfully added new accommodation!", {type: 'success', position:'bottom'});
                 console.log("Kreiran smestaj");
           },
           error => {
+            this.notifService.show("Error adding new accommodation!", {type: 'error', position:'bottom'});
               console.log(error);
           }
       );
+
+      //kada se doda nov smestaj neka prebaci na pocetnu stranicu
+      this.router.navigate(['/accommodation']);
 
   }
 
@@ -94,7 +101,9 @@ export class AccommodationAddComponent implements OnInit {
             //console.log(this.regions);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+        //   alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching places!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
@@ -105,7 +114,9 @@ export class AccommodationAddComponent implements OnInit {
             //console.log(this.regions);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+        //   alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching accommodation types!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
