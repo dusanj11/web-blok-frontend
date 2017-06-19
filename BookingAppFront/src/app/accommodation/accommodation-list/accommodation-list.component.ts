@@ -150,14 +150,34 @@ export class AccommodationListComponent implements OnInit {
     );
   }
 
-cancelFilters()
-{
-      this.nameFilterOn = false;
-        this.actypeFilterOn = false;
-        this.descFilterOn = false;
-        this.noneFilterOn = true;
+  cancelFilters() {
+    this.nameFilterOn = false;
+    this.actypeFilterOn = false;
+    this.descFilterOn = false;
+    this.noneFilterOn = true;
+    this.managerService.getPaginationAccommodation(1, this.accListPlace).subscribe(
+      (res2: any) => {
+        this.pageAccommodations = JSON.parse(res2._body);
+        console.log(this.pageAccommodations);
+        this.pageNumbers = [];
+        this.totalNumber = this.pageAccommodations.length;
+        this.totalPages = this.totalNumber / 3;
+        for (var index = 1; index < (this.totalPages + 1); index++) {
+          this.pageNumbers.push(index);
 
-}
+
+        }
+      },
+      error => {
+        // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching page accommodations!", { type: 'error', position: 'bottom' });
+
+        console.log(error);
+      }
+    );
+
+
+  }
 
   doNameFilter() {
     this.httpService.getFilteredAccommodation(this.model.Name, this.accListPlace).subscribe(
