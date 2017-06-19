@@ -23,6 +23,12 @@ export class AccommodationListComponent implements OnInit {
   totalNumber: number = 0;
   totalPages: number = 1;
   pageNumbers: number[] = [];
+
+  nameFilterOn: boolean = false;
+  actypeFilterOn: boolean = false;
+  descFilterOn: boolean = false;
+  noneFilterOn: boolean = true;
+
   constructor(private notifService: NotificationService, private httpService: HttpService, private managerService: ManagerService) {
 
   }
@@ -93,16 +99,82 @@ export class AccommodationListComponent implements OnInit {
     );
   }
 
+  doNamePaginacija(pageNumber: number, placeId: number) {
+    this.httpService.getNamePaginationAccommodation(this.model.Name, pageNumber, placeId).subscribe(
+      (res2: any) => {
+        this.pageAccommodations = JSON.parse(res2._body);
+        console.log(this.pageAccommodations);
+      },
+      error => {
+        // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching page accommodations!", { type: 'error', position: 'bottom' });
+
+        console.log(error);
+      }
+    );
+  }
+
+  doATypePaginacija(pageNumber: number, placeId: number) {
+    this.acctypes.forEach(element => {
+      if (element.Name == this.model.AccomTypeName) {
+        this.model.ATId = element.Id;
+      }
+    });
+
+    this.httpService.getAccommodationTypesPagination(this.model.ATId, pageNumber, placeId).subscribe(
+      (res2: any) => {
+        this.pageAccommodations = JSON.parse(res2._body);
+        console.log(this.pageAccommodations);
+      },
+      error => {
+        // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching page accommodations!", { type: 'error', position: 'bottom' });
+
+        console.log(error);
+      }
+    );
+  }
+
+  doDescriptionPaginacija(pageNumber: number, placeId: number) {
+    this.httpService.getDescriptionPaginationAccommodation(this.model.Description, pageNumber, placeId).subscribe(
+      (res2: any) => {
+        this.pageAccommodations = JSON.parse(res2._body);
+        console.log(this.pageAccommodations);
+      },
+      error => {
+        // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching page accommodations!", { type: 'error', position: 'bottom' });
+
+        console.log(error);
+      }
+    );
+  }
+
+cancelFilters()
+{
+      this.nameFilterOn = false;
+        this.actypeFilterOn = false;
+        this.descFilterOn = false;
+        this.noneFilterOn = true;
+
+}
+
   doNameFilter() {
     this.httpService.getFilteredAccommodation(this.model.Name, this.accListPlace).subscribe(
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
+        this.nameFilterOn = true;
+        this.actypeFilterOn = false;
+        this.descFilterOn = false;
+        this.noneFilterOn = false;
+
         this.pageNumbers = [];
         this.totalNumber = this.pageAccommodations.length;
         this.totalPages = this.totalNumber / 3;
         for (var index = 1; index < (this.totalPages + 1); index++) {
           this.pageNumbers.push(index);
+
 
         }
       },
@@ -126,6 +198,12 @@ export class AccommodationListComponent implements OnInit {
     this.httpService.getFilteredAccommodationTypes(this.model.ATId, this.accListPlace).subscribe(
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
+
+        this.nameFilterOn = false;
+        this.actypeFilterOn = true;
+        this.descFilterOn = false;
+        this.noneFilterOn = false;
+
         this.pageNumbers = [];
         this.totalNumber = this.pageAccommodations.length;
         this.totalPages = this.totalNumber / 3;
@@ -149,6 +227,12 @@ export class AccommodationListComponent implements OnInit {
       (accs: any) => {
         this.pageAccommodations = JSON.parse(accs._body);
         //console.log(this.places);
+
+        this.nameFilterOn = false;
+        this.actypeFilterOn = false;
+        this.descFilterOn = true;
+        this.noneFilterOn = false;
+
         this.pageNumbers = [];
         this.totalNumber = this.pageAccommodations.length;
         this.totalPages = this.totalNumber / 3;

@@ -138,6 +138,13 @@ export class HttpService {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Name) and PlaceId eq ${placeId}`);
     }
+    getNamePaginationAccommodation(name: string, placeId: number, pgNumber: number): Observable<any>
+    {
+        let skipNumber: number;
+        skipNumber = pgNumber*3 - 3;
+        // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Name) and PlaceId eq ${placeId} &$top=3&$skip=${skipNumber}`);
+    }
 
     getFilteredAccommodationTypes(id: number, placeId: number): Observable<any>
     {
@@ -145,10 +152,27 @@ export class HttpService {
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq ${id} and PlaceId eq ${placeId}`);
     }
 
+    
+    getAccommodationTypesPagination(id: number, placeId: number, pgNumber: number): Observable<any>
+    {
+        let skipNumber: number;
+        skipNumber = pgNumber*3 - 3;
+        // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq ${id} and PlaceId eq ${placeId} &$top=3&$skip=${skipNumber}`);
+    }
+
     getDescriptionAccommodationFiltered(name: string, placeId: number): Observable<any>
     {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Description) and PlaceId eq ${placeId}`);
+    }
+
+    getDescriptionPaginationAccommodation(name: string, placeId: number, pgNumber: number): Observable<any>
+    {
+        let skipNumber: number;
+        skipNumber = pgNumber*3 - 3;
+        // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Description) and PlaceId eq ${placeId} &$top=3&$skip=${skipNumber}`);
     }
 
     getBedCountFiltered(num: number): Observable<any>
