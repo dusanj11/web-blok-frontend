@@ -1,53 +1,73 @@
 <!-- <md-list> -->
 <md-card>
-        <table class="example-full-width" cellspacing="5">
-          <tr>
-            <td>
-              <md-input-container class="example-full-width">
-                <input mdInput placeholder="Name" name="Name" [(ngModel)]="model.Name">
-              </md-input-container>
-            </td>
-            <td>
-              <button md-raised-button color="primary" (click)="doNameFilter()">Filter Names</button>
-            </td>
-            <td>
-              <md-input-container class="example-full-width">
-                <input mdInput placeholder="Description" name="Description" [(ngModel)]="model.Description">
-              </md-input-container>
-            </td>
-            <td>
-              <button md-raised-button color="primary" (click)="doDescriptionFilter()">Filter Description</button>
-            </td>
-            <td>
-              <md-input-container>
-                <input mdInput placeholder="AccommodationType" name="AccomTypeName" [mdAutocomplete]="auto" [(ngModel)]="model.AccomTypeName">
-              </md-input-container>
+  <table class="example-full-width" cellspacing="5">
+    <tr>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Name" name="Name" [(ngModel)]="model.Name">
+        </md-input-container>
+      </td>
+      <td>
+        <button md-raised-button color="primary" (click)="doNameFilter()">Filter Names</button>
+      </td>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Description" name="Description" [(ngModel)]="model.Description">
+        </md-input-container>
+      </td>
+      <td>
+        <button md-raised-button color="primary" (click)="doDescriptionFilter()">Filter Description</button>
+      </td>
+      <td>
+        <md-input-container>
+          <input mdInput placeholder="AccommodationType" name="AccomTypeName" [mdAutocomplete]="auto" [(ngModel)]="model.AccomTypeName">
+        </md-input-container>
 
-              <md-autocomplete #auto="mdAutocomplete">
-                <md-option *ngFor="let myAccType of acctypes" value={{myAccType.Name}}>
-                  {{myAccType.Name}}
-                </md-option>
-              </md-autocomplete>
-            </td>
-            <td>
-              <button md-raised-button color="primary" (click)="doATypeFilter()">Filter Accommodation Types</button>
-            </td>
-          </tr>
-        </table>
-          <md-grid-list cols="3">
-            <ng-container *ngFor="let myAccommodation of pageAccommodations">
-              <md-grid-tile>
-                <app-accommodation-row [accommodation]="myAccommodation">
-                </app-accommodation-row>
-              </md-grid-tile>
-            </ng-container>
-            <!-- </md-list> -->
-          </md-grid-list>
+        <md-autocomplete #auto="mdAutocomplete">
+          <md-option *ngFor="let myAccType of acctypes" value={{myAccType.Name}}>
+            {{myAccType.Name}}
+          </md-option>
+        </md-autocomplete>
+      </td>
+      <td>
+        <button md-raised-button color="primary" (click)="doATypeFilter()">Filter Accommodation Types</button>
+      </td>
+      <td>
+        <button md-raised-button color="primary" (click)="cancelFilters()">Remove Filters</button>
+      </td>
+    </tr>
+  </table>
+  <md-grid-list cols="3">
+    <ng-container *ngFor="let myAccommodation of pageAccommodations">
+      <md-grid-tile>
+        <app-accommodation-row [accommodation]="myAccommodation">
+        </app-accommodation-row>
+      </md-grid-tile>
+    </ng-container>
+    <!-- </md-list> -->
+  </md-grid-list>
   <table>
     <tr>
       <td>
-        <ng-container *ngFor="let number of pageNumbers">
-          <button md-raised-button (click)="doPaginacija(number,accListPlace)">{{number}} </button>
+        <ng-container *ngIf="noneFilterOn == true">
+          <ng-container *ngFor="let number of pageNumbers">
+            <button md-raised-button (click)="doPaginacija(number,accListPlace)">{{number}} </button>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="nameFilterOn == true">
+          <ng-container *ngFor="let number of pageNumbers">
+            <button md-raised-button (click)="doNamePaginacija(number,accListPlace)">{{number}} </button>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="actypeFilterOn == true">
+          <ng-container *ngFor="let number of pageNumbers">
+            <button md-raised-button (click)="doATypePaginacija(number,accListPlace)">{{number}} </button>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="descFilterOn == true">
+          <ng-container *ngFor="let number of pageNumbers">
+            <button md-raised-button (click)="doDescriptionPaginacija(number,accListPlace)">{{number}} </button>
+          </ng-container>
         </ng-container>
       </td>
     </tr>
