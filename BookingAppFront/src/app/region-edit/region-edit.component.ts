@@ -4,6 +4,7 @@ import { Region } from "app/country/region/region";
 import { HttpService } from "app/service/http-service";
 import { AdminService } from "app/service/admin-service";
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
   selector: 'app-region-edit',
@@ -18,7 +19,7 @@ export class RegionEditComponent implements OnInit {
   country: Country;
   region: Region;
 
-  constructor(private httpService: HttpService, private adminService: AdminService,
+  constructor(private notifService: NotificationService, private httpService: HttpService, private adminService: AdminService,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -42,13 +43,17 @@ export class RegionEditComponent implements OnInit {
             });
           },
           error => {
-            alert("Unsuccessful fetch operation!");
+            // alert("Unsuccessful fetch operation!");
+            this.notifService.show("Error fetching regions!", {type: 'error', position:'bottom'});
+
             console.log(error);
           }
         );
       },
       error => {
-        alert("Unsuccessful fetch operation!");
+        // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching countries!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );
@@ -69,9 +74,13 @@ export class RegionEditComponent implements OnInit {
       (regs: any) => {
         // this.countries = conts;
         //console.log(this.countries)
+        this.notifService.show("Successfully deleted region!", {type: 'success', position:'bottom'});
+        this.ngOnInit();
       },
       error => {
-        alert("Unsuccessful delete operation!");
+        // alert("Unsuccessful delete operation!");
+        this.notifService.show("Error fetching region!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );
@@ -108,9 +117,15 @@ export class RegionEditComponent implements OnInit {
       (regs: any) => {
         // this.countries = conts;
         console.log(this.regions)
+        this.notifService.show("Successfully edited region!", {type: 'success', position:'bottom'});
+            
+        this.model = {};
+        this.ngOnInit();
       },
       error => {
-        alert("Unsuccessful put operation!");
+        // alert("Unsuccessful put operation!");
+        this.notifService.show("Error editing region!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );
