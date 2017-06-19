@@ -9,6 +9,9 @@ import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ImageUploadModule} from 'angular2-image-upload';
 import { AgmCoreModule } from '@agm/core';
+import { NgNotifyPopup } from 'ng2-notify-popup';
+import { NotificationService } from "ng2-notify-popup";
+
 //import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -46,7 +49,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { AdminService } from "app/service/admin-service";
 import { ManagerService } from "app/service/manager-service";
 import { NotificationComponent } from './notification/notification.component';
-import { NotificationService } from "app/service/notification-service";
+import { NotificationServiceWS } from "app/service/notification-service";
 import { RoomAddComponent } from './room-add/room-add.component';
 import { RoomEditComponent } from './room-edit/room-edit.component';
 import { AccommodationEditComponent } from './accommodation-edit/accommodation-edit.component';
@@ -109,10 +112,11 @@ const Routes =
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCbacKCVoG5Oplis1L0IOvOy5Dwm3i3ICU'
     }),
-    StarRatingModule
+    StarRatingModule,
+    NgNotifyPopup
     //Material AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk
   ],
-  providers: [HttpService, AuthService, LogInGuard, ManagerService, AdminService, NotificationService],
+  providers: [HttpService, AuthService, LogInGuard, ManagerService, AdminService, NotificationServiceWS, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

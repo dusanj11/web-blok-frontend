@@ -7,7 +7,7 @@ import { Accommodation } from "app/accommodation/accommodation";
 declare var $: any;  
 
 @Injectable()  
-export class NotificationService {  
+export class NotificationServiceWS {  
     // Declare the variables  
     private proxy: any;  
     private proxyName: string = 'notifications';  

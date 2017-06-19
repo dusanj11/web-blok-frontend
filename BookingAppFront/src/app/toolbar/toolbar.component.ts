@@ -5,7 +5,7 @@ import {
 } from '@angular/router';
 import { CurrentUser } from '../model/current-user';
 import { AuthService } from "app/service/auth-service";
-import { NotificationService } from "app/service/notification-service";
+import { NotificationServiceWS } from "app/service/notification-service";
 
 @Injectable()
 @Component({
@@ -21,7 +21,7 @@ export class ToolbarComponent implements OnInit {
   constructor( private router: Router,
                private activatedRoute: ActivatedRoute,
                private authService: AuthService,
-               private notifService: NotificationService) {  }
+               private notifService: NotificationServiceWS) {  }
 
 
   checkIfAdminManager(): boolean {
