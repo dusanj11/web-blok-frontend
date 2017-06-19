@@ -3,6 +3,7 @@ import { Country } from "app/country/country";
 import { HttpService } from "app/service/http-service";
 import { AuthService } from "app/service/auth-service";
 import { AdminService } from "app/service/admin-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
   selector: 'app-country-edit',
@@ -15,7 +16,7 @@ countries: Country[];
 model: any={};
 country: Country;
 
-  constructor(private httpService: HttpService, private authService: AuthService, private adminService: AdminService) { }
+  constructor(private notifService: NotificationService, private httpService: HttpService, private authService: AuthService, private adminService: AdminService) { }
 
   ngOnInit() {
     this.adminService.getCountries().subscribe(
@@ -24,7 +25,9 @@ country: Country;
                 //console.log(this.countries)
               },
         error => {
-            alert("Unsuccessful fetch operation!");
+            // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching countries!", {type: 'error', position:'bottom'});
+
             console.log(error);
         }
     );
@@ -45,9 +48,13 @@ country: Country;
        (conts: any) => {
                 // this.countries = conts;
                 //console.log(this.countries)
+                this.notifService.show("Successfully deleted country!", {type: 'success', position:'bottom'});
+                this.ngOnInit();
               },
         error => {
-            alert("Unsuccessful delete operation!");
+            // alert("Unsuccessful delete operation!");
+            this.notifService.show("Error deleting country!", {type: 'error', position:'bottom'});
+
             console.log(error);
         }
     );
@@ -79,10 +86,16 @@ country: Country;
       this.adminService.putCountry(this.country, access_token).subscribe(
        (conts: any) => {
                 // this.countries = conts;
-                console.log(this.countries)
+                this.notifService.show("Successfully edited country!", {type: 'success', position:'bottom'});
+
+                console.log(this.countries);
+                this.model = {};
+                this.ngOnInit();
               },
         error => {
-            alert("Unsuccessful put operation!");
+            // alert("Unsuccessful put operation!");
+            this.notifService.show("Error editing country!", {type: 'error', position:'bottom'});
+
             console.log(error);
         }
     );
