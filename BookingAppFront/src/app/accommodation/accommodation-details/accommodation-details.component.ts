@@ -67,7 +67,7 @@ export class AccommodationDetailsComponent implements OnInit {
             this.accommodation = res;
       },
       error => {
-      this.notifService.show("Error fetching accommodation details!", {type: 'error', position:'bottom'});
+            this.notifService.show("Error fetching accommodation details!", {type: 'error', position:'bottom'});
 
             console.log(error);
       }

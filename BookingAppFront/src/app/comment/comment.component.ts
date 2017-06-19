@@ -136,7 +136,7 @@ export class CommentComponent implements OnInit {
           
       },
       error => {
-        this.notifService.show("Error fetching comments!", {type: 'error', position:'bottom'});
+        // this.notifService.show("Error fetching comments!", {type: 'error', position:'bottom'});
 
           console.log(error);
       }

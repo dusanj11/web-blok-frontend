@@ -133,66 +133,57 @@ export class HttpService {
     }
 
     //filtriranje
-    getFilteredAccommodation(name: string, placeId: number): Observable<any>
-    {
+    getFilteredAccommodation(name: string, placeId: number): Observable<any> {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Name) and PlaceId eq ${placeId}`);
     }
-    getNamePaginationAccommodation(name: string, placeId: number, pgNumber: number): Observable<any>
-    {
+    getNamePaginationAccommodation(name: string, placeId: number, pgNumber: number): Observable<any> {
         let skipNumber: number;
-        skipNumber = pgNumber*3 - 3;
+        skipNumber = pgNumber * 3 - 3;
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Name) and PlaceId eq ${placeId} &$top=3&$skip=${skipNumber}`);
     }
 
-    getFilteredAccommodationTypes(id: number, placeId: number): Observable<any>
-    {
+    getFilteredAccommodationTypes(id: number, placeId: number): Observable<any> {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq ${id} and PlaceId eq ${placeId}`);
     }
 
-    
-    getAccommodationTypesPagination(id: number, placeId: number, pgNumber: number): Observable<any>
-    {
+
+    getAccommodationTypesPagination(id: number, placeId: number, pgNumber: number): Observable<any> {
         let skipNumber: number;
-        skipNumber = pgNumber*3 - 3;
+        skipNumber = pgNumber * 3 - 3;
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=AccommodationTypeId eq ${id} and PlaceId eq ${placeId} &$top=3&$skip=${skipNumber}`);
     }
 
-    getDescriptionAccommodationFiltered(name: string, placeId: number): Observable<any>
-    {
+    getDescriptionAccommodationFiltered(name: string, placeId: number): Observable<any> {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Description) and PlaceId eq ${placeId}`);
     }
 
-    getDescriptionPaginationAccommodation(name: string, placeId: number, pgNumber: number): Observable<any>
-    {
+    getDescriptionPaginationAccommodation(name: string, placeId: number, pgNumber: number): Observable<any> {
         let skipNumber: number;
-        skipNumber = pgNumber*3 - 3;
+        skipNumber = pgNumber * 3 - 3;
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Description) and PlaceId eq ${placeId} &$top=3&$skip=${skipNumber}`);
     }
 
-    getBedCountFiltered(num: number): Observable<any>
-    {
-       return this.http.get(`http://localhost:54042/api/room/rooms?$filter=BedCount eq ${num}`);
+    getBedCountFiltered(num: number): Observable<any> {
+        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=BedCount eq ${num}`);
     }
 
-    getDescriptionRoomsFiltered(name: string): Observable<any>
-    {
+    getDescriptionRoomsFiltered(name: string): Observable<any> {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
         return this.http.get(`http://localhost:54042/api/room/rooms?$filter=substringof(\'${name}\',Description)`);
     }
 
-    getPriceFiltered(minPrice: number, maxPrice: number)
-    {
+    getPriceFiltered(minPrice: number, maxPrice: number) {
         return this.http.get(`http://localhost:54042/api/room/rooms?$filter=PricePerNight ge ${minPrice} and PricePerNight le ${maxPrice}`);
-    
+
     }
 
-    getUserById(userId: number, access_token: string): Observable<any>{
+    getUserById(userId: number, access_token: string): Observable<any> {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
@@ -205,12 +196,12 @@ export class HttpService {
         return this.http.get(`http://localhost:54042/api/AppUser/AppUsers/${userId}`, opts);
     }
 
-    getApprovedAccommodations(){
+    getApprovedAccommodations() {
         return this.http.get("http://localhost:54042/api/accommodation/accommodations/approved");
     }
 
 
-    getRoomReservations(id: number, access_token: string){
+    getRoomReservations(id: number, access_token: string) {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
@@ -221,5 +212,19 @@ export class HttpService {
         opts.headers = headers;
 
         return this.http.get(`http://localhost:54042/api/RoomReservation/roomReservations/${id}`, opts);
+    }
+
+    deleteRoomReservation(id: number, access_token: string) {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.delete(`http://localhost:54042/api/RoomReservation/roomReservations/delete/${id}`, opts);
+
     }
 }
