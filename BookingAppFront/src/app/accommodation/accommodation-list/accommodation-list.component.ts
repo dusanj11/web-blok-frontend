@@ -169,10 +169,12 @@ cancelFilters()
         this.descFilterOn = false;
         this.noneFilterOn = false;
 
+        this.pageNumbers = [];
         this.totalNumber = this.pageAccommodations.length;
         this.totalPages = this.totalNumber / 3;
         for (var index = 1; index < (this.totalPages + 1); index++) {
           this.pageNumbers.push(index);
+
 
         }
       },
@@ -202,6 +204,7 @@ cancelFilters()
         this.descFilterOn = false;
         this.noneFilterOn = false;
 
+        this.pageNumbers = [];
         this.totalNumber = this.pageAccommodations.length;
         this.totalPages = this.totalNumber / 3;
         for (var index = 1; index < (this.totalPages + 1); index++) {
@@ -230,6 +233,7 @@ cancelFilters()
         this.descFilterOn = true;
         this.noneFilterOn = false;
 
+        this.pageNumbers = [];
         this.totalNumber = this.pageAccommodations.length;
         this.totalPages = this.totalNumber / 3;
         for (var index = 1; index < (this.totalPages + 1); index++) {
