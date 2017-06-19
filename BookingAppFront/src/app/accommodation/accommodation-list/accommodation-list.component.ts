@@ -201,7 +201,7 @@ export class AccommodationListComponent implements OnInit {
 
   doNameFilter() {
     this.accommodationsOfThisPlace = [];
-    this.managerService.getAccommodation().subscribe(
+    this.httpService.getFilteredAccommodation(this.model.Name, this.accListPlace).subscribe(
       (res: any) => {
         this.accommodationList = res; //JSON.parse(res._body);
         console.log(this.accommodationList);
@@ -251,17 +251,18 @@ export class AccommodationListComponent implements OnInit {
 
   doATypeFilter() {
     this.accommodationsOfThisPlace = [];
-    this.managerService.getAccommodation().subscribe(
+    this.acctypes.forEach(element => {
+      if (element.Name == this.model.AccomTypeName) {
+        this.model.ATId = element.Id;
+      }
+
+    });
+    this.httpService.getFilteredAccommodationTypes(this.model.ATId, this.accListPlace).subscribe(
       (res: any) => {
         this.accommodationList = res; //JSON.parse(res._body);
         console.log(this.accommodationList);
 
-        this.acctypes.forEach(element => {
-          if (element.Name == this.model.AccomTypeName) {
-            this.model.ATId = element.Id;
-          }
 
-        });
         this.httpService.getAccommodationTypesPagination(this.model.ATId, this.accListPlace, 1).subscribe(
           (accs: any) => {
             this.pageAccommodations = JSON.parse(accs._body);
@@ -309,7 +310,7 @@ export class AccommodationListComponent implements OnInit {
 
   doDescriptionFilter() {
     this.accommodationsOfThisPlace = [];
-    this.managerService.getAccommodation().subscribe(
+    this.httpService.getDescriptionAccommodationFiltered(this.model.Description, this.accListPlace).subscribe(
       (res: any) => {
         this.accommodationList = res; //JSON.parse(res._body);
         console.log(this.accommodationList);
