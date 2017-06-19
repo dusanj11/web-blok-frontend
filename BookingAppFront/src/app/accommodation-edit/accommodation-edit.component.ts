@@ -96,11 +96,9 @@ export class AccommodationEditComponent implements OnInit {
 
   mapClicked($event: any)
     {
-      this.model = 
-      {
-        Latitude: $event.coords.lat,
-        Longitude: $event.coords.lng
-      }
+      this.model.Latitude = $event.coords.lat;
+      this.model.Longitude = $event.coords.lng;
+
 
       console.log(this.model.Latitude + " " + this.model.Longitude);
     }
