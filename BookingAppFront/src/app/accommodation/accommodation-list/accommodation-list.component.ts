@@ -324,8 +324,8 @@ export class AccommodationListComponent implements OnInit {
             this.descFilterOn = true;
             this.noneFilterOn = false;
 
-           this.pageNumbers = []; 
-           this.accommodationList.forEach(element => {
+            this.pageNumbers = [];
+            this.accommodationList.forEach(element => {
               if (element.PlaceId == this.accListPlace) {
                 this.accommodationsOfThisPlace.push(element);
               }
