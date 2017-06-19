@@ -20,7 +20,12 @@ export class NotificationServiceWS {
     public connectionExists: Boolean;  
     public authService: AuthService;
    
+
+
     constructor() {  
+
+        
+
         // Constructor initialization  
         this.connectionEstablished = new EventEmitter < Boolean > ();  
         this.notificationReceived = new EventEmitter < Accommodation > ();  //*

@@ -14,11 +14,13 @@ export class NotificationComponent implements OnInit {
   isConnected: Boolean;
   notifications: Accommodation[]; // **
   time: string;
-
+  
   constructor(private notifService: NotificationServiceWS, private ngZone: NgZone,
               private httpService: HttpService, private authService: AuthService) {
     this.isConnected = false;
     this.notifications = [];
+    
+    this.ngZone = new NgZone({enableLongStackTrace: false});
   }
 
 
@@ -56,7 +58,7 @@ export class NotificationComponent implements OnInit {
       //       console.log(error);
       //   }
       // );
-
+      console.log("Notification received");
       this.notifications.push(notif);
     });
   }
