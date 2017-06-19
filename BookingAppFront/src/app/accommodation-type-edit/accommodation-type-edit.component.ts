@@ -53,7 +53,7 @@ acctype: AccomodationType;
                 // this.countries = conts;
                 //console.log(this.countries)
                 this.notifService.show("Successfully deleted accommodation type!", {type: 'success', position:'bottom'});
-                
+                this.ngOnInit();
               },
         error => {
             // alert("Unsuccessful delete operation!");
@@ -93,6 +93,7 @@ acctype: AccomodationType;
 
                 console.log(this.acctypes);
                 this.model = {};
+                this.ngOnInit();
 
               },
         error => {

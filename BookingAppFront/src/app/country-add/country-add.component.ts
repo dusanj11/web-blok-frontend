@@ -4,6 +4,8 @@ import { HttpService } from "app/service/http-service";
 import { NgForm } from "@angular/forms";
 import { AdminService } from "app/service/admin-service";
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "ng2-notify-popup";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-country-add',
@@ -12,7 +14,7 @@ import { AuthService } from "app/service/auth-service";
 })
 export class CountryAddComponent implements OnInit {
 
-  constructor(private httpService: HttpService, private adminService: AdminService,
+  constructor(private router: Router, private notifService: NotificationService, private httpService: HttpService, private adminService: AdminService,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -25,9 +27,12 @@ export class CountryAddComponent implements OnInit {
       this.adminService.postCountry(con, access_token).subscribe(
       (conts: any) => {
                 //console.log(this.conts);
+                this.notifService.show("Successfully added new country!", {type: 'success', position:'bottom'});
+                this.router.navigate(['/administration']);
               },
         error => {
-            alert("Unsuccessful post operation!");
+            // alert("Unsuccessful post operation!");
+            this.notifService.show("Error adding new country!", {type: 'error', position:'bottom'});
             console.log(error);
         }
     );

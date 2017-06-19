@@ -4,6 +4,7 @@ import { Region } from "app/country/region/region";
 import { HttpService } from "app/service/http-service";
 import { AdminService } from "app/service/admin-service";
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
   selector: 'app-place-edit',
@@ -18,7 +19,7 @@ export class PlaceEditComponent implements OnInit {
   place: Place;
   region: Region;
 
-  constructor(private httpService: HttpService, private adminService: AdminService,
+  constructor(private notifService: NotificationService, private httpService: HttpService, private adminService: AdminService,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -44,13 +45,17 @@ export class PlaceEditComponent implements OnInit {
 
           },
           error => {
-            alert("Unsuccessful fetch operation!");
+            // alert("Unsuccessful fetch operation!");
+            this.notifService.show("Error fetching places!", {type: 'error', position:'bottom'});
+
             console.log(error);
           }
         );
       },
       error => {
-        alert("Unsuccessful fetch operation!");
+        // alert("Unsuccessful fetch operation!");
+        this.notifService.show("Error fetching regions!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );
@@ -74,9 +79,13 @@ export class PlaceEditComponent implements OnInit {
       (plcs: any) => {
         // this.countries = conts;
         //console.log(this.countries)
+        this.notifService.show("Successfully deleted place!", {type: 'success', position:'bottom'});
+        this.ngOnInit();
       },
       error => {
-        alert("Unsuccessful delete operation!");
+        // alert("Unsuccessful delete operation!");
+        this.notifService.show("Error deleting place!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );
@@ -113,10 +122,16 @@ export class PlaceEditComponent implements OnInit {
     this.adminService.putPlace(this.place, access_token).subscribe(
       (plcs: any) => {
         // this.countries = conts;
-        console.log(this.places)
+        this.notifService.show("Successfully edited place!", {type: 'success', position:'bottom'});
+
+        console.log(this.places);
+        this.model = {};
+        this.ngOnInit();
       },
       error => {
-        alert("Unsuccessful put operation!");
+        // alert("Unsuccessful put operation!");
+        this.notifService.show("Error editing place!", {type: 'error', position:'bottom'});
+
         console.log(error);
       }
     );

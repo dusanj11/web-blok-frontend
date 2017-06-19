@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { Place } from './place';
 import { HttpService } from "app/service/http-service";
 import { AdminService } from "app/service/admin-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
   selector: 'app-place',
@@ -13,7 +14,7 @@ export class PlaceComponent implements OnInit {
   places: Place[];
   @Input() placeReg : number;
 
-  constructor(private httpService: HttpService, private adminService: AdminService) {
+  constructor(private notifService: NotificationService, private httpService: HttpService, private adminService: AdminService) {
     // this.places = [
     //   // new Place(1,"Novi Sad", 1),
     //   // new Place(2,"Beograd", 2),
@@ -31,7 +32,9 @@ export class PlaceComponent implements OnInit {
             //console.log(this.places);
           },
       error => {
-          alert("Unsuccessful fetch operation!");
+          // alert("Unsuccessful fetch operation!");
+          this.notifService.show("Error fetching places!", {type: 'error', position:'bottom'});
+
           console.log(error);
       }
     );
