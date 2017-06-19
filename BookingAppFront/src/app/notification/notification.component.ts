@@ -3,6 +3,8 @@ import { NotificationServiceWS } from "app/service/notification-service";
 import { Accommodation } from "app/accommodation/accommodation";
 import { HttpService } from "app/service/http-service";
 import { AuthService } from "app/service/auth-service";
+import { AdminService } from "app/service/admin-service";
+import { NotificationService } from "ng2-notify-popup";
 
 @Component({
   selector: 'app-notification',
@@ -17,7 +19,8 @@ export class NotificationComponent implements OnInit {
   Manager: any;
 
   constructor(private notifService: NotificationServiceWS, private ngZone: NgZone,
-    private httpService: HttpService, private authService: AuthService) {
+              private httpService: HttpService, private authService: AuthService,
+              private adminService: AdminService, private notificationService: NotificationService) {
     this.isConnected = false;
     this.notifications = [];
 
@@ -101,5 +104,13 @@ export class NotificationComponent implements OnInit {
 
   acceptAccommodation(id: number){
       console.log(`Notification approved: ${id}`);
+      let role = this.authService.currentUserRole();
+      console.log(role);
+      let token = this.authService.currentUserToken();
+      this.adminService.approveAccommodation(id,token).subscribe(
+        (res:any) => {
+            this.notificationService.show("Accommodation approved!", {type: 'success', position:'bottom'});
+        }
+      );
   }
 }

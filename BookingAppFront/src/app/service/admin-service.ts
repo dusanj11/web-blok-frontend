@@ -189,4 +189,18 @@ export class AdminService {
             opts);
     }
 
+
+    approveAccommodation(id: number, access_token: string) {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(`http://localhost:54042/api/accommodation/approve/${id}`, opts);
+    }
+
 }
