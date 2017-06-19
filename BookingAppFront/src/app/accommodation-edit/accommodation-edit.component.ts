@@ -107,7 +107,8 @@ export class AccommodationEditComponent implements OnInit {
           this.notifService.show("Successfully deleted accommodation!", {type: 'success', position:'bottom'});
             console.log("Accommodation deleted");
             //kada uspesno izbrises vrati na administraciju
-            this.router.navigate(['/administration']);
+            // this.router.navigate(['/administration']);
+            this.ngOnInit();
         },
         error => {
             // alert("Unsuccessful delete operation!");
@@ -180,6 +181,7 @@ export class AccommodationEditComponent implements OnInit {
               
             //kada uspesno edituje isprazniti model
             this.model = {};
+            this.ngOnInit();
         },
         error => {
           this.notifService.show("Error editing accommodation!", {type: 'error', position:'bottom'});

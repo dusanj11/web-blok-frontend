@@ -3,6 +3,8 @@ import { AccomodationType } from "app/accomodation-type/accomodation-type";
 import { HttpService } from "app/service/http-service";
 import { ManagerService } from "app/service/manager-service";
 import { AuthService } from "app/service/auth-service";
+import { NotificationService } from "ng2-notify-popup";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-accommodation-type-edit',
@@ -16,7 +18,7 @@ model: any={};
 acctype: AccomodationType;
 
 
-  constructor(private httpService: HttpService, private managerService: ManagerService,
+  constructor(private router: Router, private notifService: NotificationService, private httpService: HttpService, private managerService: ManagerService,
               private authService: AuthService) { }
 
   ngOnInit() {
@@ -27,7 +29,9 @@ acctype: AccomodationType;
                 //console.log(this.countries)
               },
         error => {
-            alert("Unsuccessful fetch operation!");
+            // alert("Unsuccessful fetch operation!");
+            this.notifService.show("Error fetching accommodation types!", {type: 'error', position:'bottom'});
+
             console.log(error);
         }
     );
@@ -48,9 +52,13 @@ acctype: AccomodationType;
        (regs: any) => {
                 // this.countries = conts;
                 //console.log(this.countries)
+                this.notifService.show("Successfully deleted accommodation type!", {type: 'success', position:'bottom'});
+                
               },
         error => {
-            alert("Unsuccessful delete operation!");
+            // alert("Unsuccessful delete operation!");
+            this.notifService.show("Error deleting accommodation type!", {type: 'error', position:'bottom'});
+
             console.log(error);
         }
     );
@@ -81,10 +89,16 @@ acctype: AccomodationType;
       this.managerService.putAccommodationType(this.acctype, access_token).subscribe(
        (regs: any) => {
                 // this.countries = conts;
-                console.log(this.acctypes)
+                this.notifService.show("Successfully edited accommodation type!", {type: 'success', position:'bottom'});
+
+                console.log(this.acctypes);
+                this.model = {};
+
               },
         error => {
-            alert("Unsuccessful put operation!");
+            // alert("Unsuccessful put operation!");
+            this.notifService.show("Error editing accommodaton type!", {type: 'error', position:'bottom'});
+
             console.log(error);
         }
     );
