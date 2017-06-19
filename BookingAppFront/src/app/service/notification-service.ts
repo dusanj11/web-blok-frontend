@@ -14,7 +14,7 @@ export class NotificationServiceWS {
     private connection: any;  
 
     // create the Event Emitter  
-    public notificationReceived: EventEmitter < Accommodation >;  
+    public notificationReceived: EventEmitter < Accommodation >;   // *
     public connectionEstablished: EventEmitter < Boolean >;  
     public timeReceived: EventEmitter< string >;
     public connectionExists: Boolean;  
@@ -23,7 +23,7 @@ export class NotificationServiceWS {
     constructor() {  
         // Constructor initialization  
         this.connectionEstablished = new EventEmitter < Boolean > ();  
-        this.notificationReceived = new EventEmitter < Accommodation > (); 
+        this.notificationReceived = new EventEmitter < Accommodation > ();  //*
         this.timeReceived = new EventEmitter < string > (); 
         this.connectionExists = false;  
         this.authService = new AuthService();
@@ -66,7 +66,7 @@ export class NotificationServiceWS {
     }  
     private registerOnServerEvents(): void {  
         
-        this.proxy.on('clickNotification', (data: Accommodation) => {  
+        this.proxy.on('clickNotification', (data: Accommodation) => {      //*
             console.log('received notification: ' + data);  
             this.notificationReceived.emit(data);  
         }); 

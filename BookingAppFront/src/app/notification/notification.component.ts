@@ -12,7 +12,7 @@ import { AuthService } from "app/service/auth-service";
 export class NotificationComponent implements OnInit {
 
   isConnected: Boolean;
-  notifications: any[];
+  notifications: Accommodation[]; // **
   time: string;
 
   constructor(private notifService: NotificationServiceWS, private ngZone: NgZone,
@@ -42,20 +42,20 @@ export class NotificationComponent implements OnInit {
     this.notifService.notificationReceived.subscribe(e => this.onNotification(e));
   }
 
-  public onNotification(notif: any) {
+  public onNotification(notif: Accommodation) { // * 
     let FullName: string;
 
     this.ngZone.run(() => {
-      let token = this.authService.currentUserToken();
-      this.httpService.getUserById(notif.AppUserId, token).subscribe(
-        (res: any) => {
-            FullName = res.FullName;
-            notif.FullName = res.FullName;
-        },
-        error => {
-            console.log(error);
-        }
-      );
+      // let token = this.authService.currentUserToken();
+      // this.httpService.getUserById(notif.AppUserId, token).subscribe(
+      //   (res: any) => {
+      //       FullName = res.FullName;
+      //       notif.FullName = res.FullName;
+      //   },
+      //   error => {
+      //       console.log(error);
+      //   }
+      // );
 
       this.notifications.push(notif);
     });
