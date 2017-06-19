@@ -35,8 +35,8 @@
           </tr>
         </table>
           <md-grid-list cols="3">
-            <ng-container *ngFor="let myAccommodation of accommodationList">
-              <md-grid-tile *ngIf=" myAccommodation.PlaceId == accListPlace">
+            <ng-container *ngFor="let myAccommodation of pageAccommodations">
+              <md-grid-tile>
                 <app-accommodation-row [accommodation]="myAccommodation">
                 </app-accommodation-row>
               </md-grid-tile>
@@ -44,3 +44,12 @@
             <!-- </md-list> -->
           </md-grid-list>
 </md-card>
+<table>
+    <tr>
+      <td>
+        <ng-container *ngFor="let number of pageNumbers">
+          <button md-raised-button (click)="doPaginacija(number,accListPlace)">{{number}} </button>
+        </ng-container>
+      </td>
+    </tr>
+  </table>

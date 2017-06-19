@@ -2,14 +2,6 @@
 
   <app-accommodation-list [accommodationList]="accommodations" [accListPlace]="accPlace">
   </app-accommodation-list>
-  <table>
-    <tr>
-      <td>
-        <ng-container *ngFor="let number of pageNumbers">
-          <button md-raised-button (click)="doPaginacija(number)">{{number}} </button>
-        </ng-container>
-      </td>
-    </tr>
-  </table>
+  
 </div>
 

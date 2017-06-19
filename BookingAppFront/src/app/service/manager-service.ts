@@ -23,12 +23,12 @@ export class ManagerService {
         return this.http.get("http://localhost:54042/api/accommodation/accommodations").map(this.extractData);
     }
     
-    getPaginationAccommodation(pgNumber: number): Observable<any>
+    getPaginationAccommodation(pgNumber: number, placeId: number): Observable<any>
     {
         let skipNumber: number;
         skipNumber = pgNumber*3 - 3;
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
-        return this.http.get(`http://localhost:54042/api/accommodation/accommodations/approved?$top=3&$skip=${skipNumber}&$inlinecount=allpages`);
+        return this.http.get(`http://localhost:54042/api/accommodation/accommodations/approved?$filter=PlaceId eq ${placeId}&$top=3&$skip=${skipNumber}`);
     }
 
     getAccommodationDetails(id: number): Observable<Accommodation>{

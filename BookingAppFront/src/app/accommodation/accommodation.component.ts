@@ -16,10 +16,7 @@ export class AccommodationComponent implements OnInit {
     accommodations: Accommodation[] = [];
 
     @Input() accPlace: number;
-    pageNumber: number;
-    totalNumber: number;
-    totalPages: number;
-    pageNumbers: number[] = [];
+   
 
     constructor(private notifService: NotificationService, private httpService: HttpService, private managerService: ManagerService) {
 
@@ -33,26 +30,7 @@ export class AccommodationComponent implements OnInit {
             (res: any) => {
                 this.accommodationsAll = res;
                 console.log(this.accommodations);
-                this.pageNumber = 1;
-                this.totalNumber = this.accommodationsAll.length;
-                this.totalPages = this.totalNumber / 3;
-                for (var index = 1; index < (this.totalPages+1); index++) {
-                    this.pageNumbers.push(index);
-
-                }
-                //this.pageNumbers = Array(Math.ceil(this.totalPages)).map((x, i) => i);
-                this.managerService.getPaginationAccommodation(this.pageNumber).subscribe(
-                    (res2: any) => {
-                        this.accommodations = JSON.parse(res2._body);
-                        console.log(this.accommodations);
-                    },
-                    error => {
-                        //alert("Unsuccessful fetch operation!");
-                        this.notifService.show("Error fetching page accommodations!", {type: 'error', position:'bottom'});
-                        console.log(error);
-                    }
-                );
-
+                
             },
             error => {
                 //alert("Unsuccessful fetch operation!");
@@ -63,19 +41,6 @@ export class AccommodationComponent implements OnInit {
         );
     }
 
-    doPaginacija(pageNumber: number) {
-        this.managerService.getPaginationAccommodation(pageNumber).subscribe(
-            (res2: any) => {
-                this.accommodations = JSON.parse(res2._body);
-                console.log(this.accommodations);
-            },
-            error => {
-                // alert("Unsuccessful fetch operation!");
-                this.notifService.show("Error fetching page accommodations!", {type: 'error', position:'bottom'});
-
-                console.log(error);
-            }
-        );
-    }
+    
 
 }
