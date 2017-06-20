@@ -17,6 +17,7 @@ export class NotificationServiceWS {
     public notificationReceived: EventEmitter<Accommodation>;   // *
     public connectionEstablished: EventEmitter<Boolean>;
     public timeReceived: EventEmitter<string>;
+    public approvedAccommodationRecieved: EventEmitter<Accommodation>;
     public connectionExists: Boolean;
     public authService: AuthService;
 
@@ -30,6 +31,7 @@ export class NotificationServiceWS {
         this.connectionEstablished = new EventEmitter<Boolean>();
         this.notificationReceived = new EventEmitter<Accommodation>();  //*
         this.timeReceived = new EventEmitter<string>();
+        this.approvedAccommodationRecieved = new EventEmitter<Accommodation>();
         this.connectionExists = false;
         this.authService = new AuthService();
 
@@ -46,6 +48,7 @@ export class NotificationServiceWS {
         this.registerForTimerEvents();
         // call the connecion start method to start the connection to send and receive events. 
         this.startConnection();
+        this.registerOnApprovingNotification();
         // this.proxy.on('hello', (data:string)=>{
         //     console.log(data);
         // })
@@ -74,6 +77,14 @@ export class NotificationServiceWS {
         this.proxy.on('clickNotification', (data: Accommodation) => {      //*
             console.log('received notification: ' + data);
             this.notificationReceived.emit(data);
+        });
+    }
+
+    private registerOnApprovingNotification(): void {
+
+        this.proxy.on('recieveApprovedAccomodation', (data: Accommodation) => {      //*
+            console.log('received approved accommodation: ' + data);
+            this.approvedAccommodationRecieved.emit(data);
         });
     }
 

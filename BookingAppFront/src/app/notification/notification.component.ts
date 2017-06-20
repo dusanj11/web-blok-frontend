@@ -13,15 +13,18 @@ import { NotificationService } from "ng2-notify-popup";
 })
 export class NotificationComponent implements OnInit {
 
+  admin: boolean;
+  manager: boolean;
   isConnected: Boolean = false;
   notifications: any[] = []; // **
+  approvedNotifications: any[] = [];
   time: string;
   Manager: any;
   ngZone: NgZone;
 
-  constructor(private notifService: NotificationServiceWS, 
-              private httpService: HttpService, private authService: AuthService,
-              private adminService: AdminService, private notificationService: NotificationService) {
+  constructor(private notifService: NotificationServiceWS,
+    private httpService: HttpService, private authService: AuthService,
+    private adminService: AdminService, private notificationService: NotificationService) {
     // this.isConnected = false;
     // this.notifications = [];
 
@@ -30,6 +33,8 @@ export class NotificationComponent implements OnInit {
 
 
   ngOnInit() {
+    this.admin = this.authService.isLoggedInRole("Admin");
+    this.manager = this.authService.isLoggedInRole("Manager");
     this.checkConnection();
     this.subscribeForNotifications();
     this.subscribeForTime();
@@ -74,6 +79,17 @@ export class NotificationComponent implements OnInit {
     });
   }
 
+  private subscribeForApprovedNotification() {
+    this.notifService.approvedAccommodationRecieved.subscribe(e => this.onApprovedNotification(e));
+  }
+
+  public onApprovedNotification(notif: Accommodation) {
+
+    this.ngZone.run(() => {
+      this.approvedNotifications.push(notif);
+      console.log("Approved notification received");
+    });
+  }
 
   subscribeForTime() {
     this.notifService.timeReceived.subscribe(e => this.onTimeEvent(e));
@@ -104,21 +120,21 @@ export class NotificationComponent implements OnInit {
     this.time = "";
   }
 
-  acceptAccommodation(id: number){
-      // this.notifications.forEach(element => {
-      //     if (element.id == id){
+  acceptAccommodation(id: number) {
+    // this.notifications.forEach(element => {
+    //     if (element.id == id){
 
-      //     }
-      // });
+    //     }
+    // });
 
-      console.log(`Notification approved: ${id}`);
-      let role = this.authService.currentUserRole();
-      console.log(role);
-      let token = this.authService.currentUserToken();
-      this.adminService.approveAccommodation(id,token).subscribe(
-        (res:any) => {
-            this.notificationService.show("Accommodation approved!", {type: 'success', position:'bottom'});
-        }
-      );
+    console.log(`Notification approved: ${id}`);
+    let role = this.authService.currentUserRole();
+    console.log(role);
+    let token = this.authService.currentUserToken();
+    this.adminService.approveAccommodation(id, token).subscribe(
+      (res: any) => {
+        this.notificationService.show("Accommodation approved!", { type: 'success', position: 'bottom' });
+      }
+    );
   }
 }

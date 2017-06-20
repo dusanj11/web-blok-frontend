@@ -13,7 +13,7 @@
 </md-list>
 </md-card>-->
 
-<table>
+<table *ngIf="admin">
     <thead>
       <tr>
 
@@ -24,7 +24,7 @@
         <th> </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody >
       <tr *ngFor="let notification of notifications">
 
         <td>{{notification.Name}}</td>
@@ -35,6 +35,31 @@
       </tr>
     </tbody>
   </table>
+
+<table *ngIf="manager">
+    <thead>
+      <tr>
+
+        <th>  Name  </th>
+        <th>  Address  </th>
+        <th>  Place  </th>
+        <th> </th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let notification of approvedNotifications">
+
+        <td> {{notification.Name}}</td>
+        <td> {{notification.Address}} </td>
+        <td> {{notification.Place.Name}} </td>
+        <!--<td><button  md-raised-button  color="accent" (click)="declineAccommodation(notification.Id)">Decline</button></td>-->
+      </tr>
+    </tbody>
+  </table>
+
+
+  
 
 <!--<h1>Current Time</h1>
 <button (click) = "startTimer()">Start Timer</button>
