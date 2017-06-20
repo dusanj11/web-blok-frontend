@@ -3,6 +3,7 @@ export class AppUser {
       public FirstName: string,
       public LastName: string,
       public UserName: string,
-      public FullName: string
+      public FullName: string,
+      public Allowed: boolean
   ){}
 }

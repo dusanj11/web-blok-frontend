@@ -67,7 +67,7 @@ export class RoomReservationComponent implements OnInit {
         },
         error => {
             console.log(error);
-            this.notifService.show("Error making reservation!", {type: 'error', position:'bottom'});
+            this.notifService.show("Reservation allready exists! Choose a different date.", {type: 'error', position:'bottom'});
 
         }
     );

@@ -37,19 +37,20 @@
         </md-tab>
       </md-tab-group>
     </md-tab>
-    <md-tab label="Accommodation">
+    <md-tab label="Accommodation" *ngIf="isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Edit/Delete">
         <app-accommodation-edit>
         </app-accommodation-edit>
         </md-tab>
-        <md-tab label="Add">
-          <app-accommodation-add>
+        <md-tab label="Add" *ngIf="allowed">
+          <app-accommodation-add >
           </app-accommodation-add>
+
         </md-tab>
       </md-tab-group>
     </md-tab>
-    <md-tab label="Room">
+    <md-tab label="Room" *ngIf="isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Edit/Delete">
         <app-room-edit>
@@ -61,7 +62,7 @@
         </md-tab>
       </md-tab-group>
     </md-tab>
-    <md-tab label="Accom Type" >
+    <md-tab label="Accom Type" *ngIf="isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Edit/Delete">
         <app-accommodation-type-edit>
@@ -76,10 +77,11 @@
     <md-tab label="Users" *ngIf="!isLoggedInManager()">
       <md-tab-group [selectedIndex]="0">
         <md-tab label="Show All">
+          <app-users></app-users>
         </md-tab>
       </md-tab-group>
     </md-tab>
-    <md-tab label="Notifications" (selectChange)="notify()">
+    <md-tab label="Notifications" (selectChange)="notify()" *ngIf="!isLoggedInManager()">
       <app-notification>
       </app-notification>
     </md-tab>

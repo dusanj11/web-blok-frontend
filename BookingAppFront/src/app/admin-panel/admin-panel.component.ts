@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from "app/service/auth-service";
 import { NotificationServiceWS } from "app/service/notification-service";
+import { HttpService } from "app/service/http-service";
 
 @Component({
   selector: 'app-admin-panel',
@@ -9,8 +10,10 @@ import { NotificationServiceWS } from "app/service/notification-service";
 })
 export class AdminPanelComponent implements OnInit {
 
+  allowed: boolean = false;
 
-  constructor(private authService: AuthService, private notifService: NotificationServiceWS) {
+  constructor(private authService: AuthService, private notifService: NotificationServiceWS,
+              private httpService: HttpService) {
 
    }
 
@@ -23,6 +26,17 @@ export class AdminPanelComponent implements OnInit {
    }
 
   ngOnInit() {
+      let userName: string = this.authService.currentUserName();
+      let token: string = this.authService.currentUserToken();
+      this.httpService.getUserInfo(userName, token).subscribe(
+          (res: any) => {
+              console.log(res);
+              this.allowed = res.Allow;
+          },
+          error => {
+              console.log(error);
+          }
+      );
   }
 
 }

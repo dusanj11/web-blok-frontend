@@ -56,6 +56,7 @@ import { AccommodationEditComponent } from './accommodation-edit/accommodation-e
 import { ProfileComponent } from './profile/profile.component';
 import { ReservationEditComponent } from './reservation-edit/reservation-edit.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { UsersComponent } from './users/users.component';
 
 
 
@@ -106,6 +107,7 @@ const Routes =
     ProfileComponent,
     ReservationEditComponent,
     ProfileEditComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

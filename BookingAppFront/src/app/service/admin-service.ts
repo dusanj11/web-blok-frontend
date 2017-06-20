@@ -203,4 +203,46 @@ export class AdminService {
         return this.http.put(`http://localhost:54042/api/accommodation/approve/${id}`, opts);
     }
 
+
+    getManagers(access_token: string){
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.get(`http://localhost:54042/api/Appuser/Users`, opts);
+    }
+
+    allowCreating(access_token: string, id: number){
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(`http://localhost:54042/api/Appuser/update/allow/${id}`, {}, opts);
+    }
+
+     preventCreating(access_token: string, id: number){
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.put(`http://localhost:54042/api/Appuser/update/permit/${id}`, {}, opts);
+    }
+
+
+
 }
