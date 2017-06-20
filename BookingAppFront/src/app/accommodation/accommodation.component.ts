@@ -26,9 +26,9 @@ export class AccommodationComponent implements OnInit {
 
     // ngOnInit sadrzi poziv ka bazi kako bi se prikupila lista smestaja
     ngOnInit() {
-        this.managerService.getAccommodation().subscribe(
+        this.httpService.getApprovedAccommodations().subscribe(
             (res: any) => {
-                this.accommodationsAll = res; //JSON.parse(res._body);
+                this.accommodationsAll = JSON.parse(res._body);
                 console.log(this.accommodationsAll);
                 
             },

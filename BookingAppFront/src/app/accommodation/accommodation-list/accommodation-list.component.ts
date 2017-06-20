@@ -156,9 +156,9 @@ export class AccommodationListComponent implements OnInit {
     this.descFilterOn = false;
     this.noneFilterOn = true;
     this.accommodationsOfThisPlace = [];
-    this.managerService.getAccommodation().subscribe(
+    this.httpService.getApprovedAccommodations().subscribe(
       (res: any) => {
-        this.accommodationList = res; //JSON.parse(res._body);
+        this.accommodationList = JSON.parse(res._body);
         console.log(this.accommodationList);
 
         this.managerService.getPaginationAccommodation(1, this.accListPlace).subscribe(
@@ -201,9 +201,9 @@ export class AccommodationListComponent implements OnInit {
 
   doNameFilter() {
     this.accommodationsOfThisPlace = [];
-    this.managerService.getAccommodation().subscribe(
+    this.httpService.getApprovedAccommodations().subscribe(
       (res: any) => {
-        this.accommodationList = res; //JSON.parse(res._body);
+        this.accommodationList = JSON.parse(res._body);
         console.log(this.accommodationList);
 
         this.httpService.getNamePaginationAccommodation(this.model.Name, this.accListPlace, 1).subscribe(
@@ -251,9 +251,9 @@ export class AccommodationListComponent implements OnInit {
 
   doATypeFilter() {
     this.accommodationsOfThisPlace = [];
-    this.managerService.getAccommodation().subscribe(
+    this.httpService.getApprovedAccommodations().subscribe(
       (res: any) => {
-        this.accommodationList = res; //JSON.parse(res._body);
+        this.accommodationList = JSON.parse(res._body);
         console.log(this.accommodationList);
 
         this.acctypes.forEach(element => {
@@ -309,9 +309,9 @@ export class AccommodationListComponent implements OnInit {
 
   doDescriptionFilter() {
     this.accommodationsOfThisPlace = [];
-    this.managerService.getAccommodation().subscribe(
+    this.httpService.getApprovedAccommodations().subscribe(
       (res: any) => {
-        this.accommodationList = res; //JSON.parse(res._body);
+        this.accommodationList = JSON.parse(res._body);
         console.log(this.accommodationList);
 
         this.httpService.getDescriptionPaginationAccommodation(this.model.Description, this.accListPlace, 1).subscribe(
