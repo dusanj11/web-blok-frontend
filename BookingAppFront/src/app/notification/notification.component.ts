@@ -13,16 +13,17 @@ import { NotificationService } from "ng2-notify-popup";
 })
 export class NotificationComponent implements OnInit {
 
-  isConnected: Boolean;
-  notifications: any[]; // **
+  isConnected: Boolean = false;
+  notifications: any[] = []; // **
   time: string;
   Manager: any;
+  ngZone: NgZone;
 
-  constructor(private notifService: NotificationServiceWS, private ngZone: NgZone,
+  constructor(private notifService: NotificationServiceWS, 
               private httpService: HttpService, private authService: AuthService,
               private adminService: AdminService, private notificationService: NotificationService) {
-    this.isConnected = false;
-    this.notifications = [];
+    // this.isConnected = false;
+    // this.notifications = [];
 
     this.ngZone = new NgZone({ enableLongStackTrace: false });
   }
@@ -51,25 +52,25 @@ export class NotificationComponent implements OnInit {
 
   public onNotification(notif: Accommodation) { // * 
     //let Manager: any = {};
-    let Notification: any = {};
+    // let Notification: any = {};
 
     this.ngZone.run(() => {
-      let token = this.authService.currentUserToken();
-      this.httpService.getUserById(notif.AppUserId, token).subscribe(
-        (res: any) => {
-          this.Manager = res;
-          Notification.accommodation = notif;
-          Notification.manager = this.Manager;
-          console.log("Notification received");
-          this.notifications.push(Notification);
+      // let token = this.authService.currentUserToken();
+      // this.httpService.getUserById(notif.AppUserId, token).subscribe(
+      //   (res: any) => {
+      //     this.Manager = res;
+      //     Notification.accommodation = notif;
+      //     Notification.manager = this.Manager;
+      //     console.log("Notification received");
+      //     this.notifications.push(Notification);
 
-        },
-        error => {
-          console.log(error);
-        }
-      );
-
-
+      //   },
+      //   error => {
+      //     console.log(error);
+      //   }
+      // );
+      this.notifications.push(notif);
+      console.log("Notification received");
     });
   }
 
@@ -90,6 +91,7 @@ export class NotificationComponent implements OnInit {
   //   }
   // }
   public GetNotification() {
+    console.log("GetNotification");
     this.notifService.GetNotification();
   }
 
@@ -103,6 +105,12 @@ export class NotificationComponent implements OnInit {
   }
 
   acceptAccommodation(id: number){
+      // this.notifications.forEach(element => {
+      //     if (element.id == id){
+
+      //     }
+      // });
+
       console.log(`Notification approved: ${id}`);
       let role = this.authService.currentUserRole();
       console.log(role);

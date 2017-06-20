@@ -1,3 +1,5 @@
+import { AppUser } from "app/model/app-user";
+
 export class Accommodation {
     public Id: number;
     public Name: string;
@@ -13,6 +15,7 @@ export class Accommodation {
     public AccommodationTypeId: number;
     public AccomTypeName: string;
     public AppUserId: number;
+    public AppUser: AppUser;
 
     constructor() { }
 

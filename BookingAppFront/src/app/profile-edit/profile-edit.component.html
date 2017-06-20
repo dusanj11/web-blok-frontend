@@ -1,3 +1,24 @@
-<p>
-  profile-edit works!
-</p>
+<md-card>
+  <h3>Profile information</h3>
+  <form class="example-form" #f2="ngForm" (ngSubmit)="onSubmitChangePass(f2.value, f2)">
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td>
+          <md-input-container class="example-full-width">
+            <input mdInput placeholder="Current password" name="currentPassword" ngModel>
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input type="password" mdInput placeholder="New password" name="newPassword" ngModel>
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="submit" md-raised-button color="accent">Change</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</md-card>

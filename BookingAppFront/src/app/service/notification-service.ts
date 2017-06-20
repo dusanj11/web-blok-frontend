@@ -95,6 +95,7 @@ export class NotificationServiceWS {
     }
 
     public GetNotification() {
+        console.log("GetNotification service");
         if (this.authService.isLoggedInRole("Admin")) {
             this.proxy.invoke("GetNotification");
         }
