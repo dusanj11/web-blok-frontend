@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, NgZone } from '@angular/core';
 import { HttpService } from '../service/http-service';
 import { NgForm } from '@angular/forms';
 import {
@@ -9,6 +9,8 @@ import { CurrentUser } from '../model/current-user';
 import { AuthService } from "app/service/auth-service";
 import { NotificationServiceWS } from "app/service/notification-service";
 import { NotificationService } from "ng2-notify-popup";
+import { NotificationComponent } from "app/notification/notification.component";
+import { Accommodation } from "app/accommodation/accommodation";
 
 @Injectable()
 @Component({
@@ -18,12 +20,17 @@ import { NotificationService } from "ng2-notify-popup";
 })
 export class SignInComponent implements OnInit {
 
+  ngZone: NgZone;
+
   constructor(private notifyService: NotificationService,
               public httpService: HttpService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private authService: AuthService,
-              private notifService: NotificationServiceWS) { }
+              private notifService: NotificationServiceWS) {
+
+                this.ngZone = new NgZone({enableLongStackTrace: false});
+               }
 
   registerResponse: any;
 
@@ -61,6 +68,8 @@ export class SignInComponent implements OnInit {
                                   this.notifService.RegisterForNotifications();
 
                                   this.notifService.GetNotification();
+                                  
+                                  
                                   // subscribovanje na dobijanje notifikacije 
                                   // this.notifService.OnConnected();
 
@@ -104,6 +113,19 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscribeForApprovedNotification();
   }
 
+  private subscribeForApprovedNotification() {
+    this.notifService.approvedAccommodationRecieved.subscribe(e => this.onApprovedNotification(e));
+  }
+
+  public onApprovedNotification(notif: Accommodation) {
+
+    this.ngZone.run(() => {
+      // this.approvedNotifications.push(notif);
+      // console.log("Approved notification received");
+      this.notifyService.show("Accommodation approved from administrator!", { type: 'info', position: 'bottom' });
+    });
+  }
 }

@@ -60,7 +60,7 @@ export class RoomComponent implements OnInit {
 
   doBedCountFilter()
   {
-        this.httpService.getBedCountFiltered(this.model.BedCount).subscribe(
+        this.httpService.getBedCountFiltered(this.model.BedCount, this.accommodationId).subscribe(
        (rs: any) => {
             this.rooms = JSON.parse(rs._body);
             console.log(this.rooms);
@@ -76,7 +76,7 @@ export class RoomComponent implements OnInit {
 
   doDescriptionFilter()
   {
-      this.httpService.getDescriptionRoomsFiltered(this.model.Description).subscribe(
+      this.httpService.getDescriptionRoomsFiltered(this.model.Description, this.accommodationId).subscribe(
        (rs: any) => {
             this.rooms = JSON.parse(rs._body);
             console.log(this.rooms);
@@ -92,7 +92,7 @@ export class RoomComponent implements OnInit {
 
   doPriceFilter()
   {
-      this.httpService.getPriceFiltered(this.model.MinPrice, this.model.MaxPrice).subscribe(
+      this.httpService.getPriceFiltered(this.model.MinPrice, this.model.MaxPrice, this.accommodationId).subscribe(
        (rs: any) => {
             this.rooms = JSON.parse(rs._body);
             console.log(this.rooms);

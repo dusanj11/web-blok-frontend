@@ -37,6 +37,8 @@ export class NotificationComponent implements OnInit {
     this.manager = this.authService.isLoggedInRole("Manager");
     this.checkConnection();
     this.subscribeForNotifications();
+    this.subscribeForApprovedNotification();
+
     this.subscribeForTime();
     this.GetNotification();
   }
@@ -86,8 +88,9 @@ export class NotificationComponent implements OnInit {
   public onApprovedNotification(notif: Accommodation) {
 
     this.ngZone.run(() => {
-      this.approvedNotifications.push(notif);
-      console.log("Approved notification received");
+      // this.approvedNotifications.push(notif);
+      // console.log("Approved notification received");
+      this.notificationService.show("Accommodation approved!", { type: 'success', position: 'bottom' });
     });
   }
 

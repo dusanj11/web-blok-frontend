@@ -169,17 +169,17 @@ export class HttpService {
         return this.http.get(`http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'${name}\',Description) and PlaceId eq ${placeId} &$top=3&$skip=${skipNumber}`);
     }
 
-    getBedCountFiltered(num: number): Observable<any> {
-        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=BedCount eq ${num}`);
+    getBedCountFiltered(num: number, accomId: number): Observable<any> {
+        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=BedCount eq ${num} and AccommodationId eq ${accomId}`);
     }
 
-    getDescriptionRoomsFiltered(name: string): Observable<any> {
+    getDescriptionRoomsFiltered(name: string, accomId: number): Observable<any> {
         // return this.http.get("http://localhost:54042/api/accommodation/accommodations?$filter=substringof(\'"+name+"\'"+",Name" +')');
-        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=substringof(\'${name}\',Description)`);
+        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=substringof(\'${name}\',Description) and AccommodationId eq ${accomId}`);
     }
 
-    getPriceFiltered(minPrice: number, maxPrice: number) {
-        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=PricePerNight ge ${minPrice} and PricePerNight le ${maxPrice}`);
+    getPriceFiltered(minPrice: number, maxPrice: number, accomId: number) {
+        return this.http.get(`http://localhost:54042/api/room/rooms?$filter=PricePerNight ge ${minPrice} and PricePerNight le ${maxPrice} and AccommodationId eq ${accomId}`);
 
     }
 
@@ -225,6 +225,10 @@ export class HttpService {
         opts.headers = headers;
 
         return this.http.delete(`http://localhost:54042/api/RoomReservation/roomReservations/delete/${id}`, opts);
+
+    }
+
+    changePassword(current_password: string, new_password: string, confirm_pass: string){
 
     }
 }

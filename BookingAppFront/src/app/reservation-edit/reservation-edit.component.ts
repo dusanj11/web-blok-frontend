@@ -38,6 +38,7 @@ export class ReservationEditComponent implements OnInit {
       this.httpService.deleteRoomReservation(id, token).subscribe(
         (res: any) => {
              this.notifService.show("Successfully removed reservation!", {type: 'success', position:'bottom'});
+             this.ngOnInit();
         },
         error => {
               this.notifService.show("Error removing reservation!", {type: 'error', position:'bottom'});

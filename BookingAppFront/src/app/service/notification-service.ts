@@ -42,12 +42,14 @@ export class NotificationServiceWS {
         // create new proxy as name already given in top  
 
         this.proxy = this.connection.createHubProxy(this.proxyName);
+         // call the connecion start method to start the connection to send and receive events. 
+        this.startConnection();
+        
         // register on server events  
         this.registerOnServerEvents();
 
         this.registerForTimerEvents();
-        // call the connecion start method to start the connection to send and receive events. 
-        this.startConnection();
+       
         this.registerOnApprovingNotification();
         // this.proxy.on('hello', (data:string)=>{
         //     console.log(data);
