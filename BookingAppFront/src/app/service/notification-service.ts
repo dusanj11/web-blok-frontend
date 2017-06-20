@@ -2,6 +2,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { AuthService } from "app/service/auth-service";
 import { Accommodation } from "app/accommodation/accommodation";
+import { Http } from '@angular/http';
 
 // declare the global variables
 declare var $: any;
@@ -23,7 +24,7 @@ export class NotificationServiceWS {
 
 
 
-    constructor() {
+    constructor(private http:Http) {
 
 
 
@@ -33,7 +34,7 @@ export class NotificationServiceWS {
         this.timeReceived = new EventEmitter<string>();
         this.approvedAccommodationRecieved = new EventEmitter<Accommodation>();
         this.connectionExists = false;
-        this.authService = new AuthService();
+        this.authService = new AuthService(this.http);
 
         // create hub connection  
 

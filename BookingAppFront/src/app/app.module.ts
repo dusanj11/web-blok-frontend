@@ -57,6 +57,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ReservationEditComponent } from './reservation-edit/reservation-edit.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { UsersComponent } from './users/users.component';
+import { ProfileGuard } from "app/profile/profile-guard";
 
 
 
@@ -64,7 +65,7 @@ const Routes =
 [
   {path: '', redirectTo:"accommodation", pathMatch: 'full'},
   {path: "signIn", component: HomeComponent},
-  {path: "profile", component: ProfileComponent},
+  {path: "profile", component: ProfileComponent, canActivate: [ProfileGuard]},
   {path: "accommodation", component: CountryComponent },
   {path: "administration", component: AdminPanelComponent, canActivate: [LogInGuard]},
   {path: "accommodation-details/:id", component: AccommodationDetailsComponent},
@@ -125,7 +126,7 @@ const Routes =
     NgNotifyPopup
     //Material AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk
   ],
-  providers: [HttpService, AuthService, LogInGuard, ManagerService, AdminService, NotificationServiceWS, NotificationService],
+  providers: [HttpService, AuthService, LogInGuard, ManagerService, AdminService, NotificationServiceWS, NotificationService, ProfileGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

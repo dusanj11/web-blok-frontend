@@ -137,6 +137,7 @@ export class NotificationComponent implements OnInit {
     this.adminService.approveAccommodation(id, token).subscribe(
       (res: any) => {
         this.notificationService.show("Accommodation approved!", { type: 'success', position: 'bottom' });
+        this.ngOnInit();
       }
     );
   }

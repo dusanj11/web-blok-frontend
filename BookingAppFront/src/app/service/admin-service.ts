@@ -200,7 +200,7 @@ export class AdminService {
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
 
-        return this.http.put(`http://localhost:54042/api/accommodation/approve/${id}`, opts);
+        return this.http.put(`http://localhost:54042/api/accommodation/approve/${id}`, {}, opts);
     }
 
 

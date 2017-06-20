@@ -69,7 +69,7 @@ export class SignInComponent implements OnInit {
 
                                   this.notifService.GetNotification();
                                   
-                                  
+                                   this.subscribeForApprovedNotification();
                                   // subscribovanje na dobijanje notifikacije 
                                   // this.notifService.OnConnected();
 
@@ -113,7 +113,7 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscribeForApprovedNotification();
+    // this.subscribeForApprovedNotification();
   }
 
   private subscribeForApprovedNotification() {

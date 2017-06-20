@@ -53,6 +53,10 @@ export class ToolbarComponent implements OnInit {
       return !this.authService.isLoggedOut();
   }
 
+  checkIfLoggedIn(): boolean {
+      return this.authService.isLoggedIn();
+  }
+
   goLogIn()
   {
     this.router.navigate(['/signIn']);

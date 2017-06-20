@@ -1,10 +1,13 @@
 import { CurrentUser } from "app/model/current-user";
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class AuthService {
     
     loggedIn : boolean;
 
-    constructor(){
+    constructor(private http: Http){
         
     }
 
@@ -89,6 +92,26 @@ export class AuthService {
         else {
             return null;
         }
+    }
+
+
+    changePassword(currentPass: string, newPass: string, confirmPass: string, access_token: string){
+       
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        let token = `Bearer ${access_token}`;
+        headers.append('Authorization', token);
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(`http://localhost:54042/api/Account/ChangePassword`,
+         JSON.stringify({
+             OldPassword: currentPass,
+             NewPassword: newPass,
+             ConfirmPassword: confirmPass
+         }), opts);
     }
 
     
